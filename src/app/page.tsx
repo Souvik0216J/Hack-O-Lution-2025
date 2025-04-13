@@ -3,6 +3,7 @@ import { motion, Variants } from 'framer-motion'
 import { BackgroundBeams } from "../components/ui/background-beams";
 import { useTimer } from 'react-timer-hook'
 import { MarqueImg } from '@/components/MarqueImg'
+import { Spotlight } from '@/components/ui/spotlight-new';
 
 export default function Home() {
 
@@ -29,7 +30,8 @@ export default function Home() {
   }
   return (
     <>
-      <div className="h-[100vh] w-full rounded-md bg-neutral-950 relative flex flex-col items-center justify-center antialiased">
+      <div className="h-[100vh] w-screen rounded-md bg-neutral-950 relative flex flex-col items-center justify-center antialiased overflow-hidden">
+        <Spotlight />
         <div className="max-w-2xl mx-auto p-4">
           <div className="flex items-center text-center justify-center">
             <motion.div
@@ -58,9 +60,16 @@ export default function Home() {
 
           <div className='flex justify-center items-center pt-2'>
             <div className="text-center text-3xl xs:text-3xl sm:text-5xl md:text-7xl z-50 relative text-green-200">
-              <span>{days}</span>.<span className="">{hours}</span>.
-              <span>{minutes}</span>.
-              <span className="">{seconds}</span>
+              <motion.div
+                variants={animation}
+                initial="hidden"
+                animate="show"
+              >
+                <motion.span variants={animation}><span>{days}</span></motion.span>
+                <motion.span variants={animation}>.<span>{hours}</span>.</motion.span>
+                <motion.span variants={animation}><span>{minutes}</span>.</motion.span>
+                <motion.span variants={animation}><span>{seconds}</span></motion.span>
+              </motion.div>
             </div>
           </div>
         </div>

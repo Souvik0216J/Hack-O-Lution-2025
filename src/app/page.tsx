@@ -34,7 +34,7 @@ export default function Home() {
             variants={animation}
             initial="hidden"
             animate="show"
-            className="md:text-8xl font-medium text-6xl mt-9 z-50"
+            className="text-4xl xs:text-4xl sm:text-6xl md:text-8xl lg-text-10xl font-medium mt-9 z-50"
           >
             <motion.span variants={animation}>H</motion.span>
             <motion.span variants={animation}>A</motion.span>
@@ -55,7 +55,7 @@ export default function Home() {
         </div>
 
         <div className='flex justify-center items-center pt-2'>
-          <div className="text-3xl md:text-7xl z-50 relative text-green-200">
+          <div className="text-3xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl z-50 relative text-green-200">
             <span>{days}</span>.<span className="">{hours}</span>.
             <span>{minutes}</span>.
             <span className="">{seconds}</span>

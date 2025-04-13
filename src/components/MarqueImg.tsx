@@ -26,54 +26,54 @@ export function MarqueImg() {
 
 const List1 = [
     {
-        src:"galary/1.JPG",
+        src:"/galary/1.JPG",
         alt:"img-1"
     },
     {
-        src:"galary/2.JPG",
+        src:"/galary/2.JPG",
         alt:"img-2"
     },
     {
-        src:"galary/3.JPG",
+        src:"/galary/3.JPG",
         alt:"img-3"
     },
     {
-        src:"galary/4.JPG",
+        src:"/galary/4.JPG",
         alt:"img-4"
     },
     {
-        src:"galary/5.JPG",
+        src:"/galary/5.JPG",
         alt:"img-5"
     },
     {
-        src:"galary/6.JPG",
+        src:"/galary/6.JPG",
         alt:"img-6"
     },
 ];
 
 const List2 = [
     {
-        src:"galary/7.JPG",
+        src:"/galary/7.JPG",
         alt:"img-7"
     },
     {
-        src:"galary/8.JPG",
+        src:"/galary/8.JPG",
         alt:"img-8"
     },
     {
-        src:"galary/9.JPG",
+        src:"/galary/9.JPG",
         alt:"img-9"
     },
     {
-        src:"galary/10.JPG",
+        src:"/galary/10.JPG",
         alt:"img-10"
     },
     {
-        src:"galary/11.JPG",
+        src:"/galary/11.JPG",
         alt:"img-11"
     },
     {
-        src:"galary/12.JPG",
+        src:"/galary/12.JPG",
         alt:"img-12"
     },
 ];

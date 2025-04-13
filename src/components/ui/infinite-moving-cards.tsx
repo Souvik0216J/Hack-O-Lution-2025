@@ -2,6 +2,7 @@
 
 import { cn } from "@/utils/cn";
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 export const InfiniteMovingCards = ({
   items,
@@ -83,10 +84,13 @@ export const InfiniteMovingCards = ({
             key={idx}
             className="relative w-[350px] max-w-full shrink-0 rounded-2xl border border-zinc-200 bg-white p-2 md:w-[450px] dark:border-zinc-700 dark:bg-zinc-900"
           >
-            <img
+            <Image
               src={item.src}
+              width={450}
+              height={300}
               alt={item.alt || `image-${idx}`}
               className="w-full h-[230px] object-cover rounded-xl"
+              priority={idx < 4} // Only prioritize a few
             />
           </li>
         ))}

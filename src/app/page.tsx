@@ -55,7 +55,7 @@ export default function Home() {
         </div>
 
         <div className='flex justify-center items-center pt-2'>
-          <div className="text-3xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl z-50 relative text-green-200">
+          <div className="text-center text-3xl xs:text-3xl sm:text-5xl md:text-7xl z-50 relative text-green-200">
             <span>{days}</span>.<span className="">{hours}</span>.
             <span>{minutes}</span>.
             <span className="">{seconds}</span>

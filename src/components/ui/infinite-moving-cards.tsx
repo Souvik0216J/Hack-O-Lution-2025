@@ -65,6 +65,7 @@ export const InfiniteMovingCards = ({
 
   return (
     <div
+      onContextMenu={(e) => e.preventDefault()}
       ref={containerRef}
       className={cn(
         "scroller relative z-20 max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
@@ -90,7 +91,6 @@ export const InfiniteMovingCards = ({
               height={300}
               alt={item.alt || `image-${idx}`}
               className="w-full h-[230px] object-cover rounded-xl"
-              onContextMenu={(e) => e.preventDefault()}
               priority={idx < 4} // Only prioritize a few images at a time
             />
           </li>

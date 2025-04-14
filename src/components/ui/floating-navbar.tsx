@@ -43,7 +43,7 @@ export const FloatingNav = ({
         >
           {/* for mobile  */}
           <span className="block sm:hidden text-4xl">{navItem.icon}</span>
-          <span className="hidden sm:block text-sm">{navItem.name}</span>
+          <span className="hidden sm:block text-md">{navItem.name}</span>
         </Link>
       ))}
       

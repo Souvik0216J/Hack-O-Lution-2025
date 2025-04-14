@@ -1,16 +1,17 @@
 "use client";
-import React from "react";
 import { Label } from "@/components/ui/labels";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/utils/cn";
-
+import { Spotlight } from "@/components/ui/spotlight-new";
 function page() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Form submitted");
   };
+  
   return (
     <div className="min-h-screen w-full rounded-md bg-neutral-950 flex flex-col items-center justify-center px-4 py-6 sm:px-6 lg:px-8">   
+    <Spotlight/>
       <div className="shadow-input mx-auto w-full max-w-md rounded-none bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black">
         <h2 className="text-xl font-bold text-neutral-800 dark:text-neutral-200">
           Welcome to HackOLution
@@ -23,20 +24,20 @@ function page() {
           <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
             <LabelInputContainer>
               <Label htmlFor="firstname">First name</Label>
-              <Input id="firstname" placeholder="Your first name" type="text" />
+              <Input id="firstname" placeholder="Your first name" type="text" required/>
             </LabelInputContainer>
             <LabelInputContainer>
               <Label htmlFor="lastname">Last name</Label>
-              <Input id="lastname" placeholder="Your last name" type="text" />
+              <Input id="lastname" placeholder="Your last name" type="text" required/>
             </LabelInputContainer>
           </div>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="email">Email Address</Label>
-            <Input id="email" placeholder="abc@gmail.com" type="email" />
+            <Input id="email" placeholder="abc@gmail.com" type="email" required/>
           </LabelInputContainer>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" placeholder="Enter password" type="password" />
+            <Input id="password" placeholder="Enter password" type="password" required/>
           </LabelInputContainer>
           <LabelInputContainer className="mb-8">
             <Label htmlFor="confirmpassword">Confirm password</Label>
@@ -44,13 +45,14 @@ function page() {
               id="password"
               placeholder="Re-enter password"
               type="password"
+              required
             />
           </LabelInputContainer>
 
           <button
             className="group/btn relative block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset] hover:cursor-pointer"
             type="submit"
-          >
+            >
             Submit &rarr;
             <BottomGradient />
           </button>

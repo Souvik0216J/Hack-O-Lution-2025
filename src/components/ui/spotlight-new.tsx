@@ -36,7 +36,7 @@ export const Spotlight = ({
       transition={{
         duration: 1.5,
       }}
-      className="pointer-events-none absolute inset-0 h-full w-screen"
+      className="pointer-events-none absolute inset-0 h-full w-screen overflow-x-hidden"
     >
       <motion.div
         animate={{

@@ -3,6 +3,7 @@ import { Label } from "@/components/ui/labels";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/utils/cn";
 import { Spotlight } from "@/components/ui/spotlight-new";
+
 function page() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

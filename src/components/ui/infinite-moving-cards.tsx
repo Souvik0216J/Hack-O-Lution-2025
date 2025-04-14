@@ -90,6 +90,7 @@ export const InfiniteMovingCards = ({
               height={300}
               alt={item.alt || `image-${idx}`}
               className="w-full h-[230px] object-cover rounded-xl"
+              onContextMenu={(e) => e.preventDefault()}
               priority={idx < 4} // Only prioritize a few images at a time
             />
           </li>

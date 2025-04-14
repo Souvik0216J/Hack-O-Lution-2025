@@ -1,9 +1,10 @@
 "use client"
 import { motion, Variants } from 'framer-motion'
-import { BackgroundBeams } from "../components/ui/background-beams";
 import { useTimer } from 'react-timer-hook'
+import { BackgroundBeams } from "../components/ui/background-beams";
 import { MarqueImg } from '@/components/MarqueImg'
 import { Spotlight } from '@/components/ui/spotlight-new';
+
 
 export default function Home() {
 
@@ -45,9 +46,7 @@ export default function Home() {
               <motion.span variants={animation}>C</motion.span>
               <motion.span variants={animation}>K</motion.span>
               <motion.span variants={animation}>&#123;</motion.span>
-              <motion.span variants={animation} className="text-green-400">
-                0
-              </motion.span>
+              <motion.span variants={animation} className="text-green-400">0</motion.span>
               <motion.span variants={animation}>&#125;</motion.span>
               <motion.span variants={animation}>L</motion.span>
               <motion.span variants={animation}>U</motion.span>

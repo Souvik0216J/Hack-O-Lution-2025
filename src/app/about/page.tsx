@@ -12,7 +12,7 @@ function page() {
         </div>
 
       </div>
-      {/* <BackgroundBeams /> */}
+      <BackgroundBeams />
     </div>
   )
 }

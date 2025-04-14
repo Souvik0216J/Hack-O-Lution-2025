@@ -2,7 +2,7 @@
 import { Label } from "@/components/ui/labels";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/utils/cn";
-// import { Spotlight } from "@/components/ui/spotlight-new";
+import { Spotlight } from "@/components/ui/spotlight-new";
 
 function page() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -12,7 +12,7 @@ function page() {
   
   return (
     <div className="mt-25 min-h-screen w-full rounded-md bg-neutral-950 flex flex-col items-center justify-center px-4 py-6 sm:px-6 lg:px-8">   
-    {/* <Spotlight/> */}
+    <Spotlight/>
       <div className="shadow-input mx-auto w-full max-w-md rounded bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black">
         <h2 className="text-xl font-bold text-neutral-800 dark:text-neutral-200">
           Welcome to HackOLution

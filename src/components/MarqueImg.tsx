@@ -1,6 +1,5 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import { InfiniteMovingCards } from "../components/ui/infinite-moving-cards";
 import { BackgroundBeams } from "../components/ui/background-beams";
 

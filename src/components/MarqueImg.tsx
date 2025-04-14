@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { InfiniteMovingCards } from "../components/ui/infinite-moving-cards";
 import { BackgroundBeams } from "../components/ui/background-beams";
-import { BackgroundLines } from "../components/ui/background-lines";
+
 export function MarqueImg() {
     return (
         <div className="h-[100vh] rounded-md flex flex-col antialiased bg-white dark:bg-[#0a0a0a] dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">

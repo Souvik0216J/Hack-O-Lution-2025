@@ -5,7 +5,7 @@ import { cn } from "@/utils/cn";
 import { Spotlight } from "@/components/ui/spotlight-new";
 import { useRouter } from "next/navigation"
 import axios from "axios"
-import toast from "react-hot-toast"
+// import toast from "react-hot-toast"
 import React from "react";
 
 function Page() {

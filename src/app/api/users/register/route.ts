@@ -2,15 +2,13 @@ import {connect} from '@/dbConfig/dbConfig'
 import User from '@/models/userModel'
 import { NextRequest, NextResponse } from 'next/server'
 import bcryptjs from 'bcryptjs'
-import { error } from 'console'
-
 
 connect()
 
 export async function POST(request: NextRequest) {
     try {
        const reqBody = await request.json() 
-       const {teamName, teamSize, leaderName, leaderEmail, leaderNo, leaderCity, leaderClgName, leaderTshirtSize, projectIDea, isLeader} = reqBody
+       const {teamName, teamSize, leaderName, leaderEmail, leaderNo, leaderCity, leaderClgName, leaderTshirtSize, projectIDea} = reqBody
 
        console.log(reqBody)
        
@@ -22,6 +20,7 @@ export async function POST(request: NextRequest) {
         }
 
         //hash password
+        console.log(leaderNo)
         const salt = await bcryptjs.genSalt(10)
         const hashedPassword = await bcryptjs.hash(leaderNo, salt)
 

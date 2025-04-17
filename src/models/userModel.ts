@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
     leaderNo: {
         type: String,
         required: [true, "Please provide a phone number"],
-        unique: true,
+        unique: false,
     },
 
     leaderCity: {
@@ -56,12 +56,17 @@ const userSchema = new mongoose.Schema({
         unique: false,
     },
 
+    password: {
+        type: String,
+        default: "",
+    },
+
     isLeader: {
         type: Boolean,
         default : false,
     },
 })
 
-const User = mongoose.models.users || mongoose.model("userData", userSchema)
+const User = mongoose.models.userData || mongoose.model("userData", userSchema)
 
 export default User

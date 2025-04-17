@@ -5,35 +5,49 @@ import { cn } from "@/utils/cn";
 import { Spotlight } from "@/components/ui/spotlight-new";
 import { useRouter } from "next/navigation"
 import axios from "axios"
-// import toast from "react-hot-toast"
+import toast from "react-hot-toast"
 import React from "react";
 
 function Page() {
   const router = useRouter()
+  const [submitDone, setSubmitDone] = React.useState(false)
   const [user, setUser] = React.useState({
-    teamName : "",
-    teamSize : "",
-    leaderName : "",
-    leaderEmail : "",
-    leaderNo : "",
-    leaderCity : "",
-    leaderClgName : "",
-    leaderTshirtSize : "",
-    projectIDea : "",
+    teamName: "",
+    teamSize: "",
+    leaderName: "",
+    leaderEmail: "",
+    leaderNo: "",
+    leaderCity: "",
+    leaderClgName: "",
+    leaderTshirtSize: "",
+    projectIDea: "",
   })
 
-  const onRegister = async () =>{
-    try{
+  const onRegister = async () => {
+    try {
       setLoading(true)
       const response = await axios.post("/api/users/register", user)
+      setSubmitDone(true)
+      console.log("Signup success", response.data)
+      setTimeout(() => { router.push("/login") }, 3000);
     }
-    catch(error:any){
-
+    catch (error: any) {
+      console.log("Signup failed", error)
+      toast.error(error.message)
     }
-    finally{
+    finally {
       setLoading(false)
     }
   }
+
+  React.useEffect(() => {
+    if (user.leaderEmail.length > 0 && user.leaderNo.length < 10) {
+      setButtonDisabled(false)
+    }
+    else {
+      setButtonDisabled(true)
+    }
+  }, [user])
 
   const [buttonDisable, setButtonDisabled] = React.useState(false)
   const [loading, setLoading] = React.useState(false)
@@ -42,10 +56,10 @@ function Page() {
     e.preventDefault();
     console.log("Form submitted");
   };
-  
+
   return (
-    <div className="mt-25 min-h-screen w-full rounded-md bg-neutral-950 flex flex-col items-center justify-center px-4 py-6 sm:px-6 lg:px-8">   
-    <Spotlight/>
+    <div className="mt-25 min-h-screen w-full rounded-md bg-neutral-950 flex flex-col items-center justify-center px-4 py-6 sm:px-6 lg:px-8">
+      <Spotlight />
       <div className="shadow-input mx-auto w-full max-w-md rounded bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black">
         <h2 className="text-xl font-bold text-neutral-800 dark:text-neutral-200">
           Welcome to HackOLution
@@ -55,44 +69,92 @@ function Page() {
         </p>
 
         <form className="my-8" onSubmit={handleSubmit}>
-          <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
-            <LabelInputContainer>
-              <Label htmlFor="firstname"><span className="text-red-400 mr-0.5">*</span>First name</Label>
-              <Input id="firstname" placeholder="Your first name" type="text" required/>
-            </LabelInputContainer>
-            <LabelInputContainer>
-              <Label htmlFor="lastname"><span className="text-red-400 mr-0.5">*</span>Last name</Label>
-              <Input id="lastname" placeholder="Your last name" type="text" required/>
-            </LabelInputContainer>
-          </div>
+
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="email"><span className="text-red-400 mr-0.5">*</span>Email Address</Label>
-            <Input id="email" placeholder="abc@gmail.com" type="email" required/>
-          </LabelInputContainer>
-          <LabelInputContainer className="mb-4">
-            <Label htmlFor="password"><span className="text-red-400 mr-0.5">*</span>Password</Label>
-            <Input id="password" placeholder="Enter password" type="password" required/>
-          </LabelInputContainer>
-          <LabelInputContainer className="mb-4">
-            <Label htmlFor="confirmpassword"><span className="text-red-400 mr-0.5">*</span>Confirm password</Label>
-            <Input
-              id="password"
-              placeholder="Re-enter password"
-              type="password"
-              required
+            <Label htmlFor="team name"><span className="text-red-400 mr-0.5">*</span>Team Name</Label>
+            <Input id="text" placeholder="Enter your team name" type="text" required value={user.teamName}
+              onChange={(e) => setUser({
+                ...user, teamName: e.target.value
+              })}
             />
           </LabelInputContainer>
+          
+          <LabelInputContainer className="mb-8">
+            <Label htmlFor="teamsize"><span className="text-red-400 mr-0.5">*</span>Team Size</Label>
+            <Input
+              dropdown
+              options={[
+                { value: "2", label: "2" },
+                { value: "3", label: "3" },
+                { value: "4", label: "4" },
+              ]}
+
+              onChange={(e) => setUser({
+                ...user, teamSize: e.target.value
+              })}
+            />
+          </LabelInputContainer>
+          
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="leader name"><span className="text-red-400 mr-0.5">*</span>Leader Name</Label>
+            <Input id="text" placeholder="Enter your name" type="text" required value={user.leaderName}
+              onChange={(e) => setUser({
+                ...user, leaderName: e.target.value
+              })}
+            />
+          </LabelInputContainer>
+
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="email"><span className="text-red-400 mr-0.5">*</span>Leader Email</Label>
+            <Input id="email" placeholder="abc@gmail.com" type="email" required 
+                onChange={(e) => setUser({
+                  ...user, leaderEmail: e.target.value
+                })}
+            />
+    
+          </LabelInputContainer>
+
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="phone"><span className="text-red-400 mr-0.5">*</span>Leader WhatApp No</Label>
+            <Input id="phone" placeholder="Enter phone number" type="text" required 
+                onChange={(e) => setUser({
+                  ...user, leaderNo: e.target.value
+                })}
+            />
+          </LabelInputContainer>
+          
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="city"><span className="text-red-400 mr-0.5">*</span>Leader's City</Label>
+            <Input id="city" placeholder="Enter your city name" type="text" required 
+                onChange={(e) => setUser({
+                  ...user, leaderCity: e.target.value
+                })}
+            />
+          </LabelInputContainer>
+          
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="collegename"><span className="text-red-400 mr-0.5">*</span>Leader's College Name</Label>
+            <Input id="phone" placeholder="Enter phone number" type="text" required 
+                onChange={(e) => setUser({
+                  ...user, leaderClgName: e.target.value
+                })}
+            />
+          </LabelInputContainer>
+
           <LabelInputContainer className="mb-8">
             <Label htmlFor="tshirtsize"><span className="text-red-400 mr-0.5">*</span>Size of T-shirt</Label>
             <Input
-               dropdown 
-               options={[
-                 { value: "S - Size", label: "S - Size" },
-                 { value: "M - Size", label: "M - Size" },
-                 { value: "L - Size", label: "L - Size" },
-                 { value: "XL - Size", label: "XL - Size" },
-                 { value: "XXL - Size", label: "XXL - Size" },
-               ]} 
+              dropdown
+              options={[
+                { value: "S - Size", label: "S - Size" },
+                { value: "M - Size", label: "M - Size" },
+                { value: "L - Size", label: "L - Size" },
+                { value: "XL - Size", label: "XL - Size" },
+                { value: "XXL - Size", label: "XXL - Size" },
+              ]}
+              onChange={(e) => setUser({
+                ...user, leaderTshirtSize: e.target.value
+              })}
             />
           </LabelInputContainer>
           <LabelInputContainer className="mb-4">
@@ -103,15 +165,23 @@ function Page() {
               placeholder="Enter project idea"
               type="text"
               required
+              onChange={(e) => setUser({
+                ...user, projectIDea: e.target.value
+              })}
             />
           </LabelInputContainer>
+      
           <button
             className="group/btn relative block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset] hover:cursor-pointer"
             type="submit"
-            >
-            Submit &rarr;
+            onClick={onRegister}
+          >
+            
+            {loading ? "Waiting a while" : "Register"} &rarr;
             <BottomGradient />
           </button>
+          <br />
+          <h2 className="text-xl text-green-500">{submitDone ? "Register Successfully\nWait a sec, redirecting to login page" : ""}</h2>
         </form>
       </div>
     </div>

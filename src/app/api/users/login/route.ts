@@ -3,7 +3,7 @@ import User from '@/models/userModel'
 import { NextRequest, NextResponse } from 'next/server'
 import bcryptjs from 'bcryptjs'
 import { error } from 'console'
-import jwt from "jsonwebtoken"
+// import jwt from "jsonwebtoken"
 
 connect()
 
@@ -34,16 +34,16 @@ export async function POST(request: NextRequest) {
         }
 
         // create token
-        const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET!, {expiresIn: "15min"})
+        // const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET!, {expiresIn: "15min"})
 
-        const response = NextResponse.json({
-            message: "Login Successfully",
-            success: true,
-        })
-        response.cookies.set("token", token, {
-            httpOnly: true,  
-        })
-        return response;
+        // const response = NextResponse.json({
+        //     message: "Login Successfully",
+        //     success: true,
+        // })
+        // response.cookies.set("token", token, {
+        //     httpOnly: true,  
+        // })
+        // return response;
 
     } catch (error: any) {
         return NextResponse.json({error: error.message},

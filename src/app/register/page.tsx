@@ -8,7 +8,7 @@ import axios from "axios"
 import toast from "react-hot-toast"
 import React from "react";
 
-function page() {
+function Page() {
   const router = useRouter()
   const [user, setUser] = React.useState({
     teamName : "",
@@ -141,4 +141,4 @@ const LabelInputContainer = ({
   );
 };
 
-export default page
+export default Page

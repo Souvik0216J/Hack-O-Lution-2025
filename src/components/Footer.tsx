@@ -8,7 +8,7 @@ export default function Footer() {
             <div className="text-xl">&#169; HACK&#123;0&#125;LUTION</div>
 
             <div className="flex justify-center items-center gap-4 ">
-                <Link href={"https://discord.gg/MUvndmgsPT"} target="_blank">
+                <Link href={"https://discord.gg/hjxtZZXsD4 "} target="_blank">
                     <FaDiscord className=" hover:text-white text-gray-300" />
                 </Link>
                 <Link href={"https://www.instagram.com/hack0lution/"} target="_blank">

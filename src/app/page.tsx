@@ -1,9 +1,10 @@
 "use client"
 import { motion, Variants } from 'framer-motion'
 import { useTimer } from 'react-timer-hook'
-import { BackgroundBeams } from "../components/ui/background-beams";
+// import { BackgroundBeams } from "../components/ui/background-beams";
 import { MarqueImg } from '@/components/MarqueImg'
 import { Spotlight } from '@/components/ui/spotlight-new';
+import { BackgroundLines } from '@/components/ui/background-lines';
 
 export default function Home() {
 
@@ -30,7 +31,7 @@ export default function Home() {
   }
   return (
     <>
-      <div className="h-[100vh] w-screen rounded-md bg-neutral-950 relative flex flex-col items-center justify-center antialiased overflow-hidden">
+      <BackgroundLines className="h-[100vh] w-screen rounded-md bg-neutral-950 relative flex flex-col items-center justify-center antialiased overflow-hidden">
         <Spotlight />
         <div className="max-w-2xl mx-auto p-4">
           <div className="flex items-center text-center justify-center">
@@ -71,8 +72,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
-      <BackgroundBeams />
+      </BackgroundLines>
       <MarqueImg />
     </>
   );

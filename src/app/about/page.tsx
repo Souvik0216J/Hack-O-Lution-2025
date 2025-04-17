@@ -1,4 +1,3 @@
-import { BackgroundBeams } from '@/components/ui/background-beams'
 import React from 'react'
 
 function page() {
@@ -10,9 +9,7 @@ function page() {
             This is About page.
           </h1>
         </div>
-
       </div>
-      <BackgroundBeams />
     </div>
   )
 }

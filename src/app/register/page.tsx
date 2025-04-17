@@ -3,8 +3,41 @@ import { Label } from "@/components/ui/labels";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/utils/cn";
 import { Spotlight } from "@/components/ui/spotlight-new";
+import { useRouter } from "next/navigation"
+import axios from "axios"
+import toast from "react-hot-toast"
+import React from "react";
 
 function page() {
+  const router = useRouter()
+  const [user, setUser] = React.useState({
+    teamName : "",
+    teamSize : "",
+    leaderName : "",
+    leaderEmail : "",
+    leaderNo : "",
+    leaderCity : "",
+    leaderClgName : "",
+    leaderTshirtSize : "",
+    projectIDea : "",
+  })
+
+  const onRegister = async () =>{
+    try{
+      setLoading(true)
+      const response = await axios.post("/api/users/register", user)
+    }
+    catch(error:any){
+
+    }
+    finally{
+      setLoading(false)
+    }
+  }
+
+  const [buttonDisable, setButtonDisabled] = React.useState(false)
+  const [loading, setLoading] = React.useState(false)
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Form submitted");
@@ -40,7 +73,7 @@ function page() {
             <Label htmlFor="password"><span className="text-red-400 mr-0.5">*</span>Password</Label>
             <Input id="password" placeholder="Enter password" type="password" required/>
           </LabelInputContainer>
-          <LabelInputContainer className="mb-8">
+          <LabelInputContainer className="mb-4">
             <Label htmlFor="confirmpassword"><span className="text-red-400 mr-0.5">*</span>Confirm password</Label>
             <Input
               id="password"
@@ -49,7 +82,29 @@ function page() {
               required
             />
           </LabelInputContainer>
-
+          <LabelInputContainer className="mb-8">
+            <Label htmlFor="tshirtsize"><span className="text-red-400 mr-0.5">*</span>Size of T-shirt</Label>
+            <Input
+               dropdown 
+               options={[
+                 { value: "S - Size", label: "S - Size" },
+                 { value: "M - Size", label: "M - Size" },
+                 { value: "L - Size", label: "L - Size" },
+                 { value: "XL - Size", label: "XL - Size" },
+                 { value: "XXL - Size", label: "XXL - Size" },
+               ]} 
+            />
+          </LabelInputContainer>
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="project"><span className="text-red-400 mr-0.5">*</span>Project idea</Label>
+            <Input
+              multiline
+              id="text"
+              placeholder="Enter project idea"
+              type="text"
+              required
+            />
+          </LabelInputContainer>
           <button
             className="group/btn relative block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset] hover:cursor-pointer"
             type="submit"

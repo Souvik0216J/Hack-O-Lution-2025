@@ -40,16 +40,6 @@ function Page() {
     }
   }
 
-  React.useEffect(() => {
-    if (user.leaderEmail.length > 0 && user.leaderNo.length < 10) {
-      setButtonDisabled(false)
-    }
-    else {
-      setButtonDisabled(true)
-    }
-  }, [user])
-
-  const [buttonDisable, setButtonDisabled] = React.useState(false)
   const [loading, setLoading] = React.useState(false)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -78,7 +68,7 @@ function Page() {
               })}
             />
           </LabelInputContainer>
-          
+
           <LabelInputContainer className="mb-8">
             <Label htmlFor="teamsize"><span className="text-red-400 mr-0.5">*</span>Team Size</Label>
             <Input
@@ -94,9 +84,9 @@ function Page() {
               })}
             />
           </LabelInputContainer>
-          
+
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="leader name"><span className="text-red-400 mr-0.5">*</span>Leader Name</Label>
+            <Label htmlFor="leader name"><span className="text-red-400 mr-0.5">*</span>Leader&apos;s Name</Label>
             <Input id="text" placeholder="Enter your name" type="text" required value={user.leaderName}
               onChange={(e) => setUser({
                 ...user, leaderName: e.target.value
@@ -105,44 +95,44 @@ function Page() {
           </LabelInputContainer>
 
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="email"><span className="text-red-400 mr-0.5">*</span>Leader Email</Label>
-            <Input id="email" placeholder="abc@gmail.com" type="email" required 
-                onChange={(e) => setUser({
-                  ...user, leaderEmail: e.target.value
-                })}
+            <Label htmlFor="email"><span className="text-red-400 mr-0.5">*</span>Leader&apos;s Email</Label>
+            <Input id="email" placeholder="abc@gmail.com" type="email" required
+              onChange={(e) => setUser({
+                ...user, leaderEmail: e.target.value
+              })}
             />
-    
+
           </LabelInputContainer>
 
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="phone"><span className="text-red-400 mr-0.5">*</span>Leader WhatApp No</Label>
-            <Input id="phone" placeholder="Enter phone number" type="text" required 
-                onChange={(e) => setUser({
-                  ...user, leaderNo: e.target.value
-                })}
+            <Label htmlFor="phone"><span className="text-red-400 mr-0.5">*</span>Leader&apos;s WhatApp No</Label>
+            <Input id="phone" placeholder="Enter phone number" type="text" required
+              onChange={(e) => setUser({
+                ...user, leaderNo: e.target.value
+              })}
             />
           </LabelInputContainer>
-          
+
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="city"><span className="text-red-400 mr-0.5">*</span>Leader's City</Label>
-            <Input id="city" placeholder="Enter your city name" type="text" required 
-                onChange={(e) => setUser({
-                  ...user, leaderCity: e.target.value
-                })}
+            <Label htmlFor="city"><span className="text-red-400 mr-0.5">*</span>Leader&apos;s City</Label>
+            <Input id="city" placeholder="Enter your city name" type="text" required
+              onChange={(e) => setUser({
+                ...user, leaderCity: e.target.value
+              })}
             />
           </LabelInputContainer>
-          
+
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="collegename"><span className="text-red-400 mr-0.5">*</span>Leader's College Name</Label>
-            <Input id="phone" placeholder="Enter phone number" type="text" required 
-                onChange={(e) => setUser({
-                  ...user, leaderClgName: e.target.value
-                })}
+            <Label htmlFor="collegename"><span className="text-red-400 mr-0.5">*</span>Leader&apos;s College Name</Label>
+            <Input id="phone" placeholder="Enter phone number" type="text" required
+              onChange={(e) => setUser({
+                ...user, leaderClgName: e.target.value
+              })}
             />
           </LabelInputContainer>
 
           <LabelInputContainer className="mb-8">
-            <Label htmlFor="tshirtsize"><span className="text-red-400 mr-0.5">*</span>Size of T-shirt</Label>
+            <Label htmlFor="tshirtsize"><span className="text-red-400 mr-0.5">*</span>Leader&apos;s Size of T-shirt</Label>
             <Input
               dropdown
               options={[
@@ -170,13 +160,12 @@ function Page() {
               })}
             />
           </LabelInputContainer>
-      
+
           <button
             className="group/btn relative block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset] hover:cursor-pointer"
             type="submit"
             onClick={onRegister}
           >
-            
             {loading ? "Waiting a while" : "Register"} &rarr;
             <BottomGradient />
           </button>

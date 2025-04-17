@@ -3,9 +3,9 @@ import User from '@/models/userModel'
 import { NextRequest, NextResponse } from 'next/server'
 import bcryptjs from 'bcryptjs'
 
-connect()
 
 export async function POST(request: NextRequest) {
+    await connect() // wait for connection
     try {
        const reqBody = await request.json() 
        const {teamName, teamSize, leaderName, leaderEmail, leaderNo, leaderCity, leaderClgName, leaderTshirtSize, projectIDea} = reqBody

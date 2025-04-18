@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json()
         const { teamName, teamSize, leaderName, leaderEmail, leaderNo, leaderCity, leaderClgName, leaderTshirtSize, projectIDea, members } = reqBody
-
+        const id = leaderNo.slice(-6)
 
         // cheak if user already exists
         const user = await User.findOne({ leaderEmail })
@@ -19,7 +19,6 @@ export async function POST(request: NextRequest) {
         }
 
         //hash password
-        console.log(leaderNo)
         const salt = await bcryptjs.genSalt(10)
         const hashedPassword = await bcryptjs.hash(leaderNo, salt)
 
@@ -39,6 +38,7 @@ export async function POST(request: NextRequest) {
         const istTime = date.toLocaleString('en-IN', options);
 
         const newUser = new User({
+            teamId: id,
             teamName: teamName,
             teamSize: teamSize,
             leaderName: leaderName,

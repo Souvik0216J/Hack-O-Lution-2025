@@ -16,6 +16,12 @@ const memberSchema = new mongoose.Schema({
   });
 
 const userSchema = new mongoose.Schema({
+    teamId:{
+        type: String,
+        require: true,
+        unique: true,
+    },
+
     teamName:{
         type : String,
         required: [true, "Please provide a team name"],

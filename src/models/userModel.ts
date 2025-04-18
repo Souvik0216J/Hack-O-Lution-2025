@@ -85,6 +85,11 @@ const userSchema = new mongoose.Schema({
         type: [memberSchema], // this stores array of member objects
         default: [],
       },
+
+    date:{
+        type: String,
+        default: ""
+    }  
 })
 
 const User = mongoose.models.userData || mongoose.model("userData", userSchema)

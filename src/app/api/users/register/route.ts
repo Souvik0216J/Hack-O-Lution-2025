@@ -1,4 +1,4 @@
-import {connect} from '@/dbConfig/dbConfig'
+import { connect } from '@/dbConfig/dbConfig'
 import User from '@/models/userModel'
 import { NextRequest, NextResponse } from 'next/server'
 import bcryptjs from 'bcryptjs'
@@ -7,15 +7,15 @@ import bcryptjs from 'bcryptjs'
 export async function POST(request: NextRequest) {
     await connect() // wait for connection
     try {
-       const reqBody = await request.json() 
-       const {teamName, teamSize, leaderName, leaderEmail, leaderNo, leaderCity, leaderClgName, leaderTshirtSize, projectIDea, members} = reqBody
+        const reqBody = await request.json()
+        const { teamName, teamSize, leaderName, leaderEmail, leaderNo, leaderCity, leaderClgName, leaderTshirtSize, projectIDea, members } = reqBody
 
-       
-       // cheak if user already exists
-        const user = await User.findOne({leaderEmail})
-        if(user){
-            return NextResponse.json({error: "User already exists"}, 
-                {status: 400})
+
+        // cheak if user already exists
+        const user = await User.findOne({ leaderEmail })
+        if (user) {
+            return NextResponse.json({ error: "User already exists" },
+                { status: 400 })
         }
 
         //hash password
@@ -23,19 +23,35 @@ export async function POST(request: NextRequest) {
         const salt = await bcryptjs.genSalt(10)
         const hashedPassword = await bcryptjs.hash(leaderNo, salt)
 
+        // Create timestamp in IST format
+        const date = new Date();
+        const options: Intl.DateTimeFormatOptions = {
+          timeZone: 'Asia/Kolkata',
+          hour12: false,
+          year: 'numeric',    
+          month: 'numeric',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          second: 'numeric'
+        };
+        
+        const istTime = date.toLocaleString('en-IN', options);
+
         const newUser = new User({
-            teamName : teamName,
-            teamSize : teamSize,
-            leaderName : leaderName,
-            leaderEmail : leaderEmail,
-            leaderNo : leaderNo,
-            leaderCity : leaderCity,
-            leaderClgName : leaderClgName,
-            leaderTshirtSize : leaderTshirtSize,
-            members: members, 
-            projectIDea : projectIDea,
+            teamName: teamName,
+            teamSize: teamSize,
+            leaderName: leaderName,
+            leaderEmail: leaderEmail,
+            leaderNo: leaderNo,
+            leaderCity: leaderCity,
+            leaderClgName: leaderClgName,
+            leaderTshirtSize: leaderTshirtSize,
+            members: members,
+            projectIDea: projectIDea,
             password: hashedPassword,
-            isLeader : true
+            isLeader: true,
+            registrationDate: istTime
         })
 
         const savedUser = await newUser.save()
@@ -45,10 +61,10 @@ export async function POST(request: NextRequest) {
             message: "User created",
             success: true,
             savedUser
-        }, {status: 201})
-            
-            
+        }, { status: 201 })
+
+
     } catch (error: any) {
-        return NextResponse.json({error: error.message})
+        return NextResponse.json({ error: error.message })
     }
 }

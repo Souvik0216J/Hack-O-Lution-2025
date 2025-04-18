@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
             projectIDea: projectIDea,
             password: hashedPassword,
             isLeader: true,
-            registrationDate: istTime
+            date: istTime
         })
 
         const savedUser = await newUser.save()

@@ -18,7 +18,7 @@ export async function POST(req: Request) {
       const { name, email } = person;
 
       await resend.emails.send({
-        from: 'HACK{0}LUTION <hackolution2024@gmail.com>',
+        from: 'HACK{0}LUTION <noreply@souvikdev.in>',
         to: email,
         subject: `🎉 Registration Successful - ${teamName}`,
         html: `

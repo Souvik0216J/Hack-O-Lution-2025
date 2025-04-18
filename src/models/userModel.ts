@@ -2,48 +2,48 @@ import mongoose from "mongoose";
 
 const memberSchema = new mongoose.Schema({
     name: {
-      type: String,
-      required: [true, "Please provide member name"],
+        type: String,
+        required: [true, "Please provide member name"],
     },
     email: {
-      type: String,
-      required: [true, "Please provide member email"],
+        type: String,
+        required: [true, "Please provide member email"],
     },
     tshirtSize: {
-      type: String,
-      required: [true, "Please provide t-shirt size"],
+        type: String,
+        required: [true, "Please provide t-shirt size"],
     },
-  });
+});
 
 const userSchema = new mongoose.Schema({
-    teamId:{
+    teamId: {
         type: String,
         require: true,
         unique: false,
     },
 
-    teamName:{
-        type : String,
+    teamName: {
+        type: String,
         required: [true, "Please provide a team name"],
         unique: false,
     },
 
-    teamSize:{
-        type : Number,
+    teamSize: {
+        type: Number,
         required: [true, "Please provide a team size"],
         unique: false,
         default: 2,
     },
 
     leaderName: {
-        type : String,
+        type: String,
         required: [true, "Please provide a leader name"],
         unique: false,
     },
 
     leaderEmail: {
         type: String,
-        required : [true, "Please provide a email"],
+        required: [true, "Please provide a email"],
         unique: true,
     },
 
@@ -84,18 +84,18 @@ const userSchema = new mongoose.Schema({
 
     isLeader: {
         type: Boolean,
-        default : false,
+        default: false,
     },
 
     members: {
         type: [memberSchema], // this stores array of member objects
         default: [],
-      },
+    },
 
-    date:{
+    date: {
         type: String,
         default: ""
-    }  
+    }
 })
 
 const User = mongoose.models.userData || mongoose.model("userData", userSchema)

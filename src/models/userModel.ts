@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
     teamId:{
         type: String,
         require: true,
-        unique: true,
+        unique: false,
     },
 
     teamName:{

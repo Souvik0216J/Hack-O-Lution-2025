@@ -11,6 +11,8 @@ import React from "react";
 function Page() {
   const router = useRouter()
   const [submitDone, setSubmitDone] = React.useState(false)
+  const [userExist, setUserExist] = React.useState(false)
+  const [loading, setLoading] = React.useState(false)
 
   type Member = {
     name: string;
@@ -56,14 +58,19 @@ function Page() {
 
   const onRegister = async () => {
     try {
+      setUserExist(false)
       setLoading(true)
       const response = await axios.post("/api/users/register", user)
-      setSubmitDone(true)
-      console.log("Signup success", response.data)
-      setTimeout(() => { router.push("/login") }, 3000);
+      if(response.status === 201){
+        setSubmitDone(true)
+        setTimeout(() => { router.push("/login") }, 3000);
+      }
     }
     catch (error: any) {
       console.log("Signup failed", error)
+      if (error.response && error.response.status === 400) {
+        setUserExist(true)
+      }
       toast.error(error.message)
     }
     finally {
@@ -71,12 +78,9 @@ function Page() {
     }
   }
 
-  const [loading, setLoading] = React.useState(false)
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await onRegister();
-    console.log("Form submitted");
   };
 
   return (
@@ -276,10 +280,12 @@ function Page() {
               </>
             )
             }
+
             <BottomGradient />
           </button>
           <br />
-          <h2 className="text-xl text-green-500">{submitDone ? "Register Successfully\nWait a sec, redirecting to login page" : ""}</h2>
+          <h2 className="text-red-500 text-xl">{userExist ? "User Already Exists" : ""}</h2>
+          <h2 className="text-xl text-green-500">{submitDone ? "Register Successfully, Wait a sec." : ""}</h2>
         </form>
       </div>
     </div>

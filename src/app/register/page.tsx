@@ -11,7 +11,25 @@ import React from "react";
 function Page() {
   const router = useRouter()
   const [submitDone, setSubmitDone] = React.useState(false)
-  const [user, setUser] = React.useState({
+
+  type Member = {
+    name: string;
+    email: string;
+    tshirtSize: string;
+  };
+
+  const [user, setUser] = React.useState<{
+    teamName: string;
+    teamSize: string;
+    leaderName: string;
+    leaderEmail: string;
+    leaderNo: string;
+    leaderCity: string;
+    leaderClgName: string;
+    leaderTshirtSize: string;
+    projectIDea: string;
+    members: Member[];
+  }>({
     teamName: "",
     teamSize: "2",
     leaderName: "",
@@ -21,7 +39,20 @@ function Page() {
     leaderClgName: "",
     leaderTshirtSize: "S - Size",
     projectIDea: "",
-  })
+    // Initialize one member everytime 
+    members: [{ name: "", email: "", tshirtSize: "S - Size" }],
+  });
+
+  // Initialize members based on default team size on component mount
+  React.useEffect(() => {
+    const size = parseInt(user.teamSize);
+    setUser(prev => ({
+      ...prev,
+      members: Array.from({ length: size - 1 }, (_, i) => 
+        prev.members[i] || { name: "", email: "", tshirtSize: "S - Size" }
+      ),
+    }));
+  }, []);
 
   const onRegister = async () => {
     try {
@@ -53,7 +84,7 @@ function Page() {
       <Spotlight />
       <div className="shadow-input mx-auto w-full max-w-md rounded bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black">
         <h2 className="text-xl font-bold text-neutral-800 dark:text-neutral-200">
-          Welcome to HackOLution
+          Welcome to Hack&#123;0&#125;Lution
         </h2>
         <p className="mt-2 max-w-sm text-sm text-neutral-600 dark:text-neutral-300">
           After registration you recieved login credentials by email.
@@ -79,10 +110,17 @@ function Page() {
                 { value: "3", label: "3" },
                 { value: "4", label: "4" },
               ]}
+              value={user.teamSize}
+              onChange={(e) => {
+                const selectedSize = e.target.value;
+                const size = parseInt(selectedSize);
 
-              onChange={(e) => setUser({
-                ...user, teamSize: e.target.value,
-              })}
+                setUser((prev) => ({
+                  ...prev,
+                  teamSize: selectedSize,
+                  members: Array.from({ length: size - 1 }, (_, i) => prev.members?.[i] || { name: "", email: "", tshirtSize: "" }),
+                }));
+              }}
             />
           </LabelInputContainer>
 
@@ -148,6 +186,63 @@ function Page() {
               })}
             />
           </LabelInputContainer>
+
+
+          {user.members.map((member, index) => (
+            <div key={index} className="mb-6">
+              <h4 className="font-semibold mb-2">Member {index + 1} </h4>
+
+              <LabelInputContainer className="mb-4">
+                <Label><span className="text-red-400 mr-0.5">*</span>Member {index + 1} Name</Label>
+                <Input
+                  type="text"
+                  value={member.name}
+                  required
+                  placeholder={`Member-${index + 1} name`}
+                  onChange={(e) => {
+                    const newMembers = [...user.members];
+                    newMembers[index].name = e.target.value;
+                    setUser({ ...user, members: newMembers });
+                  }}
+                />
+              </LabelInputContainer>
+
+              <LabelInputContainer className="mb-4">
+                <Label><span className="text-red-400 mr-0.5">*</span>Member {index + 1} Email</Label>
+                <Input
+                  type="email"
+                  value={member.email}
+                  required
+                  placeholder={`Member-${index + 1} email`}
+                  onChange={(e) => {
+                    const newMembers = [...user.members];
+                    newMembers[index].email = e.target.value;
+                    setUser({ ...user, members: newMembers });
+                  }}
+                />
+              </LabelInputContainer>
+
+              <LabelInputContainer className="mb-4">
+                <Label><span className="text-red-400 mr-0.5">*</span>Member {index + 1} T-Shirt Size</Label>
+                <Input
+                  dropdown
+                  required
+                  options={[
+                    { label: "S - Size", value: "S - Size" },
+                    { label: "M - Size", value: "M - Size" },
+                    { label: "L - Size", value: "L - Size" },
+                    { label: "XL - Size", value: "XL - Size" },
+                  ]}
+                  value={member.tshirtSize}
+                  onChange={(e) => {
+                    const newMembers = [...user.members];
+                    newMembers[index].tshirtSize = e.target.value;
+                    setUser({ ...user, members: newMembers });
+                  }}
+                />
+              </LabelInputContainer>
+            </div>
+          ))}
 
           <LabelInputContainer className="mb-4">
             <Label htmlFor="project"><span className="text-red-400 mr-0.5">*</span>Project idea</Label>

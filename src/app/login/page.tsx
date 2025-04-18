@@ -13,11 +13,11 @@ export default function SignupFormDemo() {
     console.log("Form submitted");
   };
   return (
-    <div className="mt-20 min-h-screen w-full rounded-md bg-neutral-950 flex flex-col items-center justify-center px-4 py-6 sm:px-6 lg:px-8">
+    <div className="mt-15 min-h-screen w-full rounded-md bg-neutral-950 flex flex-col items-center justify-center px-4 py-6 sm:px-6 lg:px-8">
       <Spotlight/>
-      <div className="shadow-input mx-auto w-full max-w-md rounded-none bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black">
+      <div className="shadow-input mx-auto w-full max-w-md rounded bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black">
         <h2 className="text-xl font-bold text-neutral-800 dark:text-neutral-200">
-          Welcome to HackOlution Login
+          Welcome to Hack&#123;0&#125;Lution Login
         </h2>
         {/* <p className="mt-2 max-w-sm text-sm text-neutral-600 dark:text-neutral-300">
         
@@ -26,11 +26,11 @@ export default function SignupFormDemo() {
         <form className="my-8" onSubmit={handleSubmit}>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="email">Email Address</Label>
-            <Input id="email" placeholder="projectmayhem@fc.com" type="email" />
+            <Input id="email" placeholder="abc@gmail.com" type="email" />
           </LabelInputContainer>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" placeholder="••••••••" type="password" />
+            <Input id="password" placeholder="Password" type="password" />
           </LabelInputContainer>
 
 

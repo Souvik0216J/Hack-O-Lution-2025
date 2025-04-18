@@ -1,5 +1,20 @@
 import mongoose from "mongoose";
 
+const memberSchema = new mongoose.Schema({
+    name: {
+      type: String,
+      required: [true, "Please provide member name"],
+    },
+    email: {
+      type: String,
+      required: [true, "Please provide member email"],
+    },
+    tshirtSize: {
+      type: String,
+      required: [true, "Please provide t-shirt size"],
+    },
+  });
+
 const userSchema = new mongoose.Schema({
     teamName:{
         type : String,
@@ -65,6 +80,11 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default : false,
     },
+
+    members: {
+        type: [memberSchema], // this stores array of member objects
+        default: [],
+      },
 })
 
 const User = mongoose.models.userData || mongoose.model("userData", userSchema)

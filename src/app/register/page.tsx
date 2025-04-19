@@ -14,7 +14,8 @@ function Page() {
   const [userExist, setUserExist] = React.useState(false)
   const [loading, setLoading] = React.useState(false)
   const [submitError, setSubmitError] = React.useState(false)
-  
+  const [EmailError, setEmailError] = React.useState(false)
+
   type Member = {
     name: string;
     email: string;
@@ -42,48 +43,66 @@ function Page() {
     leaderClgName: "",
     leaderTshirtSize: "S - Size",
     projectIDea: "",
-    // Initialize one member everytime 
-    members: [{ name: "", email: "", tshirtSize: "S - Size" }],
+    // Initialize with an empty array
+    members: [],
   });
 
-  // Initialize members based on default team size on component mount
+  // Initialize members based on team size on component mount and when team size changes
   React.useEffect(() => {
     const size = parseInt(user.teamSize);
-    setUser(prev => ({
-      ...prev,
-      members: Array.from({ length: size - 1 }, (_, i) => 
+    setUser(prev => {
+      const updatedMembers = Array(size - 1).fill(null).map((_, i) =>
         prev.members[i] || { name: "", email: "", tshirtSize: "S - Size" }
-      ),
-    }));
-  }, []);
+      );
+
+      return {
+        ...prev,
+        members: updatedMembers,
+      };
+    });
+  }, [user.teamSize]); // This will run when component mounts AND when team size changes
 
   const onRegister = async () => {
     try {
       setLoading(true)
+      // handle registration
       const response = await axios.post("/api/users/register", user)
-      if(response.status === 201){
+
+      if (response.status === 201) {
         setUserExist(false)
         setSubmitError(false)
-        
-        // Sending email 
-        await axios.post("/api/send", {
-          leaderName: user.leaderName,
-          leaderEmail: user.leaderEmail,
-          teamName: user.teamName,
-          leaderNo : user.leaderNo,
-          members: user.members, // array of { name, email }
-        });
-        
-        setSubmitDone(true)
-        setTimeout(() => { router.push("/login") }, 3000);
+        setEmailError(false)
+
+        // Registration successful
+        try {
+          // Sending email 
+          await axios.post("/api/send", {
+            leaderName: user.leaderName,
+            leaderEmail: user.leaderEmail,
+            teamName: user.teamName,
+            leaderNo: user.leaderNo,
+            members: user.members, // array of { name, email }
+          });
+
+          // both registration and email sending were successful
+          setSubmitDone(true)
+          setTimeout(() => { router.push("/login") }, 3000);
+        } catch (emailError) {
+          // Registration succeeded but email sending failed
+          console.error("Email sending failed", emailError)
+          toast.success("Registration successful, but we couldn't send confirmation emails.")
+          setSubmitDone(true)
+          setEmailError(true)
+          setTimeout(() => { router.push("/login") }, 3000);
+        }
       }
     }
     catch (error: any) {
-      console.log("Signup failed", error)
+      console.log("Registration failed", error)
       if (error.response && error.response.status === 400) {
         setUserExist(true)
       }
-      else{
+      else {
         setSubmitError(true)
       }
       toast.error(error.message)
@@ -132,13 +151,11 @@ function Page() {
               value={user.teamSize}
               onChange={(e) => {
                 const selectedSize = e.target.value;
-                const size = parseInt(selectedSize);
-
-                setUser((prev) => ({
+                setUser(prev => ({
                   ...prev,
                   teamSize: selectedSize,
-                  members: Array.from({ length: size - 1 }, (_, i) => prev.members?.[i] || { name: "", email: "", tshirtSize: "" }),
                 }));
+                // The useEffect will handle updating the members array
               }}
             />
           </LabelInputContainer>
@@ -200,12 +217,12 @@ function Page() {
                 { value: "XL - Size", label: "XL - Size" },
                 { value: "XXL - Size", label: "XXL - Size" },
               ]}
+              value={user.leaderTshirtSize}
               onChange={(e) => setUser({
                 ...user, leaderTshirtSize: e.target.value,
               })}
             />
           </LabelInputContainer>
-
 
           {user.members.map((member, index) => (
             <div key={index} className="mb-6">
@@ -302,6 +319,7 @@ function Page() {
           <h2 className="text-red-500 text-xl">{userExist ? "User Already Exists" : ""}</h2>
           <h2 className="text-red-500 text-xl">{submitError ? "Something went wrong! Please try again some time later" : ""}</h2>
           <h2 className="text-xl text-green-500">{submitDone ? "Register Successfully, Wait a sec." : ""}</h2>
+          <h2 className="text-xl text-orange-400">{EmailError ? "Register Successfully, But Failed to send email." : ""}</h2>
         </form>
       </div>
     </div>

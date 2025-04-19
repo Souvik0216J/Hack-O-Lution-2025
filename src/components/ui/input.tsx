@@ -4,6 +4,13 @@ import { cn } from "@/utils/cn";
 import { useMotionTemplate, useMotionValue, motion } from "motion/react";
 import { ChevronDown } from "lucide-react";
 
+// Add this style to prevent input field auto white
+const autofillStyle = {
+  WebkitBoxShadow: "0 0 0px 1000px transparent inset",
+  WebkitTextFillColor: "white",
+  transition: "background-color 5000s ease-in-out 0s",
+};
+
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement> {
   multiline?: boolean;
@@ -14,7 +21,7 @@ export interface InputProps
 
 const Input = React.forwardRef<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement, InputProps>(
   ({ className, type, multiline = false, dropdown = false, options = [], rows = 4, ...props }, ref) => {
-    const radius = 100; // change this to increase the radius of the hover effect
+    const radius = 150; // change this to increase the radius of the hover effect
     const [visible, setVisible] = React.useState(false);
 
     let mouseX = useMotionValue(0);
@@ -75,6 +82,7 @@ const Input = React.forwardRef<HTMLInputElement | HTMLTextAreaElement | HTMLSele
             type={type}
             className={cn(commonClassName, "h-10")}
             ref={ref as React.Ref<HTMLInputElement>}
+            style={autofillStyle}  // autofill style here
             {...props}
           />
         )}

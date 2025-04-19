@@ -33,11 +33,23 @@ export async function POST(request: NextRequest) {
           hour: 'numeric',
           minute: 'numeric',
           second: 'numeric'
-        };
-        
+        }
+
+        const selection = {
+            isSelected:"Pending", 
+            isRSVP: false
+        }
+
+        const project = {
+            isSubmit: false,
+            projectLink: "",
+            hostedLink: ""
+        }
+
         const istTime = date.toLocaleString('en-IN', options);
 
         const newUser = new User({
+            date: istTime,
             teamId: id,
             teamName: teamName,
             teamSize: teamSize,
@@ -50,8 +62,8 @@ export async function POST(request: NextRequest) {
             members: members,
             projectIDea: projectIDea,
             password: hashedPassword,
-            isLeader: true,
-            date: istTime
+            selectioninfo: selection,
+            projectInfo: project
         })
 
         const savedUser = await newUser.save()

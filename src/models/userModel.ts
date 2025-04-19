@@ -1,5 +1,31 @@
 import mongoose from "mongoose";
 
+const selectionSchema = new mongoose.Schema({
+    isSelected: {
+        type: String,
+        default: "Pending"
+    },
+    isRSVP: {
+        type: Boolean,
+        default: false,
+    }
+});
+
+const projectSubmit = new mongoose.Schema({
+    isSubmit: {
+        type: Boolean,
+        default: false
+    },
+    projectLink: {
+        type: String,
+        default: "",
+    },
+    hostedLink:{
+        type: String,
+        default: ""
+    }
+});
+
 const memberSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -82,11 +108,6 @@ const userSchema = new mongoose.Schema({
         default: "",
     },
 
-    isLeader: {
-        type: Boolean,
-        default: false,
-    },
-
     members: {
         type: [memberSchema], // this stores array of member objects
         default: [],
@@ -95,6 +116,16 @@ const userSchema = new mongoose.Schema({
     date: {
         type: String,
         default: ""
+    },
+
+    selection:{
+        type:[selectionSchema],
+        default: [],
+    },
+
+    project:{
+        type:[projectSubmit],
+        default: [],
     }
 })
 

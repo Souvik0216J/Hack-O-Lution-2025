@@ -25,26 +25,26 @@ export async function POST(request: NextRequest) {
         // Create timestamp in IST format
         const date = new Date();
         const options: Intl.DateTimeFormatOptions = {
-          timeZone: 'Asia/Kolkata',
-          hour12: false,
-          year: 'numeric',    
-          month: 'numeric',
-          day: 'numeric',
-          hour: 'numeric',
-          minute: 'numeric',
-          second: 'numeric'
+            timeZone: 'Asia/Kolkata',
+            hour12: false,
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric'
         }
 
-        const selection = {
-            isSelected:"Pending", 
+        const selectionInfo = [{
+            isSelected: "Pending",
             isRSVP: false
-        }
+        }]
 
-        const project = {
+        const projectSubmit = [{
             isSubmit: false,
-            projectLink: "",
-            hostedLink: ""
-        }
+            projectLink: "null",
+            hostedLink: "null",
+        }]
 
         const istTime = date.toLocaleString('en-IN', options);
 
@@ -62,8 +62,8 @@ export async function POST(request: NextRequest) {
             members: members,
             projectIDea: projectIDea,
             password: hashedPassword,
-            selectioninfo: selection,
-            projectInfo: project
+            selectionInfo: selectionInfo,
+            projectSubmit: projectSubmit,
         })
 
         const savedUser = await newUser.save()

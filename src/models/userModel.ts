@@ -11,18 +11,18 @@ const selectionSchema = new mongoose.Schema({
     }
 });
 
-const projectSubmit = new mongoose.Schema({
+const projectSchema = new mongoose.Schema({
     isSubmit: {
         type: Boolean,
         default: false
     },
     projectLink: {
         type: String,
-        default: "",
+        default: "null",
     },
     hostedLink:{
         type: String,
-        default: ""
+        default: "null",
     }
 });
 
@@ -55,10 +55,10 @@ const userSchema = new mongoose.Schema({
     },
 
     teamSize: {
-        type: Number,
+        type: String,
         required: [true, "Please provide a team size"],
         unique: false,
-        default: 2,
+        default: "2",
     },
 
     leaderName: {
@@ -118,17 +118,17 @@ const userSchema = new mongoose.Schema({
         default: ""
     },
 
-    selection:{
+    selectionInfo:{
         type:[selectionSchema],
         default: [],
     },
 
-    project:{
-        type:[projectSubmit],
+    projectSubmit:{
+        type:[projectSchema],
         default: [],
     }
 })
+// ✅ Create the model
+const User = mongoose.models.userData || mongoose.model("userData", userSchema);
 
-const User = mongoose.models.userData || mongoose.model("userData", userSchema)
-
-export default User
+export default User;

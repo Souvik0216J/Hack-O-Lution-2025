@@ -11,14 +11,19 @@ import { useRouter } from "next/navigation";
 export default function SignupFormDemo() {
   const router = useRouter();
   const [loading, setLoading] = React.useState(false)
+  const [usernotexist, setNotUserExist] = React.useState(false)
+  const [wrongpass, setWrongPass] = React.useState(false)
+
   const [user, setUser] = React.useState({
     email: "",
     password: "",
-
   })
   const onLogin = async () => {
     try {
       setLoading(true);
+      setNotUserExist(false)
+      setWrongPass(false)
+
       const response = await axios.post("/api/users/login", user);
       console.log("Login success", response.data);
 
@@ -30,6 +35,13 @@ export default function SignupFormDemo() {
 
     } catch (error: any) {
       console.log("Login failed", error.message);
+      if(error.response.status === 400){
+        setNotUserExist(true)
+      }
+      else if(error.response.status === 401){
+        setWrongPass(true)
+      }
+
       toast.error(error.message);
     } finally {
       setLoading(false);
@@ -88,6 +100,9 @@ export default function SignupFormDemo() {
             }
             <BottomGradient />
           </button>
+          <br />
+          <h2 className="text-red-500 text-xl">{usernotexist ? "User not found" : ""}</h2>
+          <h2 className="text-red-500 text-xl">{ wrongpass ? "Wrong password" : ""}</h2>
         </form>
       </div>
     </div>

@@ -89,7 +89,7 @@ const AdminDashboard: React.FC = () => {
           phone: "00000000000",
         },
       ],
-      projectIdea: "This is our project idea",
+      projectIdea: "how to choose better collage so we will make a website so u guys know how not to choose iem as ur first college.",
     },
   ]);
 

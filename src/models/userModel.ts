@@ -128,7 +128,7 @@ const userSchema = new mongoose.Schema({
         default: [],
     }
 })
-// ✅ Create the model
+// Create the model
 const User = mongoose.models.userData || mongoose.model("userData", userSchema);
 
 export default User;

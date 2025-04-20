@@ -1,24 +1,83 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { cn } from "@/utils/cn";
-import { motion } from "motion/react";
 import { User, Users, FileCheck, Clock } from "lucide-react";
+import { getUserData } from "@/utils/getUserData";
+import { useRouter } from "next/navigation";
+
+// Define types for your data structure
+interface TeamMember {
+  name: string;
+  email: string;
+  tshirtSize: string;
+}
+
+interface TeamData {
+  teamId: string;
+  teamName: string;
+  status: string;
+  leaderName: string;
+  leaderEmail: String;
+  leaderTshirtSize: String;
+  members: TeamMember[];
+}
 
 function Dashboard() {
-  // This would normally come from your API/backend
-  const [teamData, setTeamData] = React.useState({
-    teamId: "509040",
-    teamName: "4Bits",
-    status: "Pending", // "Pending", "Approved", "Rejected"
-    leaderName: "Souvik Das",
-    members: [
-      { name: "Souvik Das", email: "souvik@example.com", tshirtSize: "M - Size", avatar: "S" },
-      { name: "Rahul Sharma", email: "rahul@example.com", tshirtSize: "L - Size", avatar: "R" },
-    ]
+  const router = useRouter();
+  const [loading, setLoading] = useState<boolean>(true);
+  const [teamData, setTeamData] = useState<TeamData>({
+    teamId: "",
+    teamName: "",
+    status: "",
+    leaderName: "",
+    leaderEmail: "",
+    leaderTshirtSize: "",
+    members: []
   });
 
+  // Function to poll for updates every 30 seconds
+  useEffect(() => {
+    async function fetchUserData() {
+      try {
+        const userData = await getUserData();
+
+        if (!userData) {
+          // If no user data, redirect to login
+          router.push("/login");
+          return;
+        }
+
+        // Format the data for the dashboard
+        setTeamData({
+          teamId: "HACK-2025-"+userData.teamId || "",
+          teamName: userData.teamName || "",
+          // Make sure to use the current status from the database
+          status: (userData.selectionInfo[0].isSelected as "Pending" | "Approved" | "Rejected"),
+          leaderName: userData.leaderName || "",
+          leaderEmail: userData.leaderEmail || "",
+          leaderTshirtSize: userData.leaderTshirtSize || "",
+          members: userData.members || []
+        });
+        
+        setLoading(false);
+      } catch (error) {
+        console.error("Error loading user data:", error);
+        setLoading(false);
+      }
+    }
+
+    // Fetch data immediately when component mounts
+    fetchUserData();
+    
+    // Set up periodic polling for updates
+    const intervalId = setInterval(fetchUserData, 30000); // Poll every 30 seconds
+    
+    // Clean up the interval when component unmounts
+    return () => clearInterval(intervalId);
+  }, [router]);
+
   // Function to get status badge styling
-  const getStatusBadge = (status:string) => {
+  const getStatusBadge = (status: string): string => {
     switch (status) {
       case "Approved":
         return "bg-green-500/10 text-green-500 border border-green-500/20";
@@ -30,13 +89,40 @@ function Dashboard() {
     }
   };
 
+  const handleLogout = async (): Promise<void> => {
+    try {
+      const response = await fetch('/api/user/logout', {
+        method: 'GET',
+      });
+
+      if (response.ok) {
+        router.push('/login');
+      }
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
+
+  // Calculate total team size (members + leader = total)
+  const totalTeamSize = teamData.members.length + 1; // +1 for the leader
+
+  if (loading) {
+    return (
+      <div className="min-h-screen w-full bg-neutral-950 text-white flex items-center justify-center">
+        <div className="text-xl">Loading...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen w-full bg-neutral-950 text-white">
       {/* Header */}
       <div className="border-b border-zinc-800 bg-black/50 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-xl font-bold">Hack&#123;0&#125;Lution</h1>
-          <button className="px-4 py-2 rounded-md bg-zinc-800 hover:bg-red-500 transition hover:cursor-pointer">
+          <button 
+            onClick={handleLogout}
+            className="px-4 py-2 rounded-md bg-zinc-800 hover:bg-red-500 transition hover:cursor-pointer">
             Logout
           </button>
         </div>
@@ -45,10 +131,7 @@ function Dashboard() {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
         {/* Team Info Card */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+        <div
           className="w-full bg-black rounded-xl border border-zinc-800 overflow-hidden mb-8"
         >
           <div className="p-6">
@@ -86,7 +169,7 @@ function Dashboard() {
                   </div>
                   <div>
                     <p className="text-zinc-400 text-sm">Team Size</p>
-                    <p className="font-medium">{teamData.members.length} Members</p>
+                    <p className="font-medium">{totalTeamSize} Members</p>
                   </div>
                 </div>
               </div>
@@ -115,14 +198,27 @@ function Dashboard() {
               </div>
             </div>
 
-            {/* Team members */}
+            {/* Team members (including leader) */}
             <div>
               <h3 className="text-lg font-medium mb-4">Team Members</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {/* Leader card */}
+                <div className="bg-zinc-900 rounded-lg p-4 flex items-center">
+                  <div className="h-12 w-12 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center text-lg font-bold mr-4">
+                    {teamData.leaderName ? teamData.leaderName.charAt(0) : 'L'}
+                  </div>
+                  <div>
+                    <h4 className="font-medium">{teamData.leaderName} <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full">Leader</span></h4>
+                    <p className="text-zinc-400 text-sm">{teamData.leaderEmail}</p>
+                    <p className="text-zinc-500 text-xs">{teamData.leaderTshirtSize}</p>
+                  </div>
+                </div>
+                
+                {/* Regular members */}
                 {teamData.members.map((member, index) => (
                   <div key={index} className="bg-zinc-900 rounded-lg p-4 flex items-center">
                     <div className="h-12 w-12 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-lg font-bold mr-4">
-                      {member.avatar}
+                      {member.name ? member.name.charAt(0) : '?'}
                     </div>
                     <div>
                       <h4 className="font-medium">{member.name}</h4>
@@ -134,13 +230,10 @@ function Dashboard() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Additional Info Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+        <div
           className="w-full bg-black rounded-xl border border-zinc-800 overflow-hidden"
         >
           <div className="p-6">
@@ -148,8 +241,13 @@ function Dashboard() {
             <div className="bg-zinc-900 p-4 rounded-lg mb-4">
               <h4 className="font-medium mb-2 text-blue-400">Next Steps</h4>
               <p className="text-zinc-400 text-sm">
-                Your application is currently being reviewed by our team. You will receive an email once the status changes.
-                Please make sure to check your email regularly for updates.
+                {teamData.status === "Pending" ? (
+                  "Your application is currently being reviewed by our team. You will receive an email once the status changes. Please make sure to check your email regularly for updates."
+                ) : teamData.status === "Approved" ? (
+                  "Congratulations! Your team has been approved to participate. Please check your email for further instructions and details about the event."
+                ) : (
+                  "We regret to inform you that your application has not been approved. Please contact support for more information."
+                )}
               </p>
             </div>
             <div className="bg-zinc-900 p-4 rounded-lg">
@@ -159,7 +257,7 @@ function Dashboard() {
               </p>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

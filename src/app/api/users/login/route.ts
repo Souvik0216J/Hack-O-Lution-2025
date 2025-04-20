@@ -13,7 +13,8 @@ export async function POST(request: NextRequest){
         console.log(reqBody);
 
         //check if user exists
-        const user = await User.findOne({email})
+        const user = await User.findOne({leaderEmail: email})
+        console.log(user)
         if(!user){
             return NextResponse.json({error: "User does not exist"}, {status: 400})
         }
@@ -30,7 +31,6 @@ export async function POST(request: NextRequest){
         //create token data
         const tokenData = {
             id: user._id,
-            username: user.username,
             email: user.email
         }
         //create token

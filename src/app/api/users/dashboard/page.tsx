@@ -9,7 +9,7 @@ function Dashboard() {
   const [teamData, setTeamData] = React.useState({
     teamId: "509040",
     teamName: "4Bits",
-    status: "Approved", // "Pending", "Approved", "Rejected"
+    status: "Pending", // "Pending", "Approved", "Rejected"
     leaderName: "Souvik Das",
     members: [
       { name: "Souvik Das", email: "souvik@example.com", tshirtSize: "M - Size", avatar: "S" },

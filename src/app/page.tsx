@@ -6,6 +6,7 @@ import { MarqueImg } from '@/components/MarqueImg'
 import { Spotlight } from '@/components/ui/spotlight-new';
 import { BackgroundLines } from '@/components/ui/background-lines';
 import Faq from '@/components/Faq';
+import StarsCanvas from '@/components/ui/star-canvas';
 
 export default function Home() {
 
@@ -32,7 +33,8 @@ export default function Home() {
   }
   return (
     <>
-      <BackgroundLines className="h-[100vh] w-screen rounded-md bg-neutral-950 relative flex flex-col items-center justify-center antialiased overflow-hidden">
+      <div className="h-[100vh] w-screen rounded-md  relative flex flex-col items-center justify-center antialiased overflow-hidden">
+        <StarsCanvas /> {/* Add the StarsCanvas component here */}
         <Spotlight />
         <div className="max-w-2xl mx-auto p-4">
           <div className="flex items-center text-center justify-center">
@@ -40,7 +42,7 @@ export default function Home() {
               variants={animation}
               initial="hidden"
               animate="show"
-              className="text-4xl xs:text-4xl sm:text-6xl md:text-8xl lg-text-10xl font-medium mt-9 z-50"
+              className="text-4xl xs:text-4xl sm:text-6xl md:text-8xl lg-text-10xl font-medium mt-9 z-10"
             >
               <motion.span variants={animation}>H</motion.span>
               <motion.span variants={animation}>A</motion.span>
@@ -59,7 +61,7 @@ export default function Home() {
           </div>
 
           <div className='flex justify-center items-center pt-2'>
-            <div className="text-center text-3xl xs:text-3xl sm:text-5xl md:text-7xl z-50 relative text-green-200">
+            <div className="text-center text-3xl xs:text-3xl sm:text-5xl md:text-7xl z-10 relative text-green-200">
               <motion.div
                 variants={animation}
                 initial="hidden"
@@ -73,9 +75,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </BackgroundLines>
+      </div>
       <MarqueImg />
-      <Faq/>
+      <Faq />
     </>
   );
 }

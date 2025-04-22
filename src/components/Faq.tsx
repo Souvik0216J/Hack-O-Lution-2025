@@ -116,7 +116,7 @@ export default function Faq() {
             <Input
               type="text"
               placeholder="Search questions..."
-              className="pl-10 bg-background/50 border-primary/20 focus:border-primary"
+              className="pl-10 bg-[#18181B] border-primary/20 focus:border-primary"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -130,8 +130,8 @@ export default function Faq() {
                 <div
                   key={index}
                   className={cn(
-                    "border border-primary/20 rounded-lg overflow-hidden transition-all duration-300",
-                    openItem === index ? "bg-primary/5" : "bg-background/50",
+                    "border border-primary/20 rounded-lg overflow-hidden transition-all duration-300 bg-",
+                    openItem === index ? "bg-[#1a1a1f]" : "bg-[#0a0a0a]",
                   )}
                 >
                   <button

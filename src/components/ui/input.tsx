@@ -4,7 +4,7 @@ import { cn } from "@/utils/cn";
 import { useMotionTemplate, useMotionValue, motion } from "motion/react";
 import { ChevronDown } from "lucide-react";
 
-// Add this style to prevent input field auto white
+// prevent input field auto white
 const autofillStyle = {
   WebkitBoxShadow: "0 0 0px 1000px transparent inset",
   WebkitTextFillColor: "white",
@@ -35,11 +35,11 @@ const Input = React.forwardRef<HTMLInputElement | HTMLTextAreaElement | HTMLSele
     }
 
     const commonClassName = cn(
-      `shadow-input dark:placeholder-text-neutral-600 w-full rounded-md border-none bg-gray-50 px-3 py-2 text-sm text-black 
+      `shadow-input placeholder-text-neutral-600 w-full rounded-md border-none bg-gray-50 px-3 py-2 text-sm text-black 
       transition duration-400 group-hover/input:shadow-none file:border-0 file:bg-transparent file:text-sm file:font-medium 
       placeholder:text-neutral-400 focus-visible:ring-[2px] focus-visible:ring-neutral-400 focus-visible:outline-none 
-      disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-800 dark:text-white dark:shadow-[0px_0px_1px_1px_#404040] 
-      dark:focus-visible:ring-neutral-600`,
+      disabled:cursor-not-allowed disabled:opacity-50 bg-zinc-800 text-white shadow-[0px_0px_1px_1px_#404040] 
+      focus-visible:ring-neutral-600`,
       className,
     );
 

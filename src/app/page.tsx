@@ -5,6 +5,7 @@ import { useTimer } from 'react-timer-hook'
 import { MarqueImg } from '@/components/MarqueImg'
 import { Spotlight } from '@/components/ui/spotlight-new';
 import { BackgroundLines } from '@/components/ui/background-lines';
+import Faq from '@/components/Faq';
 
 export default function Home() {
 
@@ -74,6 +75,7 @@ export default function Home() {
         </div>
       </BackgroundLines>
       <MarqueImg />
+      <Faq/>
     </>
   );
 }

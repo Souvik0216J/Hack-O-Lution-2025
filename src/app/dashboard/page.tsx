@@ -53,7 +53,6 @@ function Dashboard() {
         setTeamData({
           teamId: "HACK-2025-" + userData.teamId || "",
           teamName: userData.teamName || "",
-          // Make sure to use the current status from the database
           status: (userData.selectionInfo[0].isSelected as "Pending" | "Approved" | "Rejected"),
           leaderName: userData.leaderName || "",
           leaderEmail: userData.leaderEmail || "",
@@ -102,7 +101,6 @@ function Dashboard() {
     }
   }
 
-  // Calculate total team size (members + leader = total)
   const totalTeamSize = teamData.members.length + 1; // +1 for the leader
 
   if (loading) {
@@ -197,7 +195,7 @@ function Dashboard() {
               </div>
             </div>
 
-            {/* Team members (including leader) */}
+            {/* Team members */}
             <div>
               <h3 className="text-lg font-medium mb-4">Team Members</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -231,7 +229,7 @@ function Dashboard() {
           </div>
         </div>
 
-        {/* Project Submission Section - Only shown when status is Approved */}
+        {/* Project Submission Section */}
         {teamData.status === "Approved" && (
           <div className="w-full bg-black rounded-xl border border-zinc-800 overflow-hidden mb-8">
             <div className="p-6">

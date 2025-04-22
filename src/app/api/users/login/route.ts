@@ -10,7 +10,7 @@ export async function POST(request: NextRequest){
       
         const reqBody = await request.json()
         const {email, password} = reqBody;
-
+        
         //check if user exists
         const user = await User.findOne({leaderEmail: email})
 
@@ -24,7 +24,11 @@ export async function POST(request: NextRequest){
         if(!validPassword){
             return NextResponse.json({error: "Invalid password"}, {status: 401})
         }
-        
+
+        if(email === "hackolution2024@gmail.comm"){
+            
+        }
+
         //create token data
         const tokenData = {
             id: user._id,

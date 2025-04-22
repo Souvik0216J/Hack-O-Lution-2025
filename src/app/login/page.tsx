@@ -26,7 +26,7 @@ export default function SignupFormDemo() {
 
       const response = await axios.post("/api/users/login", user);
       console.log("Login success", response.data);
-
+      
       // Small delay to ensure cookies are set before redirecting
       setTimeout(() => {
         toast.success("Login success");
@@ -54,7 +54,7 @@ export default function SignupFormDemo() {
   };
 
   return (
-    <div className="mt-15 min-h-screen w-full rounded-md bg-neutral-950 flex flex-col items-center justify-center px-4 py-6 sm:px-6 lg:px-8">
+    <div className="mt-12 min-h-screen w-full rounded-md bg-neutral-950 flex flex-col items-center justify-center px-4 py-6 sm:px-6 lg:px-8">
       <Spotlight />
       <div className="shadow-input mx-auto w-full max-w-md rounded bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black">
         <h2 className="text-xl font-bold text-neutral-800 dark:text-neutral-200">

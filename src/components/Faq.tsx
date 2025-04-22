@@ -93,7 +93,7 @@ export default function Faq() {
   )
 
   return (
-    <section ref={ref} id="faq" className="py-20 md:py-32 relative w-full flex justify-center">
+    <section ref={ref} id="faq" className="py-20 md:py-32 min-h-[100vh] relative w-full flex justify-center">
       <motion.div
         className="container px-4 md:px-6"
         variants={container}

@@ -26,15 +26,14 @@ export default function SignupFormDemo() {
       setWrongPass(false)
       setSuccess(false)
 
-      const response = await axios.post("/api/users/login", user);
+      await axios.post("/api/users/login", user);
       setSuccess(true)
-      // console.log("Login success", response.data);
       
       // Small delay to ensure cookies are set before redirecting
       setTimeout(() => {
         toast.success("Login success");
         router.push("/dashboard");
-      }, 300);
+      }, 150);
 
     } catch (error: any) {
       console.log("Login failed", error.message);

@@ -214,12 +214,12 @@ function Dashboard() {
                 {/* Regular members */}
                 {teamData.members.map((member, index) => (
                   <div key={index} className="bg-zinc-900 rounded-lg p-4 flex items-center">
-                    <div className="h-12 w-12 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-lg font-bold mr-4">
+                    <div className="h-12 w-12 flex-shrink-0 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-lg font-bold mr-4">
                       {member.name ? member.name.charAt(0) : '?'}
                     </div>
-                    <div>
-                      <h4 className="font-medium">{member.name}</h4>
-                      <p className="text-zinc-400 text-sm">{member.email}</p>
+                    <div className="min-w-0">
+                      <h4 className="font-medium truncate">{member.name}</h4>
+                      <p className="text-zinc-400 text-sm truncate">{member.email}</p>
                       <p className="text-zinc-500 text-xs">{member.tshirtSize}</p>
                     </div>
                   </div>

@@ -25,10 +25,6 @@ export async function POST(request: NextRequest){
             return NextResponse.json({error: "Invalid password"}, {status: 401})
         }
 
-        if(email === "hackolution2024@gmail.comm"){
-            
-        }
-
         //create token data
         const tokenData = {
             id: user._id,
@@ -36,7 +32,7 @@ export async function POST(request: NextRequest){
         }
         //create token
         const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET!, {expiresIn: "1d"})
-
+ 
         const response = NextResponse.json({
             message: "Login successful",
             success: true,

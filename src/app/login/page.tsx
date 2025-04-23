@@ -13,6 +13,7 @@ export default function SignupFormDemo() {
   const [loading, setLoading] = React.useState(false)
   const [usernotexist, setNotUserExist] = React.useState(false)
   const [wrongpass, setWrongPass] = React.useState(false)
+  const [success, setSuccess] = React.useState(false)
 
   const [user, setUser] = React.useState({
     email: "",
@@ -23,9 +24,11 @@ export default function SignupFormDemo() {
       setLoading(true);
       setNotUserExist(false)
       setWrongPass(false)
+      setSuccess(false)
 
       const response = await axios.post("/api/users/login", user);
-      console.log("Login success", response.data);
+      setSuccess(true)
+      // console.log("Login success", response.data);
       
       // Small delay to ensure cookies are set before redirecting
       setTimeout(() => {
@@ -103,6 +106,7 @@ export default function SignupFormDemo() {
           <br />
           <h2 className="text-red-500 text-xl">{usernotexist ? "User not found" : ""}</h2>
           <h2 className="text-red-500 text-xl">{ wrongpass ? "Wrong password" : ""}</h2>
+          <h2 className="text-green-500 text-xl">{ success ? "Login success" : ""}</h2>
         </form>
       </div>
     </div>

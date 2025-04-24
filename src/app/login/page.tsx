@@ -33,7 +33,7 @@ export default function SignupFormDemo() {
       setTimeout(() => {
         toast.success("Login success");
         router.push("/dashboard");
-      }, 150);
+      }, 100);
 
     } catch (error: any) {
       console.log("Login failed", error.message);

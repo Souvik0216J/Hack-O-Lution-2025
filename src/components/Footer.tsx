@@ -14,7 +14,7 @@ export default function Footer() {
                 <Link href={"https://www.instagram.com/hack0lution/"} target="_blank">
                     <FaInstagram className="scale-125 hover:text-white text-gray-300" />
                 </Link>
-                <Link href={""} target="_blank">
+                <Link href={"https://www.linkedin.com/in/hack0lution-iem-634090359?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"} target="_blank">
                     <FaLinkedin className=" hover:text-white text-gray-300" />
                 </Link>
             </div>

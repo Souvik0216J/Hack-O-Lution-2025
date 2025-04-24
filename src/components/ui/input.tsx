@@ -10,6 +10,9 @@ const autofillStyle = {
   WebkitTextFillColor: "white",
   transition: "background-color 5000s ease-in-out 0s",
 };
+const placeholderColor={
+  placeholder:"placeholder:text-neutral-400"
+}
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement> {
@@ -35,9 +38,9 @@ const Input = React.forwardRef<HTMLInputElement | HTMLTextAreaElement | HTMLSele
     }
 
     const commonClassName = cn(
-      `shadow-input placeholder-text-neutral-600 w-full rounded-md border-none bg-gray-50 px-3 py-2 text-sm text-black 
+      `shadow-input w-full rounded-md border-none bg-gray-50 px-3 py-2 text-sm text-black 
       transition duration-400 group-hover/input:shadow-none file:border-0 file:bg-transparent file:text-sm file:font-medium 
-      placeholder:text-neutral-400 focus-visible:ring-[2px] focus-visible:ring-neutral-400 focus-visible:outline-none 
+      focus-visible:ring-[2px] focus-visible:ring-neutral-400 focus-visible:outline-none 
       disabled:cursor-not-allowed disabled:opacity-50 bg-zinc-800 text-white shadow-[0px_0px_1px_1px_#404040] 
       focus-visible:ring-neutral-600`,
       className,

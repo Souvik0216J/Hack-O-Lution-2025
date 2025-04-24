@@ -121,16 +121,16 @@ function Page() {
     <div className="mt-25 min-h-screen w-full rounded-md flex flex-col items-center justify-center px-4 py-6 sm:px-6 lg:px-8">
       <Spotlight />
       <div className="shadow-input mx-auto w-full max-w-md rounded p-4 md:rounded-2xl md:p-8 dark:bg-black">
-        <h2 className="text-xl font-bold text-neutral-800 dark:text-neutral-200">
+        <h2 className="text-xl font-bold text-neutral-200">
           Welcome to Hack&#123;0&#125;Lution
         </h2>
-        <p className="mt-2 max-w-sm text-sm text-neutral-600 dark:text-neutral-300">
+        <p className="mt-2 max-w-sm text-sm text-neutral-300">
           After registration you recieved login credentials by email.
         </p>
 
         <form className="my-8" onSubmit={handleSubmit}>
 
-          <LabelInputContainer className="mb-4">
+          <LabelInputContainer className="mb-4 ">
             <Label htmlFor="team name"><span className="text-red-400 mr-0.5">*</span>Team Name</Label>
             <Input id="text" placeholder="Enter your team name" type="text" required value={user.teamName}
               onChange={(e) => setUser({

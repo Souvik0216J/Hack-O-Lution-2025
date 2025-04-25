@@ -20,7 +20,7 @@ export async function POST(req: Request) {
       await resend.emails.send({
         from: 'HACK{0}LUTION <noreply@souvikdev.in>',
         to: email,
-        subject: `🎉 Registration Successful - ${teamName}`,
+        subject: `Registration Successful - ${teamName}`,
         html: `
           <!DOCTYPE html>
           <html>
@@ -75,7 +75,7 @@ export async function POST(req: Request) {
               .button {
                 display: inline-block;
                 background-color: #4a86e8;
-                color: #fff;
+                color: #ffffff;
                 text-decoration: none;
                 padding: 10px 20px;
                 border-radius: 4px;
@@ -113,7 +113,7 @@ export async function POST(req: Request) {
                 
                 <p>For any queries, feel free to join our official Discord server and contact our support team.</p>
                 
-                <a href="#" class="button">Access Dashboard</a>
+                <a href="https://hack-o-lution-psi.vercel.app/login" class="button">Access Dashboard</a>
                 
                 <div class="footer">
                   <p>Best Regards,<br/>Team Hack{0}lution</p>

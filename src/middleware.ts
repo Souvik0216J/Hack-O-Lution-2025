@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-// This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
   console.log("Middleware triggered.")
   const path = request.nextUrl.pathname
@@ -21,7 +20,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
   
-  // Redirect unauthenticated users trying to access login to login (no change needed)
+  // Redirect unauthenticated users trying to access login to login
   if (path === '/login' && !token) {
     return NextResponse.next()
   }

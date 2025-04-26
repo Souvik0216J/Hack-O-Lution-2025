@@ -51,7 +51,7 @@ function Dashboard() {
 
         // Format the data for the dashboard
         setTeamData({
-          teamId: "HACK-2025-" + userData.teamId || "",
+          teamId: userData.teamId || "",
           teamName: userData.teamName || "",
           status: (userData.selectionInfo[0].isSelected as "Pending" | "Approved" | "Rejected"),
           leaderName: userData.leaderName || "",
@@ -71,7 +71,7 @@ function Dashboard() {
     fetchUserData();
 
     // Set up periodic polling for updates
-    const intervalId = setInterval(fetchUserData, 30000); // Poll every 30 seconds
+    const intervalId = setInterval(fetchUserData, 60000); // refresh data every 60 seconds
 
     // Clean up the interval when component unmounts
     return () => clearInterval(intervalId);

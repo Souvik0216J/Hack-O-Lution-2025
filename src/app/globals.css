@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000; 
-  --foreground: #ffffff;
-  /* color-scheme: dark; */
+  /* --background: #00000a; */
+  --background: #0a0a0a;
+  /* --background: #000000; */
+  --foreground: #ededed;
 }
 
 html {
@@ -32,15 +33,6 @@ body {
     to {
       transform: translate(calc(-50% - 0.5rem));
     }
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* --background: #00000a; */
-    --background: #0a0a0a;
-    /* --background: #000000; */
-    --foreground: #ededed;
   }
 }
 
@@ -85,11 +77,11 @@ body {
 
 /* CSS to the autofill background color */
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    transition: background-color 5000s ease-in-out 0s;
-    -webkit-text-fill-color: white !important;
-    background-color: transparent !important;
-    box-shadow: 0 0 0px 1000px transparent inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: white !important;
+  background-color: transparent !important;
+  box-shadow: 0 0 0px 1000px transparent inset !important;
 }

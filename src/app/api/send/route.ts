@@ -13,7 +13,7 @@ export async function POST(req: Request) {
   ];
 
   try {
-    // Loop through each recipient and send a personalized email
+    // Loop through each recipient
     for (const person of allRecipients) {
       const { name, email } = person;
 
@@ -81,7 +81,7 @@ export async function POST(req: Request) {
                 border-radius: 4px;
                 margin-top: 15px;
                 font-weight: bold;
-              }
+              } 
               .social-links {
                 margin-top: 20px;
               }
@@ -113,7 +113,7 @@ export async function POST(req: Request) {
                 
                 <p>For any queries, feel free to join our official Discord server and contact our support team.</p>
                 
-                <a href="https://hack-o-lution-psi.vercel.app/login" class="button">Access Dashboard</a>
+                <a href="https://hack-o-lution-psi.vercel.app/login" style="color: #ffffff; font-weight: bold;" class="button">Access Dashboard</a>
                 
                 <div class="footer">
                   <p>Best Regards,<br/>Team Hack{0}lution</p>

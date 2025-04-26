@@ -6,23 +6,13 @@ export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname
 
   const isPublicPath = path === '/login'
-  const isProtectedPath = path === '/dashboard' || path.startsWith('/api/') 
+  const isProtectedPath = path === '/dashboard'
 
   const token = request.cookies.get("token")?.value || ''
 
   // Redirect authenticated users trying to access public paths to dashboard
   if (isPublicPath && token) {
     return NextResponse.redirect(new URL('/dashboard', request.url))
-  }
-  
-  // Don't redirect unauthenticated users on the landing page
-  if (path === '/' && !token) {
-    return NextResponse.next()
-  }
-  
-  // Redirect unauthenticated users trying to access login to login
-  if (path === '/login' && !token) {
-    return NextResponse.next()
   }
   
   // Protect dashboard and API routes
@@ -36,9 +26,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/',
-    '/login', 
     '/dashboard',
-    // '/admin/:path*'
   ],
 }

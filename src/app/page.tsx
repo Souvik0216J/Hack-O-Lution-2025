@@ -1,7 +1,7 @@
 "use client"
 import { motion, Variants } from 'framer-motion'
 import { useTimer } from 'react-timer-hook'
-// import { BackgroundBeams } from "../components/ui/background-beams";
+import MusicButton from '@/components/Music'
 import { MarqueImg } from '@/components/MarqueImg'
 import { Spotlight } from '@/components/ui/spotlight-new';
 import Faq from '@/components/Faq';
@@ -35,6 +35,7 @@ export default function Home() {
       <div className="h-[100vh] w-screen rounded-md relative flex flex-col items-center justify-center antialiased overflow-hidden">
         <StarsCanvas /> 
         <Spotlight />
+        <MusicButton/>
         <div className="max-w-2xl mx-auto p-4">
           <div className="flex items-center text-center justify-center">
             <motion.div

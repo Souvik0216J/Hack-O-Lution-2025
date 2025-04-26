@@ -5,8 +5,8 @@ import { Navbar } from "@/components/Navbar";
 
 export function NavbarWrapper() {
   const pathname = usePathname();
-  const hideNavbarRoutes = ['/dashboard'];
-  const shouldHideNavbar = hideNavbarRoutes.includes(pathname);
+  const hideNavbarKeyword = ['dashboard', 'admin'];
+  const shouldHideNavbar =  hideNavbarKeyword.some(keyword => pathname.includes(keyword));;
 
   if (shouldHideNavbar) return null;
 

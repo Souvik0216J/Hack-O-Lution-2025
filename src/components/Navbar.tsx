@@ -16,8 +16,8 @@ export function Navbar() {
       icon: <IconUser className="h-6 w-6 text-white" />,
     },
     {
-      name: "Contact",
-      link: "/contact",
+      name: "Rules",
+      link: "/rules",
       icon: <IconMessage className="h-6 w-6 text-white" />
     },
     {

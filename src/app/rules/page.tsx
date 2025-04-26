@@ -6,7 +6,7 @@ function page() {
       <div className="max-w-2xl mx-auto p-4">
         <div className="flex items-center text-center justify-center">
           <h1 className='text-2xl'>
-            This is Contact page.
+            This is Rules page.
           </h1>
         </div>
 

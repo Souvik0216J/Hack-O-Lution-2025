@@ -51,7 +51,7 @@ export default function MusicButton() {
                     }}
                 >
                     <g>
-                        <rect fill="#66bb6a" height={isPlaying ? "40" : "40"} width="15" y={isPlaying ? "30" : "30"} x="17.5">
+                        <rect fill="#7bf1a8" height={isPlaying ? "40" : "40"} width="15" y={isPlaying ? "30" : "30"} x="17.5">
                             {isPlaying && (
                                 <>
                                     <animate
@@ -78,7 +78,7 @@ export default function MusicButton() {
                             )}
                         </rect>
 
-                        <rect fill="#66bb6a" height={isPlaying ? "40" : "40"} width="15" y={isPlaying ? "30" : "30"} x="42.5">
+                        <rect fill="#7bf1a8" height={isPlaying ? "40" : "40"} width="15" y={isPlaying ? "30" : "30"} x="42.5">
                             {isPlaying && (
                                 <>
                                     <animate
@@ -105,7 +105,7 @@ export default function MusicButton() {
                             )}
                         </rect>
 
-                        <rect fill="#66bb6a" height={isPlaying ? "40" : "40"} width="15" y={isPlaying ? "30" : "30"} x="67.5">
+                        <rect fill="#7bf1a8" height={isPlaying ? "40" : "40"} width="15" y={isPlaying ? "30" : "30"} x="67.5">
                             {isPlaying && (
                                 <>
                                     <animate

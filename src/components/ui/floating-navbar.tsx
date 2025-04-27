@@ -101,7 +101,7 @@ import React, { ReactElement } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/utils/cn";
 import Link from "next/link";
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 
 
 export const FloatingNav = ({
@@ -117,6 +117,7 @@ export const FloatingNav = ({
 }) => {
 
   const router = useRouter();
+  const pathname = usePathname(); // current path
 
   const loginPage = () => {
     router.push("/login");
@@ -140,20 +141,24 @@ export const FloatingNav = ({
         className
       )}
     >
-      {navItems.map((navItem: any, idx: number) => (
-        <Link
-          key={`link=${idx}`}
-          href={navItem.link}
-          className={cn(
-            "relative text-neutral-50 items-center flex space-x-1 hover:text-neutral-300"
-          )}
-        >
-          {/* for mobile  */}
-          <span className="block sm:hidden text-4xl">{navItem.icon}</span>
-          <span className="hidden sm:block text-md">{navItem.name}</span>
-        </Link>
-      ))}
+      {navItems.map((navItem: any, idx: number) => {
+        const isActive = pathname === navItem.link; // check if active
 
+        return (
+          <Link
+            key={`link=${idx}`}
+            href={navItem.link}
+            className={cn(
+              "relative items-center flex space-x-1",
+              isActive ? "text-green-300" : "text-neutral-50 hover:text-neutral-300"
+            )}
+          >
+            {/* for mobile */}
+            <span className="block sm:hidden text-4xl">{navItem.icon}</span>
+            <span className="hidden sm:block text-md">{navItem.name}</span>
+          </Link>
+        );
+      })}
 
       <button
         className="group border text-sm font-medium relative border-white/[0.2] text-white px-4 py-2 rounded-full hover:cursor-pointer"

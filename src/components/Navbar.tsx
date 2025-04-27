@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { FloatingNav } from "./ui/floating-navbar"
-import { IconHome, IconMessage, IconRegistered, IconUser } from "@tabler/icons-react";
+import { IconBook2, IconHome, IconRegistered, IconUser } from "@tabler/icons-react";
 
 export function Navbar() {
   const navItems = [
@@ -18,7 +18,7 @@ export function Navbar() {
     {
       name: "Rules",
       link: "/rules",
-      icon: <IconMessage className="h-6 w-6 text-white" />
+      icon: <IconBook2 className="h-6 w-6 text-white" />
     },
     {
       name: "Register",

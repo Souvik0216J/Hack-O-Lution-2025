@@ -37,7 +37,6 @@ function Dashboard() {
     members: [],
   });
 
-  // Function to poll for updates every 30 seconds
   useEffect(() => {
     async function fetchUserData() {
       try {

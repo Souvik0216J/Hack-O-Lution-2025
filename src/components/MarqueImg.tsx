@@ -5,7 +5,7 @@ import { InfiniteMovingCards } from "../components/ui/infinite-moving-cards";
 export function MarqueImg() {
     return (
         <div className="h-[100vh] rounded-md flex flex-col antialiased items-center justify-center relative overflow-hidden">
-            <h1 className="text-4xl xs:text-4xl sm:text-5xl md:text-7xl text-yellow-100 p-5">Previous Year Galary</h1>
+            <h1 className="text-4xl xs:text-4xl sm:text-5xl md:text-7xl text-yellow-100 p-5">Previous Year Gallery</h1>
             <InfiniteMovingCards
                 items={List1}
                 direction="right"

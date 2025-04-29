@@ -36,7 +36,7 @@ export default function TeamMembers(): React.ReactElement {
       },
       {
         name: "Rohan Sinha",
-        image: null,
+        image: "/team/rohan.jpg",
         designation: "Logistic",
         linkedin: "https://www.linkedin.com/in/rohan-sinha-0b926225a",
       }

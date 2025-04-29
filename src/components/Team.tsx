@@ -67,7 +67,7 @@ export default function TeamMembers(): React.ReactElement {
         linkedin: "https://www.linkedin.com/in/aniya-agarwal-0b45a631b",
       },
       {
-        name: "Assad Haussain",
+        name: "Asad Hussain",
         image: "/team/assad.jpg",
         designation: "Co-Admin",
         linkedin: "https://www.linkedin.com/in/asad-hussain-765502319",

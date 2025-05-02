@@ -27,6 +27,17 @@ interface TeamData {
 function Dashboard() {
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(true);
+  const [pLink, setPLink] = useState<string>("");
+  const [gLink, setGLink] = useState<string>("");
+
+  const [project, setProject] = useState<{
+    projectLink: string;
+    githubLink: string;
+  }>({
+    projectLink: "",
+    githubLink: ""
+  })
+
   const [teamData, setTeamData] = useState<TeamData>({
     teamId: "",
     teamName: "",
@@ -75,6 +86,40 @@ function Dashboard() {
     // Clean up the interval when component unmounts
     return () => clearInterval(intervalId);
   }, [router]);
+
+
+  const handleProjectSubmission = async () => {
+    if (!pLink || !gLink) {
+      alert("Please fill in both the project and GitHub links.");
+      return;
+    }
+  
+    try {
+      // Update project state
+      const updatedProject = {
+        projectLink: pLink,
+        githubLink: gLink
+      };
+  
+      setProject(updatedProject);
+  
+      const response = await axios.post("/api/users/submit-project", {
+        teamId : teamData.teamId,
+        projectLink: updatedProject.projectLink,
+        githubLink: updatedProject.githubLink
+      });
+  
+      if (response.data.success) {
+        alert("Project submitted successfully!");
+      } else {
+        alert(`Error: ${response.data.message}`);
+      }
+    } catch (error: any) {
+      console.error("Submission error:", error);
+      alert("Something went wrong while submitting the project.");
+    }
+  };
+  
 
   // Function to get status badge styling
   const getStatusBadge = (status: string): string => {
@@ -245,8 +290,8 @@ function Dashboard() {
                     <input
                       type="url"
                       id="projectLink"
-                      // value={projectLink}
-                      // onChange={(e) => setProjectLink(e.target.value)}
+                      value={pLink}
+                      onChange={(e) => setPLink(e.target.value)}
                       placeholder="https://your-project.com"
                       className="w-full bg-zinc-800 border border-zinc-700 text-white p-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
@@ -259,8 +304,8 @@ function Dashboard() {
                     <input
                       type="url"
                       id="githubLink"
-                      // value={githubLink}
-                      // onChange={(e) => setGithubLink(e.target.value)}
+                      value={gLink}
+                      onChange={(e) => setGLink(e.target.value)}
                       placeholder="https://github.com/username/repository"
                       className="w-full bg-zinc-800 border border-zinc-700 text-white p-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
@@ -270,7 +315,7 @@ function Dashboard() {
                 <div className="flex justify-end mt-4">
                   <button
                     className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md text-sm font-medium"
-                  // onClick={handleProjectSubmission}
+                    onClick={handleProjectSubmission}
                   >
                     Submit Project
                   </button>

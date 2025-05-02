@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { Users, Search, X, Check, Filter, ArrowUpDown, Mail, Phone, Lightbulb } from "lucide-react";
+import { Users, Search, X, Check, Filter, ArrowUpDown, Mail, Phone, Lightbulb, ExternalLink, Clock, Github, Globe } from "lucide-react";
 
 type Member = {
   name: string;
@@ -130,6 +130,13 @@ const AdminDashboard: React.FC = () => {
     return team.selectionInfo && team.selectionInfo.length > 0
       ? team.selectionInfo[0].isSelected as "Pending" | "Approved" | "Rejected"
       : "Pending";
+  };
+
+  // Function to get project submission status
+  const getProjectSubmissionStatus = (team: Registration): boolean => {
+    return team.projectSubmit && team.projectSubmit.length > 0
+      ? team.projectSubmit[0].isSubmit
+      : false;
   };
 
   // Apply filters and sorting
@@ -430,6 +437,57 @@ const AdminDashboard: React.FC = () => {
                         <p className="text-sm">{selectedTeam.teamSize} Members</p>
                       </div>
                     </div>
+                    
+                    {/* Project Submission Status */}
+                    <div className="mb-4 p-3 border border-zinc-800 rounded-lg">
+                      <div className="flex justify-between items-center mb-2">
+                        <h3 className="text-sm font-medium">Project Submission</h3>
+                        {getProjectSubmissionStatus(selectedTeam) ? (
+                          <span className="bg-green-500/10 text-green-500 border border-green-500/20 px-2 py-1 rounded-full text-xs font-medium flex items-center">
+                            <Check className="h-3 w-3 mr-1" />
+                            Submitted
+                          </span>
+                        ) : (
+                          <span className="bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 px-2 py-1 rounded-full text-xs font-medium flex items-center">
+                            <Clock className="h-3 w-3 mr-1" />
+                            Pending
+                          </span>
+                        )}
+                      </div>
+                      
+                      {getProjectSubmissionStatus(selectedTeam) && selectedTeam.projectSubmit && selectedTeam.projectSubmit.length > 0 ? (
+                        <div className="space-y-2 text-sm">
+                          {selectedTeam.projectSubmit[0].projectLink && selectedTeam.projectSubmit[0].projectLink !== "null" && (
+                            <a 
+                              href={selectedTeam.projectSubmit[0].projectLink} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="flex items-center text-blue-400 hover:text-blue-300"
+                            >
+                              <Github className="h-4 w-4 mr-2" />
+                              Project Repository
+                              <ExternalLink className="h-3 w-3 ml-1" />
+                            </a>
+                          )}
+                          
+                          {selectedTeam.projectSubmit[0].hostedLink && selectedTeam.projectSubmit[0].hostedLink !== "null" && (
+                            <a 
+                              href={selectedTeam.projectSubmit[0].hostedLink} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="flex items-center text-blue-400 hover:text-blue-300"
+                            >
+                              <Globe className="h-4 w-4 mr-2" />
+                              Hosted Application
+                              <ExternalLink className="h-3 w-3 ml-1" />
+                            </a>
+                          )}
+                        </div>
+                      ) : (
+                        <p className="text-zinc-400 text-xs">No project submissions yet.</p>
+                      )}
+                    </div>
+                    
                     <div className="flex gap-2">
                       {getTeamStatus(selectedTeam) !== "Approved" && (
                         <button
@@ -471,6 +529,12 @@ const AdminDashboard: React.FC = () => {
                         <div className="flex items-center text-zinc-400 text-sm">
                           <Phone className="h-3 w-3 mr-2" />
                           {selectedTeam.leaderNo}
+                        </div>
+                        <div className="text-zinc-500 text-xs">
+                          City: {selectedTeam.leaderCity}
+                        </div>
+                        <div className="text-zinc-500 text-xs">
+                          College: {selectedTeam.leaderClgName}
                         </div>
                         <div className="text-zinc-500 text-xs">
                           T-shirt: {selectedTeam.leaderTshirtSize}

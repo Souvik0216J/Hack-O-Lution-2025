@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { Users, Search, X, Check, Filter, ArrowUpDown, Mail, Phone, Lightbulb, ExternalLink, Clock, Github, Globe } from "lucide-react";
+import { Users, Search, X, Check, Filter, ArrowUpDown, Mail, Phone, Lightbulb, ExternalLink, Clock, Github, Globe, Loader2 } from "lucide-react";
 
 type Member = {
   name: string;
@@ -53,6 +53,9 @@ const AdminDashboard: React.FC = () => {
   const [sortBy, setSortBy] = useState<"submittedAt" | "teamName" | "membersCount">("submittedAt");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
 
+  const [loadingTeamId, setLoadingTeamId] = useState<string | null>(null);
+  const [loadingAction, setLoadingAction] = useState<"Approved" | "Rejected" | null>(null);
+
   // Fetch registrations data
   React.useEffect(() => {
     async function fetchRegistrations() {
@@ -78,17 +81,15 @@ const AdminDashboard: React.FC = () => {
   // handle team status changes
   const updateTeamStatus = async (teamId: string, newStatus: "Pending" | "Approved" | "Rejected") => {
     try {
-      // loading toast
-      const loadingToast = toast.loading("Updating team status...");
+
+      setLoadingTeamId(teamId);
+      setLoadingAction(newStatus === "Pending" ? null : newStatus);
 
       // API call 
       const response = await axios.post("/api/admin/change-team-status", {
         teamId: teamId,
         status: newStatus
       });
-
-      // Dismiss loading toast
-      toast.dismiss(loadingToast);
 
       if (response.data && response.data.success) {
         toast.success(`Team status updated to ${newStatus}`);
@@ -130,6 +131,10 @@ const AdminDashboard: React.FC = () => {
         setSelectedTeam({ ...selectedTeam });
       }
     }
+    finally {
+      setLoadingTeamId(null);
+      setLoadingAction(null);
+    }
   };
 
   // Function to get status badge styling
@@ -159,6 +164,16 @@ const AdminDashboard: React.FC = () => {
       : false;
   };
 
+  // date convert helper function
+  const parseDate = (dateString: string) => {
+    // Convert date strings like "29/4/2025, 16:34:15" 
+    const [datePart, timePart] = dateString.split(', ');
+    const [day, month, year] = datePart.split('/').map(Number);
+    const [hours, minutes, seconds] = timePart.split(':').map(Number);
+    
+    return new Date(year, month - 1, day, hours, minutes, seconds);
+  };
+
   // Apply filters and sorting
   const filteredTeams = registrations
     .filter((team) => {
@@ -171,9 +186,12 @@ const AdminDashboard: React.FC = () => {
     })
     .sort((a, b) => {
       if (sortBy === "submittedAt") {
+        const dateA = parseDate(a.date);
+        const dateB = parseDate(b.date);
+
         return sortOrder === "asc"
-          ? a.date.localeCompare(b.date)
-          : b.date.localeCompare(a.date);
+          ? dateA.getTime() - dateB.getTime()
+          : dateB.getTime() - dateA.getTime();
       } else if (sortBy === "teamName") {
         return sortOrder === "asc"
           ? a.teamName.localeCompare(b.teamName)
@@ -186,7 +204,7 @@ const AdminDashboard: React.FC = () => {
           : bCount - aCount;
       }
       return 0;
-    });
+    })
 
   // Toggle sort order
   const toggleSort = (field: "submittedAt" | "teamName" | "membersCount") => {
@@ -389,8 +407,13 @@ const AdminDashboard: React.FC = () => {
                               onClick={() => updateTeamStatus(team.teamId, "Approved")}
                               className="p-1 bg-green-500/10 border border-green-500/20 rounded hover:bg-green-500/20"
                               title="Approve Team"
+                              disabled={loadingTeamId === team.teamId}
                             >
-                              <Check className="h-4 w-4 text-green-500" />
+                              {loadingTeamId === team.teamId && loadingAction === "Approved" ? (
+                                <Loader2 className="h-4 w-4 text-green-500 animate-spin" />
+                              ) : (
+                                <Check className="h-4 w-4 text-green-500" />
+                              )}
                             </button>
                           )}
                           {getTeamStatus(team) !== "Rejected" && (
@@ -398,8 +421,13 @@ const AdminDashboard: React.FC = () => {
                               onClick={() => updateTeamStatus(team.teamId, "Rejected")}
                               className="p-1 bg-red-500/10 border border-red-500/20 rounded hover:bg-red-500/20"
                               title="Reject Team"
+                              disabled={loadingTeamId === team.teamId}
                             >
-                              <X className="h-4 w-4 text-red-500" />
+                              {loadingTeamId === team.teamId && loadingAction === "Rejected" ? (
+                                <Loader2 className="h-4 w-4 text-red-500 animate-spin" />
+                              ) : (
+                                <X className="h-4 w-4 text-red-500" />
+                              )}
                             </button>
                           )}
                         </div>
@@ -513,16 +541,34 @@ const AdminDashboard: React.FC = () => {
                         <button
                           onClick={() => updateTeamStatus(selectedTeam.teamId, "Approved")}
                           className="flex items-center justify-center gap-2 bg-green-500/10 border border-green-500/20 px-3 py-2 rounded-lg text-green-500 hover:bg-green-500/20 flex-grow"
+                          disabled={loadingTeamId === selectedTeam.teamId}
                         >
-                          <Check className="h-4 w-4" /> Approve Team
+                          {loadingTeamId === selectedTeam.teamId && loadingAction === "Approved" ? (
+                            <>
+                              <Loader2 className="h-4 w-4 animate-spin" /> Processing...
+                            </>
+                          ) : (
+                            <>
+                              <Check className="h-4 w-4" /> Approve Team
+                            </>
+                          )}
                         </button>
                       )}
                       {getTeamStatus(selectedTeam) !== "Rejected" && (
                         <button
                           onClick={() => updateTeamStatus(selectedTeam.teamId, "Rejected")}
                           className="flex items-center justify-center gap-2 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg text-red-500 hover:bg-red-500/20 flex-grow"
+                          disabled={loadingTeamId === selectedTeam.teamId}
                         >
-                          <X className="h-4 w-4" /> Reject Team
+                          {loadingTeamId === selectedTeam.teamId && loadingAction === "Rejected" ? (
+                            <>
+                              <Loader2 className="h-4 w-4 animate-spin" /> Processing...
+                            </>
+                          ) : (
+                            <>
+                              <X className="h-4 w-4" /> Reject Team
+                            </>
+                          )}
                         </button>
                       )}
                     </div>

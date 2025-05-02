@@ -75,42 +75,62 @@ const AdminDashboard: React.FC = () => {
     fetchRegistrations();
   }, []);
 
-  // // Function to handle team status changes
-  // const updateTeamStatus = async (teamId: string, newStatus: "Pending" | "Approved" | "Rejected") => {
-  //   try {
-  //     // Update UI immediately
-  //     setRegistrations(registrations.map(team => {
-  //       if (team.teamId === teamId) {
-  //         const updatedTeam = { 
-  //           ...team, 
-  //           selectionInfo: [{ 
-  //             ...team.selectionInfo[0], 
-  //             isSelected: newStatus 
-  //           }] 
-  //         };
-  //         return updatedTeam;
-  //       }
-  //       return team;
-  //     }));
+  // handle team status changes
+  const updateTeamStatus = async (teamId: string, newStatus: "Pending" | "Approved" | "Rejected") => {
+    try {
+      // loading toast
+      const loadingToast = toast.loading("Updating team status...");
 
-  //     if (selectedTeam && selectedTeam.teamId === teamId) {
-  //       setSelectedTeam({
-  //         ...selectedTeam,
-  //         selectionInfo: [{ 
-  //           ...selectedTeam.selectionInfo[0], 
-  //           isSelected: newStatus 
-  //         }]
-  //       });
-  //     }
+      // API call 
+      const response = await axios.post("/api/admin/change-team-status", {
+        teamId: teamId,
+        status: newStatus
+      });
 
-  //     API call to update the status in your backend
-  //     // await axios.post("/api/admin/update-status", { teamId, status: newStatus });
-  //     toast.success(`Team status updated to ${newStatus}`);
-  //   } catch (error: any) {
-  //     console.error("Error updating team status:", error);
-  //     toast.error("Failed to update team status");
-  //   }
-  // };
+      // Dismiss loading toast
+      toast.dismiss(loadingToast);
+
+      if (response.data && response.data.success) {
+        toast.success(`Team status updated to ${newStatus}`);
+        // change ui
+        setRegistrations(registrations.map(team => {
+          if (team.teamId === teamId) {
+            const updatedTeam = {
+              ...team,
+              selectionInfo: [{
+                ...team.selectionInfo[0],
+                isSelected: newStatus
+              }]
+            };
+            return updatedTeam;
+          }
+          return team;
+        }));
+
+        if (selectedTeam && selectedTeam.teamId === teamId) {
+          setSelectedTeam({
+            ...selectedTeam,
+            selectionInfo: [{
+              ...selectedTeam.selectionInfo[0],
+              isSelected: newStatus
+            }]
+          });
+        }
+
+      } else {
+        throw new Error(response.data?.message || "Failed to update status");
+      }
+    } catch (error: any) {
+      console.error("Error updating team status:", error);
+      toast.error(error.message || "Failed to update team status");
+
+      // Rollback UI changes on error
+      setRegistrations(prev => [...prev]);
+      if (selectedTeam) {
+        setSelectedTeam({ ...selectedTeam });
+      }
+    }
+  };
 
   // Function to get status badge styling
   const getStatusBadge = (status: "Pending" | "Approved" | "Rejected"): string => {
@@ -366,7 +386,7 @@ const AdminDashboard: React.FC = () => {
                         <div className="flex justify-end gap-2" onClick={(e) => e.stopPropagation()}>
                           {getTeamStatus(team) !== "Approved" && (
                             <button
-                              // onClick={() => updateTeamStatus(team.teamId, "Approved")}
+                              onClick={() => updateTeamStatus(team.teamId, "Approved")}
                               className="p-1 bg-green-500/10 border border-green-500/20 rounded hover:bg-green-500/20"
                               title="Approve Team"
                             >
@@ -375,7 +395,7 @@ const AdminDashboard: React.FC = () => {
                           )}
                           {getTeamStatus(team) !== "Rejected" && (
                             <button
-                              // onClick={() => updateTeamStatus(team.teamId, "Rejected")}
+                              onClick={() => updateTeamStatus(team.teamId, "Rejected")}
                               className="p-1 bg-red-500/10 border border-red-500/20 rounded hover:bg-red-500/20"
                               title="Reject Team"
                             >
@@ -437,7 +457,7 @@ const AdminDashboard: React.FC = () => {
                         <p className="text-sm">{selectedTeam.teamSize} Members</p>
                       </div>
                     </div>
-                    
+
                     {/* Project Submission Status */}
                     <div className="mb-4 p-3 border border-zinc-800 rounded-lg">
                       <div className="flex justify-between items-center mb-2">
@@ -454,14 +474,14 @@ const AdminDashboard: React.FC = () => {
                           </span>
                         )}
                       </div>
-                      
+
                       {getProjectSubmissionStatus(selectedTeam) && selectedTeam.projectSubmit && selectedTeam.projectSubmit.length > 0 ? (
                         <div className="space-y-2 text-sm">
                           {selectedTeam.projectSubmit[0].projectLink && selectedTeam.projectSubmit[0].projectLink !== "null" && (
-                            <a 
-                              href={selectedTeam.projectSubmit[0].projectLink} 
-                              target="_blank" 
-                              rel="noopener noreferrer" 
+                            <a
+                              href={selectedTeam.projectSubmit[0].projectLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
                               className="flex items-center text-blue-400 hover:text-blue-300"
                             >
                               <Github className="h-4 w-4 mr-2" />
@@ -469,12 +489,12 @@ const AdminDashboard: React.FC = () => {
                               <ExternalLink className="h-3 w-3 ml-1" />
                             </a>
                           )}
-                          
+
                           {selectedTeam.projectSubmit[0].hostedLink && selectedTeam.projectSubmit[0].hostedLink !== "null" && (
-                            <a 
-                              href={selectedTeam.projectSubmit[0].hostedLink} 
-                              target="_blank" 
-                              rel="noopener noreferrer" 
+                            <a
+                              href={selectedTeam.projectSubmit[0].hostedLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
                               className="flex items-center text-blue-400 hover:text-blue-300"
                             >
                               <Globe className="h-4 w-4 mr-2" />
@@ -487,11 +507,11 @@ const AdminDashboard: React.FC = () => {
                         <p className="text-zinc-400 text-xs">No project submissions yet.</p>
                       )}
                     </div>
-                    
+
                     <div className="flex gap-2">
                       {getTeamStatus(selectedTeam) !== "Approved" && (
                         <button
-                          // onClick={() => updateTeamStatus(selectedTeam.teamId, "Approved")}
+                          onClick={() => updateTeamStatus(selectedTeam.teamId, "Approved")}
                           className="flex items-center justify-center gap-2 bg-green-500/10 border border-green-500/20 px-3 py-2 rounded-lg text-green-500 hover:bg-green-500/20 flex-grow"
                         >
                           <Check className="h-4 w-4" /> Approve Team
@@ -499,7 +519,7 @@ const AdminDashboard: React.FC = () => {
                       )}
                       {getTeamStatus(selectedTeam) !== "Rejected" && (
                         <button
-                          // onClick={() => updateTeamStatus(selectedTeam.teamId, "Rejected")}
+                          onClick={() => updateTeamStatus(selectedTeam.teamId, "Rejected")}
                           className="flex items-center justify-center gap-2 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg text-red-500 hover:bg-red-500/20 flex-grow"
                         >
                           <X className="h-4 w-4" /> Reject Team

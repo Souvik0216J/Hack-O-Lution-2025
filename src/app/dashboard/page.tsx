@@ -70,7 +70,7 @@ function Dashboard() {
     fetchUserData();
 
     // Set up periodic polling for updates
-    const intervalId = setInterval(fetchUserData, 60000); // refresh data every 60 seconds
+    const intervalId = setInterval(fetchUserData, 30000); // refresh data every 30 seconds
 
     // Clean up the interval when component unmounts
     return () => clearInterval(intervalId);

@@ -37,7 +37,6 @@ export async function POST(request: NextRequest) {
 
         const selectionInfo = [{
             isSelected: "Pending",
-            isRSVP: false
         }]
 
         const projectSubmit = [{
@@ -47,7 +46,8 @@ export async function POST(request: NextRequest) {
         }]
 
         const istTime = date.toLocaleString('en-IN', options);
-
+        const lastLogin = "null"
+        
         const newUser = new User({
             date: istTime,
             teamId: id,
@@ -64,6 +64,7 @@ export async function POST(request: NextRequest) {
             password: hashedPassword,
             selectionInfo: selectionInfo,
             projectSubmit: projectSubmit,
+            lastLogin: lastLogin
         })
 
         const savedUser = await newUser.save()

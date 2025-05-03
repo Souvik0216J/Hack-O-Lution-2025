@@ -5,10 +5,6 @@ const selectionSchema = new mongoose.Schema({
         type: String,
         default: "Pending"
     },
-    isRSVP: {
-        type: Boolean,
-        default: false,
-    }
 });
 
 const projectSchema = new mongoose.Schema({
@@ -126,6 +122,10 @@ const userSchema = new mongoose.Schema({
     projectSubmit:{
         type:[projectSchema],
         default: [],
+    },
+    lastLogin:{
+        type: String,
+        default: ""
     }
 })
 // Create the model

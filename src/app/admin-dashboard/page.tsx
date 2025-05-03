@@ -40,6 +40,7 @@ type Registration = {
   date: string;
   selectionInfo: SelectionInfo[];
   projectSubmit: ProjectSubmit[];
+  lastLogin: string;
 };
 
 const AdminDashboard: React.FC = () => {
@@ -56,6 +57,11 @@ const AdminDashboard: React.FC = () => {
   const [loadingTeamId, setLoadingTeamId] = useState<string | null>(null);
   const [loadingAction, setLoadingAction] = useState<"Approved" | "Rejected" | null>(null);
 
+
+  const [confirmAction, setConfirmAction] = useState<{
+    teamId: string;
+    action: "Approved" | "Rejected" | null;
+  } | null>(null);
   // Fetch registrations data
   React.useEffect(() => {
     async function fetchRegistrations() {
@@ -479,6 +485,10 @@ const AdminDashboard: React.FC = () => {
                       <div>
                         <p className="text-zinc-400 text-xs">Submission Date</p>
                         <p className="text-sm">{selectedTeam.date}</p>
+                      </div>
+                      <div>
+                        <p className="text-zinc-400 text-xs">Last login</p>
+                        <p className="text-sm">{selectedTeam.lastLogin}</p>
                       </div>
                       <div>
                         <p className="text-zinc-400 text-xs">Team Size</p>

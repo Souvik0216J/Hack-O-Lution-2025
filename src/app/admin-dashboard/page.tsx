@@ -58,10 +58,12 @@ const AdminDashboard: React.FC = () => {
   const [loadingAction, setLoadingAction] = useState<"Approved" | "Rejected" | null>(null);
 
 
+  // Add this to your existing useState imports
   const [confirmAction, setConfirmAction] = useState<{
     teamId: string;
-    action: "Approved" | "Rejected" | null;
+    action: "Approved" | "Rejected";
   } | null>(null);
+
   // Fetch registrations data
   React.useEffect(() => {
     async function fetchRegistrations() {
@@ -176,7 +178,7 @@ const AdminDashboard: React.FC = () => {
     const [datePart, timePart] = dateString.split(', ');
     const [day, month, year] = datePart.split('/').map(Number);
     const [hours, minutes, seconds] = timePart.split(':').map(Number);
-    
+
     return new Date(year, month - 1, day, hours, minutes, seconds);
   };
 
@@ -410,7 +412,10 @@ const AdminDashboard: React.FC = () => {
                         <div className="flex justify-end gap-2" onClick={(e) => e.stopPropagation()}>
                           {getTeamStatus(team) !== "Approved" && (
                             <button
-                              onClick={() => updateTeamStatus(team.teamId, "Approved")}
+                              onClick={() => {
+                                setSelectedTeam(team);
+                                setConfirmAction({ teamId: team.teamId, action: "Approved" });
+                              }}
                               className="p-1 bg-green-500/10 border border-green-500/20 rounded hover:bg-green-500/20"
                               title="Approve Team"
                               disabled={loadingTeamId === team.teamId}
@@ -424,7 +429,10 @@ const AdminDashboard: React.FC = () => {
                           )}
                           {getTeamStatus(team) !== "Rejected" && (
                             <button
-                              onClick={() => updateTeamStatus(team.teamId, "Rejected")}
+                              onClick={() => {
+                                setSelectedTeam(team);
+                                setConfirmAction({ teamId: team.teamId, action: "Rejected" });
+                              }}
                               className="p-1 bg-red-500/10 border border-red-500/20 rounded hover:bg-red-500/20"
                               title="Reject Team"
                               disabled={loadingTeamId === team.teamId}
@@ -432,7 +440,7 @@ const AdminDashboard: React.FC = () => {
                               {loadingTeamId === team.teamId && loadingAction === "Rejected" ? (
                                 <Loader2 className="h-4 w-4 text-red-500 animate-spin" />
                               ) : (
-                                <X className="h-4 w-4 text-red-500" />
+                                <X className="h-4 w-4 text-red-500 hover:cursor-pointer" />
                               )}
                             </button>
                           )}
@@ -549,8 +557,8 @@ const AdminDashboard: React.FC = () => {
                     <div className="flex gap-2">
                       {getTeamStatus(selectedTeam) !== "Approved" && (
                         <button
-                          onClick={() => updateTeamStatus(selectedTeam.teamId, "Approved")}
-                          className="flex items-center justify-center gap-2 bg-green-500/10 border border-green-500/20 px-3 py-2 rounded-lg text-green-500 hover:bg-green-500/20 flex-grow"
+                          onClick={() => setConfirmAction({ teamId: selectedTeam.teamId, action: "Approved" })}
+                          className="flex items-center justify-center gap-2 bg-green-500/10 border border-green-500/20 px-3 py-2 rounded-lg text-green-500 hover:bg-green-500/20 flex-grow cursor-pointer"
                           disabled={loadingTeamId === selectedTeam.teamId}
                         >
                           {loadingTeamId === selectedTeam.teamId && loadingAction === "Approved" ? (
@@ -566,8 +574,8 @@ const AdminDashboard: React.FC = () => {
                       )}
                       {getTeamStatus(selectedTeam) !== "Rejected" && (
                         <button
-                          onClick={() => updateTeamStatus(selectedTeam.teamId, "Rejected")}
-                          className="flex items-center justify-center gap-2 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg text-red-500 hover:bg-red-500/20 flex-grow"
+                          onClick={() => setConfirmAction({ teamId: selectedTeam.teamId, action: "Rejected" })}
+                          className="flex items-center justify-center gap-2 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg text-red-500 hover:bg-red-500/20 flex-grow cursor-pointer"
                           disabled={loadingTeamId === selectedTeam.teamId}
                         >
                           {loadingTeamId === selectedTeam.teamId && loadingAction === "Rejected" ? (
@@ -617,6 +625,46 @@ const AdminDashboard: React.FC = () => {
                         </div>
                       </div>
                     </div>
+
+                    {/* Confirmation Modal */}
+                    {confirmAction && (
+                      <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+                        <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-6 max-w-md w-full mx-4 animate-fadeIn">
+                          <h3 className="text-lg font-medium mb-4">Confirm Action</h3>
+                          <p className="mb-6">
+                            Are you sure to mark {selectedTeam.teamName} as
+                            <span className={confirmAction.action === "Approved"
+                              ? "text-green-500 font-medium mx-1"
+                              : "text-red-500 font-medium mx-1"
+                            }>
+                              {confirmAction.action}
+                            </span>?
+                          </p>
+                          <div className="flex gap-3 justify-end">
+                            <button
+                              onClick={() => setConfirmAction(null)}
+                              className="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 rounded-lg cursor-pointer"
+                            >
+                              Cancel
+                            </button>
+                            <button
+                              onClick={() => {
+                                if (confirmAction) {
+                                  updateTeamStatus(confirmAction.teamId, confirmAction.action);
+                                  setConfirmAction(null);
+                                }
+                              }}
+                              className={`px-4 py-2 rounded-lg ${confirmAction.action === "Approved"
+                                ? "bg-green-500/20 text-green-500 hover:bg-green-500/30 cursor-pointer"
+                                : "bg-red-500/20 text-red-500 hover:bg-red-500/30 cursor-pointer"
+                                }`}
+                            >
+                              Confirm
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
 
                     {/* Members information */}
                     {selectedTeam.members.map((member, index) => (

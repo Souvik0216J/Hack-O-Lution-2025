@@ -45,7 +45,7 @@ type Registration = {
 
 const AdminDashboard: React.FC = () => {
   const router = useRouter();
-  const [loading, setLoading] = useState<boolean>(true);
+  // const [loading, setLoading] = useState<boolean>(true);
   const [registrations, setRegistrations] = useState<Registration[]>([]);
 
   const [selectedTeam, setSelectedTeam] = useState<Registration | null>(null);
@@ -57,6 +57,7 @@ const AdminDashboard: React.FC = () => {
   const [loadingTeamId, setLoadingTeamId] = useState<string | null>(null);
   const [loadingAction, setLoadingAction] = useState<"Approved" | "Rejected" | null>(null);
 
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   // Add this to your existing useState imports
   const [confirmAction, setConfirmAction] = useState<{
@@ -68,22 +69,29 @@ const AdminDashboard: React.FC = () => {
   React.useEffect(() => {
     async function fetchRegistrations() {
       try {
-        setLoading(true);
+        // setLoading(true);
         const response = await axios.get("/api/admin/admin-user-data");
 
         if (response.data && Array.isArray(response.data.users)) {
           setRegistrations(response.data.users);
         }
 
-        setLoading(false);
+        // setLoading(false);
+        // set isInitialLoad to false because first load done
+        setIsInitialLoad(false);
       } catch (error: any) {
         console.error("Error fetching registration data:", error);
         toast.error("Failed to load registrations data");
-        setLoading(false);
+        // setLoading(false);
       }
     }
 
     fetchRegistrations();
+
+    const intervalId = setInterval(fetchRegistrations, 20000); // refresh data every 20 seconds
+
+    // Clean up the interval when component unmounts
+    return () => clearInterval(intervalId);
   }, []);
 
   // handle team status changes
@@ -243,13 +251,13 @@ const AdminDashboard: React.FC = () => {
     }
   }
 
-  if (loading) {
-    return (
-      <div className="min-h-screen w-full bg-neutral-950 text-white flex items-center justify-center">
-        <div className="text-xl">Loading...</div>
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="min-h-screen w-full bg-neutral-950 text-white flex items-center justify-center">
+  //       <div className="text-xl">Loading...</div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="min-h-screen w-full bg-neutral-950 text-white">
@@ -274,7 +282,7 @@ const AdminDashboard: React.FC = () => {
       <div className="container mx-auto px-4 py-8">
         {/* Stats Cards */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={isInitialLoad ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8"
@@ -299,7 +307,7 @@ const AdminDashboard: React.FC = () => {
 
         {/* Search and Filter */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={isInitialLoad ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.1 }}
           className="bg-black rounded-xl border border-zinc-800 p-4 mb-8"
@@ -336,7 +344,7 @@ const AdminDashboard: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Registrations Table */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={isInitialLoad ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.2 }}
             className="bg-black rounded-xl border border-zinc-800 overflow-hidden w-full lg:w-3/5"
@@ -462,7 +470,7 @@ const AdminDashboard: React.FC = () => {
 
           {/* Team Details Panel */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={isInitialLoad ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.3 }}
             className="bg-black rounded-xl border border-zinc-800 overflow-hidden w-full lg:w-2/5 h-fit sticky top-24"

@@ -180,11 +180,27 @@ function Page() {
           </LabelInputContainer>
 
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="phone"><span className="text-red-400 mr-0.5">*</span>Leader&apos;s WhatApp No</Label>
+            <Label htmlFor="phone">
+              <span className="text-red-400 mr-0.5">*</span>Leader&apos;s WhatsApp No
+            </Label>
             <Input id="phone" placeholder="Enter phone number" type="tel" required maxLength={10} minLength={10}
-              onChange={(e) => setUser({
-                ...user, leaderNo: e.target.value
-              })}
+              value={user.leaderNo || ''}
+              onKeyPress={(e) => {
+                // Prevent non-numeric input
+                if (!/[0-9]/.test(e.key)) {
+                  e.preventDefault();
+                }
+              }}
+              onChange={(e) => {
+                const value = e.target.value;
+                // Additional validation to ensure only numbers
+                if (value === '' || /^[0-9]+$/.test(value)) {
+                  setUser({
+                    ...user,
+                    leaderNo: value
+                  });
+                }
+              }}
             />
           </LabelInputContainer>
 

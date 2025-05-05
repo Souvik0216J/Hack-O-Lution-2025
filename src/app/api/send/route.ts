@@ -102,7 +102,7 @@ export async function POST(req: Request) {
                 
                 <p>Congratulations! Your registration for <strong>Hack{0}Lution 2025</strong> has been successfully completed. You are now officially a member of team <strong>${teamName}</strong>.</p>
                 
-                <p>We're thrilled to have you join our hackathon. Get ready for an exciting journey of innovation, collaboration, and problem-solving!</p>
+                <p>We're thrilled to have you on board! Your project idea is currently under review - stay tuned for the next update!</p>
                 
                 <div class="credentials">
                   <h3>Your Team Login Information</h3>

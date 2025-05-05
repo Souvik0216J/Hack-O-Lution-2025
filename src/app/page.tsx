@@ -89,8 +89,8 @@ export default function Home() {
       </section>
        */}
       <MarqueImg />
-      <Faq />
       <TeamMembers/>
+      <Faq />
     </>
   );
 }

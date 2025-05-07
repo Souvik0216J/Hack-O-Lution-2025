@@ -43,7 +43,7 @@ export default function Home() {
               variants={animation}
               initial="hidden"
               animate="show"
-              className="text-4xl xs:text-4xl sm:text-6xl md:text-8xl lg-text-10xl font-medium mt-9 z-10"
+              className="text-5xl xs:text-5xl sm:text-8xl md:text-9xl lg-text-11xl font-medium mt-9 z-10"
             >
               <motion.span variants={animation}>H</motion.span>
               <motion.span variants={animation}>A</motion.span>

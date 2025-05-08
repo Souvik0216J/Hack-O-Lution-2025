@@ -7,8 +7,14 @@ import { Spotlight } from '@/components/ui/spotlight-new';
 import Faq from '@/components/Faq';
 import StarsCanvas from '@/components/ui/star-canvas';
 import TeamMembers from '@/components/Team'
+import { AnimatePresence } from 'framer-motion'
+import { Snippet } from "@heroui/snippet";
+import { Code } from "@heroui/code";
+import { useState, useEffect } from 'react'
 
 export default function Home() {
+  const [textIndex, setTextIndex] = useState(0);
+  const phrases = ["Are You Ready?", "Join The Revolution", "Code. Create. Conquer"];
 
   // Time counter
   const eventDate = new Date('July 20, 2025 17:30:00')
@@ -31,6 +37,15 @@ export default function Home() {
       },
     },
   }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTextIndex((prev) => (prev + 1) % phrases.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+
   return (
     <>
       <div className="h-[100vh] w-screen rounded-md relative flex flex-col items-center justify-center antialiased overflow-hidden">
@@ -73,6 +88,41 @@ export default function Home() {
                 <motion.span variants={animation}><span>{minutes}</span>.</motion.span>
                 <motion.span variants={animation}><span>{seconds}</span></motion.span>
               </motion.div>
+
+              {/* Animated Snippet */}
+              <motion.div
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.8 }}
+                className="relative z-20"
+              >
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Snippet
+                    hideCopyButton
+                    hideSymbol
+                    variant="bordered"
+                    className="backdrop-blur-xl"
+                  >
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={textIndex}
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -20, opacity: 0 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <span className="md:text-xl inline-block">
+                          {phrases[textIndex]}{' '}
+                          <Code color="danger" className="md:text-xl">
+                            IEM/Ashram
+                          </Code>
+                        </span>
+                      </motion.div>
+                    </AnimatePresence>
+                  </Snippet>
+                </motion.div>
+              </motion.div>
+
             </div>
           </div>
         </div>
@@ -89,7 +139,7 @@ export default function Home() {
       </section>
        */}
       <MarqueImg />
-      <TeamMembers/>
+      <TeamMembers />
       <Faq />
     </>
   );

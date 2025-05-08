@@ -130,7 +130,7 @@ export default function Faq() {
                 <div
                   key={index}
                   className={cn(
-                    "border border-primary/20 rounded-lg overflow-hidden transition-all duration-300 bg-",
+                    "border border-white/80 rounded-lg overflow-hidden transition-all duration-300",
                     openItem === index ? "bg-[#1a1a1f]" : "bg-[#0a0a0a]",
                   )}
                 >
@@ -141,7 +141,7 @@ export default function Faq() {
                     <h3 className="text-lg font-medium">{faq.question}</h3>
                     <ChevronDown
                       className={cn(
-                        "h-5 w-5 text-primary transition-transform duration-300",
+                        "h-5 w-5 text-white/80 transition-transform duration-300",
                         openItem === index ? "transform rotate-180" : "",
                       )}
                     />

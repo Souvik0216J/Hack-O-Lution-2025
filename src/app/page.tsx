@@ -90,7 +90,7 @@ export default function Home() {
               </motion.div>
 
               {/* Animated Snippet */}
-              <motion.div
+              {/* <motion.div
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.8 }}
@@ -121,7 +121,7 @@ export default function Home() {
                     </AnimatePresence>
                   </Snippet>
                 </motion.div>
-              </motion.div>
+              </motion.div> */}
 
             </div>
           </div>

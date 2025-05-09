@@ -3,8 +3,7 @@ import React, { ReactElement } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/utils/cn";
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation"
-
+import { useRouter, usePathname } from "next/navigation";
 
 export const FloatingNav = ({
   navItems,
@@ -17,7 +16,6 @@ export const FloatingNav = ({
   }[];
   className?: string;
 }) => {
-
   const router = useRouter();
   const pathname = usePathname(); // current path
 
@@ -44,7 +42,11 @@ export const FloatingNav = ({
       )}
     >
       {navItems.map((navItem: any, idx: number) => {
-        const isActive = pathname === navItem.link; // check if active
+        // Check if path exactly matches or if it's a special case for the about section
+        const isActive =
+          pathname === navItem.link ||
+          (pathname === "/" && navItem.link === "#about") ||
+          (pathname !== "/" && navItem.link === "/#about" && navItem.name === "About");
 
         return (
           <Link
@@ -53,7 +55,6 @@ export const FloatingNav = ({
             className={cn(
               "relative items-center flex space-x-1",
               "text-neutral-50 hover:text-neutral-300"
-              // isActive ? "text-green-300" : "text-neutral-50 hover:text-neutral-300"
             )}
           >
             {/* for mobile */}
@@ -70,7 +71,6 @@ export const FloatingNav = ({
         <span>Login</span>
         <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent h-px group-hover:via-[#05DF72] transition-colors duration-300 ease-in-out" />
       </button>
-
     </motion.div>
   );
 };

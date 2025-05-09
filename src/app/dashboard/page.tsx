@@ -160,7 +160,7 @@ function Dashboard() {
       {/* Header */}
       <div className="border-b border-zinc-800 bg-black/50 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-xl font-bold">Hack&#123;0&#125;Lution</h1>
+          <h1 className="text-xl font-bold">HACK&#123;<span className="text-green-400">0</span>&#125;LUTION</h1>
           <button
             onClick={logout}
             className="px-4 py-2 rounded-md bg-zinc-800 hover:bg-red-500 transition hover:cursor-pointer">

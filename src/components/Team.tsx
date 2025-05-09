@@ -5,7 +5,7 @@ interface TeamMember {
   name: string;
   image: string | null;
   designation: string;
-  linkedin?: string; 
+  linkedin?: string;
 }
 
 interface TeamData {
@@ -26,7 +26,7 @@ export default function TeamMembers(): React.ReactElement {
         name: "Souvik Ghosh",
         image: "/team/souvik.jpg",
         designation: "FullStack, AI ML",
-        linkedin: "https://www.linkedin.com/in/souvik-ghosh-1bb26a282", 
+        linkedin: "https://www.linkedin.com/in/souvik-ghosh-1bb26a282",
       },
       {
         name: "Soumodip Das",
@@ -44,7 +44,7 @@ export default function TeamMembers(): React.ReactElement {
     coAdmins: [
       {
         name: "Aniket Chakraborty",
-        image: "/team/aniket.jpg", 
+        image: "/team/aniket.jpg",
         designation: "Co-Admin",
         linkedin: "https://www.linkedin.com/in/aniket-chakraborty-666319284",
       },
@@ -97,45 +97,45 @@ export default function TeamMembers(): React.ReactElement {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
   const [modalPosition, setModalPosition] = useState<ModalPosition>({ left: 0, top: 0 });
   const [isMobileView, setIsMobileView] = useState<boolean>(false);
-  
+
   //  screen size part
   useEffect(() => {
     const checkMobileView = () => {
       setIsMobileView(window.innerWidth <= 768); //  <= 768px for mobile
     };
-    
+
     checkMobileView();
-    
+
     // size listener
     window.addEventListener('resize', checkMobileView);
-    
+
     // Clean up
     return () => window.removeEventListener('resize', checkMobileView);
   }, []);
-  
+
   const handleAvatarClick = (member: TeamMember, event: React.MouseEvent) => {
     // For mobile redirect to LinkedIn directly
     if (isMobileView && member.linkedin) {
       window.open(member.linkedin, '_blank');
       return;
     }
-    
+
     setSelectedMember(member);
-    
+
     // Calculate position for big screen
     const avatarRect = event.currentTarget.getBoundingClientRect();
     const modalWidth = 320; // Approx width of modal
     const modalHeight = 320; // Approx height of modal
-    
+
     // centered above the avatar
     const left = avatarRect.left + (avatarRect.width / 1.2) - (modalWidth / 1.2);
     const top = avatarRect.top - modalHeight - 15; // 15px gap 
-    
-    setModalPosition({ 
+
+    setModalPosition({
       left: Math.max(10, left), // Ensure modal doesn't go off-screen to the left
       top: Math.max(10, top) // Ensure modal doesn't go off-screen to the top
     });
-    
+
     setModalOpen(true);
   };
 
@@ -147,13 +147,13 @@ export default function TeamMembers(): React.ReactElement {
   const renderAvatar = (member: TeamMember, colorClass: string): React.ReactElement => {
     if (member.image) {
       return (
-        <div 
+        <div
           className="h-16 w-16 rounded-full overflow-hidden shadow-lg cursor-pointer"
           onClick={(e) => handleAvatarClick(member, e)} onContextMenu={(e) => e.preventDefault()}
         >
-          <Image 
-            src={member.image} 
-            alt={member.name} 
+          <Image
+            src={member.image}
+            alt={member.name}
             className="h-full w-full object-cover"
             width={100}
             height={100}
@@ -162,7 +162,7 @@ export default function TeamMembers(): React.ReactElement {
       );
     } else {
       return (
-        <div 
+        <div
           className={`h-16 w-16 rounded-full ${colorClass} flex items-center justify-center text-lg font-bold text-white shadow-md cursor-pointer`}
           onClick={(e) => handleAvatarClick(member, e)}
         >
@@ -204,8 +204,6 @@ export default function TeamMembers(): React.ReactElement {
 
   return (
     <div className="bg-[#0a0a0a] p-8 rounded-2xl max-w-3xl mx-auto">
-      <h2 className="text-3xl font-extrabold text-center text-white mb-10"> CORE TEAM</h2>
-
       {/* Admins */}
       {teamData.admin.length > 0 && (
         <div className="mb-10">
@@ -236,36 +234,36 @@ export default function TeamMembers(): React.ReactElement {
 
       {/* Member Modal - Only for desktop */}
       {!isMobileView && modalOpen && selectedMember && (
-        <div 
-          className="fixed inset-0 bg-opacity-50 z-50 overflow-hidden" 
+        <div
+          className="fixed inset-0 bg-opacity-50 z-50 overflow-hidden"
           onClick={closeModal}
         >
-          <div 
+          <div
             className="bg-zinc-900 rounded-xl p-6 max-w-md w-full shadow-xl absolute"
             style={{
               left: `${modalPosition.left}px`,
               top: `${modalPosition.top}px`,
-              transform: modalPosition.top < 20 ? 'translateY(100px)' : 'none' 
+              transform: modalPosition.top < 20 ? 'translateY(100px)' : 'none'
             }}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-end">
-              <button 
-                className="text-gray-400 hover:text-red-500 text-xl cursor-pointer" 
+              <button
+                className="text-gray-400 hover:text-red-500 text-xl cursor-pointer"
                 onClick={closeModal}
               >
                 X
               </button>
             </div>
-            
+
             <div className="flex flex-col items-center">
               {/* Display large avatar */}
               <div className="h-32 w-32 rounded-full overflow-hidden mb-4 border-4 border-blue-500" onContextMenu={(e) => e.preventDefault()}>
-                
+
                 {selectedMember.image ? (
-                  <Image 
-                    src={selectedMember.image} 
-                    alt={selectedMember.name} 
+                  <Image
+                    src={selectedMember.image}
+                    alt={selectedMember.name}
                     className="h-full w-full object-cover"
                     width={200}
                     height={200}
@@ -276,21 +274,21 @@ export default function TeamMembers(): React.ReactElement {
                   </div>
                 )}
               </div>
-              
+
               <h3 className="text-xl font-bold text-white mb-1">{selectedMember.name}</h3>
               <p className="text-blue-400 mb-4">{selectedMember.designation}</p>
-              
+
               {/* LinkedIn Button */}
               {selectedMember.linkedin && (
-                <a 
+                <a
                   href={selectedMember.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors"
                 >
-                  <svg 
-                    className="w-5 h-5" 
-                    fill="currentColor" 
+                  <svg
+                    className="w-5 h-5"
+                    fill="currentColor"
                     viewBox="0 0 24 24"
                   >
                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />

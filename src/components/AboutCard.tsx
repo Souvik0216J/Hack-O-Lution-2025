@@ -1,6 +1,7 @@
 import { HoverEffect } from "./ui/card-hover-effect";
 import { Clock, Code, Cpu, Zap, Users, Handshake } from "lucide-react";
 import { MarqueImg } from "./MarqueImg";
+
 export function AboutCard() {
   return (
     <div className="max-w-[84rem] mx-auto px-8 py-12">
@@ -24,7 +25,7 @@ export const aboutItems = [
   {
     icon: <Clock className="h-10 w-10 text-primary" />,
     title: "36 Hours",
-    description: "Immerse yourself in a 12-hour coding marathon at the Institute of Engineering and Management, Kolkata on 11th November 2024.",
+    description: "Immerse yourself in a 36-hour coding marathon at the Institute of Engineering and Management, Kolkata on 26th June 2025.",
   },
   {
 

@@ -346,7 +346,7 @@ function Dashboard() {
             <div className="bg-zinc-900 p-4 rounded-lg">
               <h4 className="font-medium mb-2 text-blue-400">Need Help?</h4>
               <p className="text-zinc-400 text-sm">
-                If you have any questions or need assistance, please contact us at <span className="text-blue-400">Discord.</span>
+                If you have any questions or need assistance, please contact us at <span className="text-blue-400"><a target="_blank" href="https://discord.gg/hjxtZZXsD4 ">Discord.</a></span>
               </p>
             </div>
           </div>

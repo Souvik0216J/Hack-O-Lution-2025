@@ -2,18 +2,18 @@
 import { motion, Variants } from 'framer-motion'
 import { useTimer } from 'react-timer-hook'
 import MusicButton from '@/components/Music'
-import { MarqueImg } from '@/components/MarqueImg'
 import { Spotlight } from '@/components/ui/spotlight-new';
 import Faq from '@/components/Faq';
 import StarsCanvas from '@/components/ui/star-canvas';
 import TeamMembers from '@/components/Team'
 import AnimatedSnippet from '@/components/AnimatedSnippet'
 import { AboutCard } from "@/components/AboutCard"
+import PrizeCard from '@/components/PrizeCard';
 
 export default function Home() {
   // Time counter
   const eventDate = new Date('June 26, 2025 17:30:00')
- 
+
   const {
     seconds,
     minutes,
@@ -86,10 +86,23 @@ export default function Home() {
 
       <section id="about" className="pt-20 pb-16 bg-gradient-to-b">
         <AboutCard />
+        <div className="flex flex-col justify-center items-center text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 glitch-text-sm text-center" data-text="HACKOLUTION PRIZES">
+            HACK&#123;<span className="text-green-400">0</span>&#125;LUTION PRIZES
+          </h2>
+        </div>
+        <div className="flex flex-col sm:flex-row  justify-center items-center gap-6 mt-8">
+          <PrizeCard rank="2nd" amount="₹15,000" color="silver" />
+          <PrizeCard rank="1st" amount="₹25,000" color="gold" size="large" />
+          <PrizeCard rank="3rd" amount="₹10,000" color="bronze" />
+        </div>
+
       </section>
 
 
-      {/* <MarqueImg /> */}
+      <h2 className="text-3xl md:text-4xl font-bold mb-8 glitch-text-sm text-center mt-8" data-text="HACKOLUTION CORE TEAM">
+        HACK&#123;<span className="text-green-400">0</span>&#125;LUTION CORE TEAM
+      </h2>
       <TeamMembers />
       <Faq />
     </>

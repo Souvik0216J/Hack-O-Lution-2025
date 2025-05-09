@@ -12,7 +12,7 @@ export function Navbar() {
     },
     {
       name: "About",
-      link: "/about",
+      link: "#about",
       icon: <IconUser className="h-6 w-6 text-white" />,
     },
     {
@@ -32,3 +32,5 @@ export function Navbar() {
     </div>
   );
 }
+
+

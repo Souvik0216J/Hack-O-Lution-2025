@@ -177,7 +177,7 @@ export default function Faq() {
           <div className="mt-8 text-center">
             <p className="text-muted-foreground">
               Still have questions?{" "}
-              <Link href="https://discord.gg/hjxtZZXsD4" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
+              <Link href="https://discord.gg/hjxtZZXsD4" className="text-green-400 hover:underline" target="_blank" rel="noopener noreferrer">
                 Contact our support team
               </Link>
             </p>

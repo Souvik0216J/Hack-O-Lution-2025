@@ -8,10 +8,12 @@ import Faq from '@/components/Faq';
 import StarsCanvas from '@/components/ui/star-canvas';
 import TeamMembers from '@/components/Team'
 import AnimatedSnippet from '@/components/AnimatedSnippet'
+import { AboutCard } from "@/components/AboutCard"
 
 export default function Home() {
   // Time counter
-  const eventDate = new Date('July 20, 2025 17:30:00')
+  const eventDate = new Date('June 26, 2025 17:30:00')
+ 
   const {
     seconds,
     minutes,
@@ -82,17 +84,12 @@ export default function Home() {
         <AnimatedSnippet />
       </div>
 
-      {/* <section id="about" className="pt-20">
-        <h2 className="text-3xl font-bold text-center">About</h2>
-        <p className="mt-4 text-center">Here are the about you must follow...</p>
+      <section id="about" className="pt-20 pb-16 bg-gradient-to-b">
+        <AboutCard />
       </section>
 
-      <section id="rules" className="pt-20">
-        <h2 className="text-3xl font-bold text-center">Rules</h2>
-        <p className="mt-4 text-center">Here are the rules you must follow...</p>
-      </section>
-       */}
-      <MarqueImg />
+
+      {/* <MarqueImg /> */}
       <TeamMembers />
       <Faq />
     </>

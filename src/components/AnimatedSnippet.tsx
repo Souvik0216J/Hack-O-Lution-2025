@@ -14,8 +14,8 @@ const AnimatedSnippet: React.FC = () => {
   const phrases: PhrasePair[] = [
     { text: "Are You", highlight: "Ready?" },
     { text: "Join The", highlight: "Revolution" },
-    { text: "Code. Create.", highlight: "Conquer" },
-    { text: "Registration are", highlight: "Live" }
+    { text: "Code Create", highlight: "Conquer" },
+    { text: "Registration is", highlight: "Live" }
   ];
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const AnimatedSnippet: React.FC = () => {
       setTextIndex((prev) => (prev + 1) % phrases.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [phrases.length]);
 
   return (
     <motion.div
@@ -46,7 +46,7 @@ const AnimatedSnippet: React.FC = () => {
                 exit={{ y: -20, opacity: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <span className="md:text-xl inline-block">
+                <span className="text-sm sm:text-xl inline-block">
                   {phrases[textIndex].text}{' '}
                   <span className="bg-red-500/20 text-red-400 px-1 py-0.5 rounded-sm font-mono md:text-xl">
                     {phrases[textIndex].highlight}

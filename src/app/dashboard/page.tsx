@@ -150,7 +150,7 @@ function Dashboard() {
   if (loading) {
     return (
       <div className="min-h-screen w-full bg-neutral-950 text-white flex items-center justify-center">
-        <div className="text-xl">Loading...</div>
+        <div className="text-xl">Welcome...</div>
       </div>
     );
   }

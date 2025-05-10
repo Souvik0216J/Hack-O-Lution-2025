@@ -105,7 +105,7 @@ export default function Faq() {
             FREQUENTLY ASKED QUESTIONS
           </h2>
           <p className="text-muted-foreground max-w-3xl mx-auto">
-            Find answers to common questions about Hack&#123;0&#125;Lution. If you don&#39;t see your question here, feel free to
+            Find answers to common questions about HACK&#123;<span className="text-green-400">0</span>&#125;LUTION. If you don&#39;t see your question here, feel free to
             contact us.
           </p>
         </motion.div>

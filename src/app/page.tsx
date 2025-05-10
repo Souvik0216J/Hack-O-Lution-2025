@@ -95,9 +95,9 @@ export default function Home() {
           </p>
         </div>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mt-8 mb-10">
-          <PrizeCard rank="2nd" amount="₹15,000" color="silver" />
-          <PrizeCard rank="1st" amount="₹25,000" color="gold" size="large" />
-          <PrizeCard rank="3rd" amount="₹10,000" color="bronze" />
+          <PrizeCard rank="2nd" amount="₹10,000" color="silver" />
+          <PrizeCard rank="1st" amount="₹15,000" color="gold" size="large" />
+          <PrizeCard rank="3rd" amount="₹5,000" color="bronze" />
         </div>
 
       </section>

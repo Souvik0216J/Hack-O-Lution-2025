@@ -8,6 +8,9 @@ export function MarqueImg() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4 glitch-text-sm" data-text="STORY OF HACKOLUTION">
                 PREVIOUS YEAR MOMENTS
             </h2>
+            <p className="text-muted-foreground max-w-3xl mx-auto">
+                A visual throwback to the energy and innovation of last year&apos;s HACK&#123;<span className="text-green-400">0</span>&#125;LUTION.
+            </p>
             <InfiniteMovingCards
                 items={List1}
                 direction="right"

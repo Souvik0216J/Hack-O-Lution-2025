@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { NavbarWrapper } from "@/components/HideNav";
 import StarsCanvas from "@/components/ui/star-canvas";
 import { FontWrapper } from "@/components/FontWrapper";
+// import LoadingLayout from "@/components/LoadingLayout";
 
 export const metadata: Metadata = {
   title: "Hack {O} Lution",
@@ -21,13 +22,15 @@ export default function RootLayout({
       <body
         className={`antialiased`}
       >
-          <FontWrapper>
-            <StarsCanvas />
-            <NavbarWrapper />
-            {children}
-            <Analytics />
-            <Footer />
-          </FontWrapper>
+        {/* <LoadingLayout> */}
+        <FontWrapper>
+          <StarsCanvas />
+          <NavbarWrapper />
+          {children}
+          <Analytics />
+          <Footer />
+        </FontWrapper>
+        {/* </LoadingLayout> */}
       </body>
     </html>
   );

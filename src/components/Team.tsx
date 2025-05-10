@@ -148,7 +148,7 @@ export default function TeamMembers(): React.ReactElement {
     if (member.image) {
       return (
         <div
-          className="h-16 w-16 rounded-full overflow-hidden shadow-lg cursor-pointer"
+          className="h-18 w-18 rounded-full overflow-hidden shadow-lg cursor-pointer"
           onClick={(e) => handleAvatarClick(member, e)} onContextMenu={(e) => e.preventDefault()}
         >
           <Image
@@ -258,7 +258,7 @@ export default function TeamMembers(): React.ReactElement {
 
             <div className="flex flex-col items-center">
               {/* Display large avatar */}
-              <div className="h-32 w-32 rounded-full overflow-hidden mb-4 border-4 border-blue-500" onContextMenu={(e) => e.preventDefault()}>
+              <div className="h-34 w-34 rounded-full overflow-hidden mb-4 border-4 border-blue-500" onContextMenu={(e) => e.preventDefault()}>
 
                 {selectedMember.image ? (
                   <Image

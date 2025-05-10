@@ -90,8 +90,11 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 glitch-text-sm text-center" data-text="HACKOLUTION PRIZES">
             HACK&#123;<span className="text-green-400">0</span>&#125;LUTION PRIZES
           </h2>
+          <p className="text-muted-foreground max-w-3xl mx-auto">
+            Exciting rewards await the brightest minds and boldest ideas!
+          </p>
         </div>
-        <div className="flex flex-col sm:flex-row  justify-center items-center gap-6 mt-8">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mt-8 mb-10">
           <PrizeCard rank="2nd" amount="₹15,000" color="silver" />
           <PrizeCard rank="1st" amount="₹25,000" color="gold" size="large" />
           <PrizeCard rank="3rd" amount="₹10,000" color="bronze" />
@@ -99,10 +102,12 @@ export default function Home() {
 
       </section>
 
-
-      <h2 className="text-3xl md:text-4xl font-bold mb-8 glitch-text-sm text-center mt-8" data-text="HACKOLUTION CORE TEAM">
+      <h2 className="text-3xl md:text-4xl font-bold mb-4 glitch-text-sm text-center" data-text="STORY OF HACKOLUTION">
         HACK&#123;<span className="text-green-400">0</span>&#125;LUTION CORE TEAM
       </h2>
+      <p className="text-muted-foreground max-w-3xl mx-auto text-center mb-4">
+       The driving force making HACK&#123;<span className="text-green-400">0</span>&#125;LUTION possible.
+      </p>
       <TeamMembers />
       <Faq />
     </>

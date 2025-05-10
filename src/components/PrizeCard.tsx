@@ -28,15 +28,15 @@ const COLOR_HEX: Record<PrizeColor, string> = {
 // Default prize details
 const DEFAULT_PRIZE_DETAILS: Record<string, string[]> = {
   '1st': [
-    "₹25,000 Cash Prize",
+    "₹15,000 Cash Prize",
     "Winner Swags & Certificate"
   ],
   '2nd': [
-    "₹15,000 Cash Prize",
+    "₹10,000 Cash Prize",
     "Exclusive Swags & Certificate",
   ],
   '3rd': [
-    "₹10,000 Cash Prize",
+    "₹5,000 Cash Prize",
     "Exclusive Swags & Certificate",
   ]
 };

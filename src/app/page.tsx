@@ -9,6 +9,7 @@ import TeamMembers from '@/components/Team'
 import AnimatedSnippet from '@/components/AnimatedSnippet'
 import { AboutCard } from "@/components/AboutCard"
 import PrizeCard from '@/components/PrizeCard';
+import AdvancedFooter from '@/components/AdvancedFooter';
 
 export default function Home() {
   // Time counter
@@ -110,6 +111,7 @@ export default function Home() {
       </p>
       <TeamMembers />
       <Faq />
+      <AdvancedFooter/>
     </>
   );
 }

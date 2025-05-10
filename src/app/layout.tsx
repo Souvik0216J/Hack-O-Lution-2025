@@ -28,7 +28,6 @@ export default function RootLayout({
           <NavbarWrapper />
           {children}
           <Analytics />
-          <Footer />
         </FontWrapper>
         {/* </LoadingLayout> */}
       </body>

@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
     await connect() // wait for connection
     try {
         const reqBody = await request.json()
-        const { teamName, teamSize, leaderName, leaderEmail, leaderNo, leaderCity, leaderClgName, leaderTshirtSize, projectIDea, members } = reqBody
+        const { teamName, teamSize, leaderName, leaderEmail, leaderLinkedin, leaderNo, leaderCity, leaderClgName, leaderTshirtSize, projectIDea, members } = reqBody
         const id = leaderNo.slice(-6)
 
         // cheak if user already exists
@@ -55,6 +55,7 @@ export async function POST(request: NextRequest) {
             teamSize: teamSize,
             leaderName: leaderName,
             leaderEmail: leaderEmail,
+            leaderLinkedin: leaderLinkedin,
             leaderNo: leaderNo,
             leaderCity: leaderCity,
             leaderClgName: leaderClgName,

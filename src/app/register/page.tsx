@@ -26,6 +26,7 @@ function Page() {
   type Member = {
     name: string;
     email: string;
+    linkedin: string;
     tshirtSize: string;
   };
 
@@ -34,6 +35,7 @@ function Page() {
     teamSize: string;
     leaderName: string;
     leaderEmail: string;
+    leaderLinkedin: string;
     leaderNo: string;
     leaderCity: string;
     leaderClgName: string;
@@ -45,6 +47,7 @@ function Page() {
     teamSize: "2",
     leaderName: "",
     leaderEmail: "",
+    leaderLinkedin: "",
     leaderNo: "",
     leaderCity: "",
     leaderClgName: "",
@@ -187,6 +190,16 @@ function Page() {
           </LabelInputContainer>
 
           <LabelInputContainer className="mb-4">
+            <Label htmlFor="linkedin"><span className="text-red-400 mr-0.5">*</span>Leader&apos;s Linkedin Profile</Label>
+            <Input id="linkedin" placeholder="Enter your linkedin profile link" type="text" required
+              onChange={(e) => setUser({
+                ...user, leaderLinkedin: e.target.value
+              })}
+            />
+
+          </LabelInputContainer>
+
+          <LabelInputContainer className="mb-4">
             <Label htmlFor="phone">
               <span className="text-red-400 mr-0.5">*</span>Leader&apos;s WhatsApp Number
             </Label>
@@ -276,6 +289,21 @@ function Page() {
                   onChange={(e) => {
                     const newMembers = [...user.members];
                     newMembers[index].email = e.target.value;
+                    setUser({ ...user, members: newMembers });
+                  }}
+                />
+              </LabelInputContainer>
+
+              <LabelInputContainer className="mb-4">
+                <Label><span className="text-red-400 mr-0.5">*</span>Member {index + 1} Linkedin Profile</Label>
+                <Input
+                  type="text"
+                  value={member.linkedin}
+                  required
+                  placeholder={`Member-${index + 1} linkedin profile`}
+                  onChange={(e) => {
+                    const newMembers = [...user.members];
+                    newMembers[index].linkedin = e.target.value;
                     setUser({ ...user, members: newMembers });
                   }}
                 />

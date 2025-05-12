@@ -31,6 +31,10 @@ const memberSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please provide member email"],
     },
+    linkedin:{
+        type: String,
+        required: [true, "Please provide member linkedin"]
+    },
     tshirtSize: {
         type: String,
         required: [true, "Please provide t-shirt size"],
@@ -67,6 +71,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please provide a email"],
         unique: true,
+    },
+
+    leaderLinkedin: {
+    type: String,
+    required: [true, "Please provide a linkedin profile"],
+    unique: false,
     },
 
     leaderNo: {

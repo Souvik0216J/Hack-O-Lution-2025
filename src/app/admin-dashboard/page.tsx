@@ -5,11 +5,12 @@ import { motion } from "motion/react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { Users, Search, X, Check, Filter, ArrowUpDown, Mail, Phone, Lightbulb, ExternalLink, Clock, Github, Globe, Loader2 } from "lucide-react";
+import { Users, Search, X, Check, Linkedin, Filter, ArrowUpDown, Mail, Phone, Lightbulb, ExternalLink, Clock, Github, Globe, Loader2 } from "lucide-react";
 
 type Member = {
   name: string;
   email: string;
+  linkedin: string;
   tshirtSize: string;
   phone?: string;
   _id: string;
@@ -31,6 +32,7 @@ type Registration = {
   teamSize: string;
   leaderName: string;
   leaderEmail: string;
+  leaderLinkedin: string;
   leaderNo: string;
   leaderCity: string;
   leaderClgName: string;
@@ -75,7 +77,7 @@ const AdminDashboard: React.FC = () => {
         }
 
         setLoading(false);
-   
+
       } catch (error: any) {
         console.error("Error fetching registration data:", error);
         toast.error("Failed to load registrations data");
@@ -607,6 +609,19 @@ const AdminDashboard: React.FC = () => {
                         </div>
                       </div>
                       <div className="pl-11 space-y-1">
+                        <div className="flex items-center text-zinc-400 text-sm hover:cursor-pointer">
+                          <a
+                            href={selectedTeam.leaderLinkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center text-blue-400 hover:text-blue-300"
+                          >
+                            <Linkedin className="h-4 w-4 mr-2" />
+                            Linkedin
+                            <ExternalLink className="h-3 w-3 ml-1" />
+                          </a>
+                          {/* {selectedTeam.leaderLinkedin} */}
+                        </div>
                         <div className="flex items-center text-zinc-400 text-sm">
                           <Mail className="h-3 w-3 mr-2" />
                           {selectedTeam.leaderEmail}
@@ -680,10 +695,25 @@ const AdminDashboard: React.FC = () => {
                           </div>
                         </div>
                         <div className="pl-11 space-y-1">
+                          <div className="flex items-center text-zinc-400 text-sm hover:cursor-pointer">
+                            <a
+                              href={member.linkedin}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center text-blue-400 hover:text-blue-300"
+                            >
+                              <Linkedin className="h-4 w-4 mr-2" />
+                              Linkedin
+                              <ExternalLink className="h-3 w-3 ml-1" />
+                            </a>
+                            {/* {member.linkedin} */}
+                          </div>
+
                           <div className="flex items-center text-zinc-400 text-sm">
                             <Mail className="h-3 w-3 mr-2" />
                             {member.email}
                           </div>
+
                           {member.phone && (
                             <div className="flex items-center text-zinc-400 text-sm">
                               <Phone className="h-3 w-3 mr-2" />

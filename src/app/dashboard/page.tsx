@@ -6,6 +6,7 @@ import { getUserData } from "@/utils/getUserData";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { Input } from "@/components/ui/input"
 
 // Define types for your data structure
 interface TeamMember {
@@ -93,22 +94,22 @@ function Dashboard() {
       alert("Please fill in both the project and GitHub links.");
       return;
     }
-  
+
     try {
       // Update project state
       const updatedProject = {
         projectLink: pLink,
         githubLink: gLink
       };
-  
+
       setProject(updatedProject);
-  
+
       const response = await axios.post("/api/users/submit-project", {
-        teamId : teamData.teamId,
+        teamId: teamData.teamId,
         projectLink: updatedProject.projectLink,
         githubLink: updatedProject.githubLink
       });
-  
+
       if (response.data.success) {
         alert("Project submitted successfully!");
       } else {
@@ -119,7 +120,7 @@ function Dashboard() {
       alert("Something went wrong while submitting the project.");
     }
   };
-  
+
 
   // Function to get status badge styling
   const getStatusBadge = (status: string): string => {
@@ -287,13 +288,13 @@ function Dashboard() {
                     <label htmlFor="projectLink" className="block text-medium font-medium mb-2 text-blue-400">
                       Project Hosted Link
                     </label>
-                    <input
+                    <Input
                       type="url"
                       id="projectLink"
                       value={pLink}
                       onChange={(e) => setPLink(e.target.value)}
                       placeholder="https://your-project.com"
-                      className="w-full bg-zinc-800 border border-zinc-700 text-white p-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      // className="w-full bg-zinc-800 border border-zinc-700 text-white p-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
 
@@ -301,13 +302,13 @@ function Dashboard() {
                     <label htmlFor="githubLink" className="block text-medium font-medium mb-2 text-blue-400">
                       GitHub Repository Link
                     </label>
-                    <input
+                    <Input
                       type="url"
                       id="githubLink"
                       value={gLink}
                       onChange={(e) => setGLink(e.target.value)}
                       placeholder="https://github.com/username/repository"
-                      className="w-full bg-zinc-800 border border-zinc-700 text-white p-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      // className="w-full bg-zinc-800 border border-zinc-700 text-white p-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                 </div>

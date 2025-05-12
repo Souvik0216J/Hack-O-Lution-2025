@@ -136,7 +136,7 @@ export default function Faq() {
                 >
                   <button
                     onClick={() => toggleItem(index)}
-                    className="flex items-center justify-between w-full p-4 text-left"
+                    className="flex items-center justify-between w-full p-4 text-left hover:cursor-pointer"
                   >
                     <h3 className="text-lg font-medium">{faq.question}</h3>
                     <ChevronDown

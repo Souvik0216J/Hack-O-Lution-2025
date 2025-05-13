@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { cn } from "@/utils/cn";
-import { User, Users, FileCheck, Clock } from "lucide-react";
+import { User, Users, FileCheck, Clock, Loader2Icon, ExternalLink, Github } from "lucide-react";
 import { getUserData } from "@/utils/getUserData";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -15,6 +15,12 @@ interface TeamMember {
   tshirtSize: string;
 }
 
+interface ProjectInfo {
+  isSubmit: boolean;
+  projectLink: string;
+  hostedLink: string;
+}
+
 interface TeamData {
   teamId: string;
   teamName: string;
@@ -23,14 +29,15 @@ interface TeamData {
   leaderEmail: String;
   leaderTshirtSize: String;
   members: TeamMember[];
+  projectSubmit: ProjectInfo[];
 }
 
 function Dashboard() {
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(true);
+  const [Btnloading, setBtnLoading] = React.useState(false)
   const [pLink, setPLink] = useState<string>("");
   const [gLink, setGLink] = useState<string>("");
-
   const [project, setProject] = useState<{
     projectLink: string;
     githubLink: string;
@@ -47,6 +54,7 @@ function Dashboard() {
     leaderEmail: "",
     leaderTshirtSize: "",
     members: [],
+    projectSubmit: [],
   });
 
   useEffect(() => {
@@ -68,7 +76,8 @@ function Dashboard() {
           leaderName: userData.leaderName || "",
           leaderEmail: userData.leaderEmail || "",
           leaderTshirtSize: userData.leaderTshirtSize || "",
-          members: userData.members || []
+          members: userData.members || [],
+          projectSubmit: userData.projectSubmit || []
         });
 
         setLoading(false);
@@ -96,6 +105,7 @@ function Dashboard() {
     }
 
     try {
+      setBtnLoading(true)
       // Update project state
       const updatedProject = {
         projectLink: pLink,
@@ -111,14 +121,22 @@ function Dashboard() {
       });
 
       if (response.data.success) {
-        alert("Project submitted successfully!");
+        // Refresh user data to update the UI
+        const userData = await getUserData();
+        setTeamData(prevData => ({
+          ...prevData,
+          projectSubmit: userData.projectSubmit || []
+        }));
       } else {
         alert(`Error: ${response.data.message}`);
       }
+      setBtnLoading(false)
     } catch (error: any) {
+      setBtnLoading(false)
       console.error("Submission error:", error);
       alert("Something went wrong while submitting the project.");
     }
+    setBtnLoading(false)
   };
 
 
@@ -147,6 +165,11 @@ function Dashboard() {
   }
 
   const totalTeamSize = teamData.members.length + 1; // +1 for the leader
+
+  // Check if project has been submitted
+  const isProjectSubmitted = teamData.projectSubmit &&
+    teamData.projectSubmit.length > 0 &&
+    teamData.projectSubmit[0].isSubmit;
 
   if (loading) {
     return (
@@ -279,49 +302,114 @@ function Dashboard() {
           <div className="w-full bg-black rounded-xl border border-zinc-800 overflow-hidden mb-8">
             <div className="p-6">
               <h3 className="text-lg font-medium mb-4">Project Submission</h3>
-              <p className="text-zinc-400 text-sm mb-4">
-                Please submit your project links below. Make sure your project is properly hosted and the repository is accessible.
-              </p>
-              <div className="bg-zinc-900 p-4 rounded-lg mb-4">
-                <div className="space-y-4">
-                  <div>
-                    <label htmlFor="projectLink" className="block text-medium font-medium mb-2 text-blue-400">
-                      Project Hosted Link
-                    </label>
-                    <Input
-                      type="url"
-                      id="projectLink"
-                      value={pLink}
-                      onChange={(e) => setPLink(e.target.value)}
-                      placeholder="https://your-project.com"
-                      // className="w-full bg-zinc-800 border border-zinc-700 text-white p-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
+
+              {isProjectSubmitted ? (
+                // Project already submitted section
+                <div className="bg-zinc-900 p-4 rounded-lg mb-4">
+                  <div className="flex items-center mb-4">
+                    <div className="h-10 w-10 rounded-full bg-green-500 flex items-center justify-center mr-3">
+                      <FileCheck className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-green-400">Project Successfully Submitted</p>
+                      <p className="text-zinc-400 text-sm">Your project has been successfully submitted for the hackathon.</p>
+                    </div>
                   </div>
 
-                  <div>
-                    <label htmlFor="githubLink" className="block text-medium font-medium mb-2 text-blue-400">
-                      GitHub Repository Link
-                    </label>
-                    <Input
-                      type="url"
-                      id="githubLink"
-                      value={gLink}
-                      onChange={(e) => setGLink(e.target.value)}
-                      placeholder="https://github.com/username/repository"
-                      // className="w-full bg-zinc-800 border border-zinc-700 text-white p-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div className="bg-zinc-800 p-4 rounded-lg">
+                      <h4 className="text-blue-400 mb-2 font-medium">Submitted Links</h4>
+                      <div className="space-y-3">
+                        <a
+                          href={teamData.projectSubmit[0].projectLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center text-blue-400 hover:text-blue-300"
+                        >
+                          <Github className="h-4 w-4 mr-2" />
+                          Project Repository
+                          <ExternalLink className="h-3 w-3 ml-1" />
+                        </a>
+
+                        {teamData.projectSubmit[0].hostedLink !== "null" &&
+                          teamData.projectSubmit[0].hostedLink !== "Null" &&
+                          teamData.projectSubmit[0].hostedLink !== "NULL" ? (
+                          <a
+                            href={teamData.projectSubmit[0].hostedLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center text-blue-400 hover:text-blue-300"
+                          >
+                            <ExternalLink className="h-4 w-4 mr-2" />
+                            Hosted Application
+                            <ExternalLink className="h-3 w-3 ml-1" />
+                          </a>
+                        ) : null}
+
+
+                      </div>
+                    </div>
+
+                    <div className="bg-zinc-800 p-4 rounded-lg">
+                      <h4 className="text-blue-400 mb-2 font-medium">Submission Status</h4>
+                      <p className="text-zinc-400 text-sm">
+                        Your project has been submitted for judging. Please make sure both links remain accessible throughout the judging period.
+                      </p>
+                    </div>
                   </div>
                 </div>
+              ) : (
+                // Submission form
+                <div className="bg-zinc-900 p-4 rounded-lg mb-4">
+                  <p className="text-zinc-400 text-sm mb-4">
+                    Please submit your project links below. Make sure your project is properly hosted and the repository is accessible.
+                  </p>
+                  <div className="space-y-4">
+                    <div>
+                      <label htmlFor="projectLink" className="block text-medium font-medium mb-2 text-blue-400">
+                        Project Hosted Link
+                      </label>
+                      <Input
+                        type="url"
+                        id="projectLink"
+                        value={pLink}
+                        onChange={(e) => setPLink(e.target.value)}
+                        placeholder="https://your-project.com"
+                      />
+                    </div>
 
-                <div className="flex justify-end mt-4">
-                  <button
-                    className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md text-sm font-medium"
-                    onClick={handleProjectSubmission}
-                  >
-                    Submit Project
-                  </button>
+                    <div>
+                      <label htmlFor="githubLink" className="block text-medium font-medium mb-2 text-blue-400">
+                        GitHub Repository Link
+                      </label>
+                      <Input
+                        type="url"
+                        id="githubLink"
+                        value={gLink}
+                        onChange={(e) => setGLink(e.target.value)}
+                        placeholder="https://github.com/username/repository"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex justify-end mt-4">
+                    <button
+                      className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md text-sm font-medium hover:cursor-pointer"
+                      onClick={handleProjectSubmission}
+                    >
+                      {Btnloading ? (
+                        <>
+                          <Loader2Icon className="inline w-6 h-6 text-blue-400 animate-spin" /> Processing...
+                        </>
+                      ) : (
+                        <>
+                          Submit Project &rarr;
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         )}

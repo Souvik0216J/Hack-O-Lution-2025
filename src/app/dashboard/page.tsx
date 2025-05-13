@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { cn } from "@/utils/cn";
-import { User, Users, FileCheck, Clock, Loader2Icon, ExternalLink, Github } from "lucide-react";
+import { User, Users, FileCheck, Clock, Loader2Icon, ExternalLink, Github, FileCode } from "lucide-react";
 import { getUserData } from "@/utils/getUserData";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -269,12 +269,12 @@ function Dashboard() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {/* Leader card */}
                 <div className="bg-zinc-900 rounded-lg p-4 flex items-center">
-                  <div className="h-12 w-12 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center text-lg font-bold mr-4">
+                  <div className="h-12 w-12 aspect-square rounded-full bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center text-lg font-bold mr-4">
                     {teamData.leaderName ? teamData.leaderName.charAt(0) : 'L'}
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <h4 className="font-medium">{teamData.leaderName} <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full">Leader</span></h4>
-                    <p className="text-zinc-400 text-sm">{teamData.leaderEmail}</p>
+                    <p className="text-zinc-400 text-sm truncate">{teamData.leaderEmail}</p>
                     <p className="text-zinc-500 text-xs">{teamData.leaderTshirtSize}</p>
                   </div>
                 </div>
@@ -307,11 +307,11 @@ function Dashboard() {
                 // Project already submitted section
                 <div className="bg-zinc-900 p-4 rounded-lg mb-4">
                   <div className="flex items-center mb-4">
-                    <div className="h-10 w-10 rounded-full bg-green-500 flex items-center justify-center mr-3">
-                      <FileCheck className="h-5 w-5" />
+                    <div className="w-10 h-10 aspect-square rounded-full bg-green-500 flex items-center justify-center mr-3">
+                      <FileCode className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="font-medium text-green-400">Project Successfully Submitted</p>
+                      <p className="font-medium text-green-400">Project Submitted</p>
                       <p className="text-zinc-400 text-sm">Your project has been successfully submitted for the hackathon.</p>
                     </div>
                   </div>

@@ -14,7 +14,7 @@ const LoadingLayout: React.FC<LoadingLayoutProps> = ({ children }) => {
     // You can adjust the timeout to match your needs
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1500); // Show loader for 2 seconds
+    }, 2000); // Show loader for 2 seconds
 
     // Alternatively, if i use window.onload to ensure everything is loaded
     // window.onload = () => setLoading(false);

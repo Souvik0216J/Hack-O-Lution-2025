@@ -13,9 +13,10 @@ const AnimatedSnippet: React.FC = () => {
   // Define phrases with their highlighted last words
   const phrases: PhrasePair[] = [
     { text: "Are You", highlight: "Ready?" },
+    { text: "Registration is", highlight: "Live" },
     { text: "Join The", highlight: "Revolution" },
     { text: "Code Create", highlight: "Conquer" },
-    { text: "Registration is", highlight: "Live" }
+    { text: "Fueling the Next Tech", highlight: "Revolution" },
   ];
 
   useEffect(() => {

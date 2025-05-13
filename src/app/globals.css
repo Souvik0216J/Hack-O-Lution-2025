@@ -94,3 +94,23 @@ input:-webkit-autofill:active {
 .animate-fadeIn {
   animation: fadeIn 0.2s ease-out forwards;
 }
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 22ch;
+  }
+}
+
+@keyframes blinkCursor {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.typing-text {
+  animation: typewriter 2s steps(22) forwards, blinkCursor 0.5s step-end infinite alternate;
+  width: 22ch;
+}

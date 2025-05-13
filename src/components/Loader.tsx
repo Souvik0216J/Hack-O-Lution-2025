@@ -1,57 +1,21 @@
 import React from 'react';
 
-const Loader: React.FC = () => {
+const Loader = () => {
   return (
-    <div className="loader-container">
-      <div className="loader">
-        <span className="brace-left"></span>
-        <span className="letter text-green-400">H</span>
-        <span className="brace-right"></span>
+    <div className="flex justify-center items-center h-screen bg-black">
+      <div className="relative w-[22em] h-40 p-1 bg-[#1a1a1a] border border-[#333] rounded shadow-md text-green-500 font-mono text-base overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-6 bg-[#333] rounded-t px-2 flex items-center justify-between">
+          <span className="text-gray-200">Status</span>
+          <div className="flex space-x-2">
+            <span className="w-3 h-3 rounded-full bg-red-600" />
+            <span className="w-3 h-3 rounded-full bg-yellow-400" />
+            <span className="w-3 h-3 rounded-full bg-green-600" />
+          </div>
+        </div>
+        <div className="mt-6 ml-2 whitespace-nowrap overflow-hidden border-r-2 border-green-500 animate-typewriter typing-text">
+          Welcome to Hack{`{0}`}Lution
+        </div>
       </div>
-      <style jsx>{`
-        .loader-container {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: #000; /* Change background color as needed */
-          z-index: 9999;
-        }
-        .loader {
-          color: #fff;
-          font-family: Consolas, Menlo, Monaco, monospace;
-          font-weight: bold;
-          font-size: 78px;
-          opacity: 0.8;
-          display: flex;
-          align-items: center;
-        }
-        .brace-left::before {
-          content: "{";
-          display: inline-block;
-          animation: pulse 0.4s alternate infinite ease-in-out;
-        }
-        .brace-right::before {
-          content: "}";
-          display: inline-block;
-          animation: pulse 0.4s 0.3s alternate infinite ease-in-out;
-        }
-        .letter {
-          margin: 0 5px;
-          display: inline-block;
-          animation: pulse 0.4s 0.15s alternate infinite ease-in-out;
-        }
-        @keyframes pulse {
-          to {
-            transform: scale(0.8);
-            opacity: 0.5;
-          }
-        }
-      `}</style>
     </div>
   );
 };

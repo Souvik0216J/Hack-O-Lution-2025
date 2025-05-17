@@ -5,23 +5,25 @@ import { InfiniteMovingCards } from "../components/ui/infinite-moving-cards";
 export function MarqueImg() {
     return (
         <div className="h-[100vh] rounded-md flex flex-col antialiased items-center justify-center relative overflow-hidden">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 glitch-text-sm" data-text="STORY OF HACKOLUTION">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 glitch-text-sm text-center" data-text="STORY OF HACKOLUTION">
                 PREVIOUS YEAR MOMENTS
             </h2>
-            <p className="text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-muted-foreground max-w-3xl mx-auto text-center mb-6">
                 A visual throwback to the energy and innovation of last year&apos;s HACK&#123;<span className="text-green-400">0</span>&#125;LUTION.
             </p>
-            <InfiniteMovingCards
-                items={List1}
-                direction="right"
-                speed="normal"
-            />
-            <hr />
-            <InfiniteMovingCards
-                items={List2}
-                direction="left"
-                speed="normal"
-            />
+            <div className="w-full px-4 md:px-8">
+                <InfiniteMovingCards
+                    items={List1}
+                    direction="right"
+                    speed="normal"
+                    className="mb-6"
+                />
+                <InfiniteMovingCards
+                    items={List2}
+                    direction="left"
+                    speed="normal"
+                />
+            </div>
         </div>
     );
 }

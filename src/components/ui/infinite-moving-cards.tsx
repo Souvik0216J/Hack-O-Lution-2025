@@ -74,14 +74,14 @@ export const InfiniteMovingCards = ({
         {items.map((item, idx) => (
           <li
             key={idx}
-            className="relative w-[350px] max-w-full shrink-0 rounded-2xl border p-2 md:w-[450px] border-zinc-700 bg-zinc-900"
+            className="relative w-[230px] max-w-full shrink-0 rounded-2xl border p-2 sm:w-[290px] md:w-[390px] border-zinc-700 bg-zinc-900"
           >
             <Image
               src={item.src}
               width={450}
               height={300}
               alt={item.alt || `image-${idx}`}
-              className="w-full h-[230px] object-cover rounded-xl"
+              className="w-full h-[150px] sm:h-[180px] md:h-[230px] object-cover rounded-xl"
               priority={idx < 4} // Only prioritize a few images at a time
             />
           </li>

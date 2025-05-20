@@ -28,15 +28,18 @@ const COLOR_HEX: Record<PrizeColor, string> = {
 // Default prize details
 const DEFAULT_PRIZE_DETAILS: Record<string, string[]> = {
   '1st': [
-    "₹15,000 Cash Prize",
+    // "₹15,000 Cash Prize",
+    "₹1X,XX Cash Prize",
     "Winner Swags & Certificate"
   ],
   '2nd': [
-    "₹10,000 Cash Prize",
+    // "₹10,000 Cash Prize",
+    "₹1X,XX Cash Prize",
     "Exclusive Swags & Certificate",
   ],
   '3rd': [
-    "₹5,000 Cash Prize",
+    // "₹5,000 Cash Prize",
+    "₹1X,XX Cash Prize",
     "Exclusive Swags & Certificate",
   ]
 };
@@ -102,7 +105,7 @@ const PrizeCard: React.FC<PrizeCardProps> = ({
           className="text-xl font-bold mb-4"
           style={{ color: COLOR_HEX[color] }}
         >
-          {rank} Prize - {amount}
+          {/* {rank} Prize - {amount} */}
         </h3>
         <ul className="text-white text-sm space-y-2">
           {prizeDetails.map((detail, index) => (

@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { cn } from "@/utils/cn";
-import { User, Users, FileCheck, Clock, Loader2Icon, ExternalLink, Github, FileCode } from "lucide-react";
+import { User, Users, FileCheck, Clock, Loader2Icon, ExternalLink, Github, FileCode, Calendar } from "lucide-react";
 import { getUserData } from "@/utils/getUserData";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -32,6 +32,18 @@ interface TeamData {
   projectSubmit: ProjectInfo[];
 }
 
+// hackathon timeline events
+interface TimelineEvent {
+  date: string;
+  startTime?: string;
+  endTime?: string;
+  title: string;
+  description: string;
+  isActive: boolean;
+  isPast: boolean;
+}
+
+
 function Dashboard() {
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(true);
@@ -56,6 +68,126 @@ function Dashboard() {
     members: [],
     projectSubmit: [],
   });
+
+  // Get current date for timeline comparison
+  const currentDate = new Date();
+
+  const [timelineEvents, setTimelineEvents] = useState<TimelineEvent[]>([
+    {
+      date: "May 15, 2025",
+      startTime: "00:00", // Beginning of day
+      endTime: "23:59",   // End of day
+      title: "Registration Deadline",
+      description: "Last day to register your team for the hackathon",
+      isActive: false,
+      isPast: false // calculate this in the useEffect
+    },
+    {
+      date: "May 20, 2025",
+      startTime: "19:04",
+      endTime: "19:06",
+      title: "Kickoff Event",
+      description: "Official hackathon kickoff with theme announcement and workshops",
+      isActive: false,
+      isPast: false
+    },
+    {
+      date: "May 20-27, 2025",
+      startTime: "00:00",
+      endTime: "23:59",
+      title: "Hacking Period",
+      description: "Time to build your amazing project!",
+      isActive: false,
+      isPast: false
+    },
+    {
+      date: "May 27, 2025",
+      startTime: "00:00",
+      endTime: "23:59",
+      title: "Submission Deadline",
+      description: "All projects must be submitted by 11:59 PM",
+      isActive: false,
+      isPast: false
+    },
+    {
+      date: "May 29, 2025",
+      startTime: "09:00",
+      endTime: "18:00",
+      title: "Project Judging",
+      description: "Judges review and evaluate all submitted projects",
+      isActive: false,
+      isPast: false
+    },
+    {
+      date: "May 30, 2025",
+      startTime: "14:00",
+      endTime: "16:00",
+      title: "Results Announcement",
+      description: "Winners announced and prizes awarded",
+      isActive: false,
+      isPast: false
+    }
+  ]);
+
+  const parseDateTime = (dateStr: string, timeStr: string = "00:00") => {
+    // For date ranges like "May 20-27 2025" take first date
+    const datePart = dateStr.includes("-") ? dateStr.split("-")[0] : dateStr;
+
+    // Parse the date and time
+    const [hours, minutes] = timeStr.split(":").map(Number);
+    const result = new Date(datePart + ", 2025");
+    result.setHours(hours, minutes, 0, 0);
+
+    return result;
+  };
+
+  const parseEndDateTime = (dateStr: string, timeStr: string = "23:59") => {
+    // For date ranges like "May 20-27, 2025", take the second date
+    const datePart = dateStr.includes("-") ?
+      dateStr.split("-")[1].includes(" ") ?
+        dateStr.split("-")[1] :
+        dateStr.split("-")[0].split(" ")[0] + " " + dateStr.split("-")[1] :
+      dateStr;
+
+    // Parse the date and time
+    const [hours, minutes] = timeStr.split(":").map(Number);
+    const result = new Date(datePart + ", 2025");
+    result.setHours(hours, minutes, 0, 0);
+    return result;
+  };
+
+  // create a new one to update the status of events
+  useEffect(() => {
+    // Update event status based on current time
+    const updateEventStatus = () => {
+      const now = new Date();
+
+      const updatedEvents = timelineEvents.map(event => {
+        const startDateTime = parseDateTime(event.date, event.startTime);
+        const endDateTime = parseEndDateTime(event.date, event.endTime);
+
+        // Check if event is active (current time is between start and end)
+        const isActive = now >= startDateTime && now <= endDateTime;
+
+        // Check if event is in the past (current time is after end time)
+        const isPast = now > endDateTime;
+
+        return { ...event, isActive, isPast };
+      });
+
+      // Update state with the recalculated events
+      // need to create a state for this if you don't have one
+      setTimelineEvents(updatedEvents);
+    };
+
+    // Initial update
+    updateEventStatus();
+
+    // Set up a timer to update every minute
+    const intervalId = setInterval(updateEventStatus, 60000);
+
+    return () => clearInterval(intervalId);
+  }, [timelineEvents]);
 
   useEffect(() => {
     async function fetchUserData() {
@@ -296,6 +428,152 @@ function Dashboard() {
             </div>
           </div>
         </div>
+
+        {/* Hackathon Timeline Section - Only visible after approval */}
+        {teamData.status === "Approved" && (
+          <div className="w-full bg-black rounded-xl border border-zinc-800 overflow-hidden mb-8">
+            <div className="p-6">
+              <div className="flex items-center mb-6">
+                <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center mr-3">
+                  <Calendar className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold">Hackathon Timeline</h3>
+                  <p className="text-zinc-400 text-sm">Keep track of important dates and deadlines</p>
+                </div>
+              </div>
+
+              {/* Currently Running Event Highlight */}
+              {timelineEvents.filter(event => event.isActive).length > 0 && (
+                <div className="mb-8 bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-xl p-1">
+                  <div className="bg-black/60 backdrop-blur-sm rounded-lg p-4 border border-blue-500/20">
+                    <div className="flex items-center">
+                      <div className="h-12 w-12 rounded-full bg-blue-500 flex items-center justify-center mr-4 animate-pulse">
+                        <Clock className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <div className="flex items-center">
+                          <span className="text-xs font-bold px-2 py-1 rounded-full bg-blue-500/30 text-blue-300 inline-flex items-center mr-2">
+                            <span className="h-2 w-2 bg-blue-400 rounded-full mr-1 animate-ping"></span>
+                            IN PROGRESS
+                          </span>
+                          <span className="text-xs text-blue-400 font-mono">{timelineEvents.find(event => event.isActive)?.date}</span>
+                        </div>
+                        <h4 className="text-xl font-bold mt-1 text-blue-300">{timelineEvents.find(event => event.isActive)?.title}</h4>
+                        <p className="text-blue-200/70">{timelineEvents.find(event => event.isActive)?.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className="mt-8 relative">
+                {/* Timeline connector */}
+                <div className="absolute top-6 left-8 right-8 h-2 bg-zinc-800 rounded-full"></div>
+                <div className="absolute top-6 left-8 h-2 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-full"
+                  style={{
+                    width: `${Math.max(
+                      5,
+                      (timelineEvents.filter(e => e.isPast || e.isActive).length / timelineEvents.length) * 100
+                    )}%`
+                  }}>
+                </div>
+
+                {/* Timeline events */}
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                  {timelineEvents.map((event, index) => (
+                    <div
+                      key={index}
+                      className={`relative pt-12 transform transition-all duration-500 ${event.isActive ? "scale-105 z-10" : ""
+                        }`}
+                    >
+                      {/* Timeline node */}
+                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -mt-0.5">
+                        <div className={`
+                  w-5 h-5 rounded-full border-4 border-black relative z-10
+                  ${event.isActive ? "bg-blue-500" : event.isPast ? "bg-green-500" : "bg-zinc-600"}
+                `}>
+                          {event.isActive && (
+                            <div className="absolute -inset-2 rounded-full bg-blue-500/30 animate-pulse"></div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Card */}
+                      <div className={`
+                group hover:scale-105 transition-all duration-300 hover:shadow-lg
+                rounded-xl overflow-hidden h-full border bg-gradient-to-b
+                ${event.isActive
+                          ? "from-blue-900/40 to-indigo-900/20 border-blue-500/50 shadow-lg shadow-blue-500/20"
+                          : event.isPast
+                            ? "from-green-900/30 to-green-900/5 border-green-500/30"
+                            : "from-zinc-800/50 to-zinc-900/50 border-zinc-700"}
+              `}>
+                        {/* Top bar indicator */}
+                        <div className={`
+                  h-1.5
+                  ${event.isActive
+                            ? "bg-gradient-to-r from-blue-400 to-indigo-600"
+                            : event.isPast
+                              ? "bg-green-500"
+                              : "bg-zinc-700"}
+                `}></div>
+
+                        <div className="p-4">
+                          {/* Status indicator */}
+                          <div className="flex justify-between items-center mb-3">
+                            <span className={`
+                      text-xs font-semibold px-2 py-1 rounded-full inline-flex items-center
+                      ${event.isActive
+                                ? "bg-blue-500/20 text-blue-300"
+                                : event.isPast
+                                  ? "bg-green-500/20 text-green-300"
+                                  : "bg-zinc-800 text-zinc-400"}
+                    `}>
+                              {event.isPast && !event.isActive && (
+                                <FileCheck className="mr-1 h-3 w-3" />
+                              )}
+                              {event.isActive && (
+                                <Clock className="mr-1 h-3 w-3 animate-pulse" />
+                              )}
+                              {event.isActive ? "In Progress" : event.isPast ? "Completed" : "Upcoming"}
+                            </span>
+                          </div>
+
+                          {/* Date pill */}
+                          <div className={`
+                    inline-block mb-2 px-2 py-1 rounded-md text-xs font-mono
+                    ${event.isActive
+                              ? "bg-blue-500/30 text-blue-200"
+                              : event.isPast
+                                ? "bg-green-500/20 text-green-200"
+                                : "bg-zinc-800 text-zinc-400"}
+                  `}>
+                            {event.date}
+                          </div>
+
+                          {/* Content */}
+                          <h4 className={`
+                    font-bold text-base mb-2
+                    ${event.isActive ? "text-blue-300" : event.isPast ? "text-green-200" : "text-white"}
+                  `}>
+                            {event.title}
+                          </h4>
+                          <p className={`
+                    text-xs
+                    ${event.isActive ? "text-blue-100/80" : event.isPast ? "text-green-100/80" : "text-zinc-400"}
+                  `}>
+                            {event.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Project Submission Section */}
         {teamData.status === "Approved" && (

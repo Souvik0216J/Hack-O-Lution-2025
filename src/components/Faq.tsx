@@ -36,50 +36,61 @@ export default function Faq() {
         "Anyone 18 years or older can participate, regardless of experience level. We welcome students, professionals, and enthusiasts from all backgrounds. No prior hackathon experience is required!",
     },
     {
+      question: "What is the max team size?",
+      answer:
+        "Team size should be 2-4 participants",
+    },
+        {
+      question: "Can i participate remotely?",
+      answer:
+        "No",
+    },
+    
+    {
       question: "Do I need to have a team before registering?",
       answer:
-        "No, you can register individually and form a team during our team formation session on Day 1. However, you're also welcome to register with a pre-formed team of 2-5 members.",
+        "Yes, or you can find a team member in our discord server.",
     },
     {
       question: "Is there a registration fee?",
       answer:
-        "No, participation is completely free. We provide meals, snacks, and beverages throughout the event, as well as a comfortable hacking space and access to mentors and workshops.",
+        "No, participation is completely free.",
     },
     {
       question: "What should I bring to the hackathon?",
       answer:
-        "Bring your laptop, charger, any specific hardware you might need for your project, and personal items for overnight stays. We'll provide power strips, internet, basic hardware components, and a comfortable workspace.",
+        "Bring your laptop, charger, any specific hardware you might need for your project, and personal items for overnight stays. We'll provide internet and a comfortable workspace.",
     },
-    {
-      question: "Can I start working on my project before the hackathon?",
-      answer:
-        "No, all coding and design must be done during the hackathon. You can come with ideas and plans, but the actual implementation should start after the official kickoff. Using open-source libraries and APIs is allowed.",
-    },
+    // {
+    //   question: "Can I start working on my project before the hackathon?",
+    //   answer:
+    //     "No, all coding and design must be done during the hackathon. You can come with ideas and plans, but the actual implementation should start after the official kickoff. Using open-source libraries and APIs is allowed.",
+    // },
     {
       question: "Will there be food and accommodation?",
       answer:
-        "Yes, we provide meals and snacks throughout the event. While we don't provide accommodation, we have a rest area for short naps. We can also recommend nearby affordable hotels for participants traveling from other cities.",
+        "Yes, we provide meals and snacks and resting places throughout the event.",
     },
-    {
-      question: "How does the judging process work?",
-      answer:
-        "Projects will be evaluated by a panel of industry experts based on innovation, technical complexity, design, practicality, and presentation. Each team will have 5 minutes to present their project followed by a brief Q&A with judges.",
-    },
+    // {
+    //   question: "How does the judging process work?",
+    //   answer:
+    //     "Projects will be evaluated by a panel of industry experts based on innovation, technical complexity, design, practicality, and presentation. Each team will have 5 minutes to present their project followed by a brief Q&A with judges.",
+    // },
     {
       question: "Can I work on a project I've already started?",
       answer:
-        "No, all projects must be started from scratch during the hackathon. You can come with ideas, but the implementation should begin after the kickoff. This ensures a fair competition for all participants.",
+        "No, all projects must be started from scratch during the hackathon. You can come with ideas.",
     },
     {
       question: "Will there be mentors or technical support available?",
       answer:
         "Yes, we'll have mentors from various tech backgrounds to help you with technical challenges, provide feedback, and guide your development process. Technical workshops will also be conducted throughout the event.",
     },
-    {
-      question: "What happens to the intellectual property of my project?",
-      answer:
-        "You retain full ownership of everything you build at the hackathon. However, to be eligible for prizes, your solution must be open-sourced (with a license of your choice) so that it can be shared with the community.",
-    },
+    // {
+    //   question: "What happens to the intellectual property of my project?",
+    //   answer:
+    //     "You retain full ownership of everything you build at the hackathon. However, to be eligible for prizes, your solution must be open-sourced (with a license of your choice) so that it can be shared with the community.",
+    // },
   ]
 
   const toggleItem = (index: number) => {

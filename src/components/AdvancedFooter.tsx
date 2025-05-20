@@ -10,13 +10,13 @@ const AdvancedFooter: React.FC = () => {
                         Organised By
                     </h3>
                     <div className="flex items-center gap-4 mt-5">
-                        <div className="bg-white rounded-full p-1 flex items-center justify-center">
-                            {/* <Image
-                                src="/iem.jpg"
+                        <div className="rounded-full p-1 flex items-center justify-center">
+                            <Image
+                                src="/iem.png"
                                 alt="Hack{0}Lution Logo"
                                 width={60}
                                 height={60}
-                            /> */}
+                            />
                         </div>
                         <p className="text-sm leading-relaxed">
                             Institute of Engineering and Management

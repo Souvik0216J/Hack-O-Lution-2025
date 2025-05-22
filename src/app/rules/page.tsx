@@ -2,6 +2,7 @@
 import React from 'react'
 import { motion, Variants } from 'framer-motion'
 import { Spotlight } from '@/components/ui/spotlight-new'
+import Footer from '@/components/Footer'
 
 function RulesPage() {
   const animation: Variants = {
@@ -67,7 +68,7 @@ function RulesPage() {
           <div className="max-w-[84rem] mx-auto px-8 pt-12">
             <div className="flex flex-col justify-center items-center text-center">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 glitch-text-sm" data-text="STORY OF HACKOLUTION">
-                RULES &amp; REGULATIONS
+                RULES <span className="text-green-400">&amp;</span> REGULATIONS
               </h2>
               <p className="text-muted-foreground max-w-3xl mx-auto">
                 Read carefully and follow these guidelines to ensure a fair and productive hackathon experience for everyone.

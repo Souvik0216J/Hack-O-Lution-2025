@@ -346,6 +346,14 @@ function Page() {
             />
           </LabelInputContainer>
 
+          <div className="flex items-center">
+            <input type="checkbox" id="rules" name="rules" className="mr-2" required/>
+            <label >
+              I agree to the <a href="/rules" target="_blank" className="text-green-400 underline">Rules and Regulations</a>
+            </label>
+          </div>
+          <br />
+
           <button
             className="group/btn relative block h-10 w-full rounded-md bg-gradient-to-br font-medium text-white  bg-zinc-800 from-zinc-900 to-zinc-900 shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset] hover:cursor-pointer"
             type="submit"
@@ -360,7 +368,6 @@ function Page() {
               </>
             )
             }
-
             <BottomGradient />
           </button>
           <br />

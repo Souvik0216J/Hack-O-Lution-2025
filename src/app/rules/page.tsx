@@ -2,7 +2,6 @@
 import React from 'react'
 import { motion, Variants } from 'framer-motion'
 import { Spotlight } from '@/components/ui/spotlight-new'
-import Footer from '@/components/Footer'
 
 function RulesPage() {
   const animation: Variants = {

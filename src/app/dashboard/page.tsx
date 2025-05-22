@@ -162,22 +162,20 @@ function Dashboard() {
     const updateEventStatus = () => {
       const now = new Date();
 
-      const updatedEvents = timelineEvents.map(event => {
-        const startDateTime = parseDateTime(event.date, event.startTime);
-        const endDateTime = parseEndDateTime(event.date, event.endTime);
+      setTimelineEvents(prevEvents =>
+        prevEvents.map(event => {
+          const startDateTime = parseDateTime(event.date, event.startTime);
+          const endDateTime = parseEndDateTime(event.date, event.endTime);
 
-        // Check if event is active (current time is between start and end)
-        const isActive = now >= startDateTime && now <= endDateTime;
+          // Check if event is active (current time is between start and end)
+          const isActive = now >= startDateTime && now <= endDateTime;
 
-        // Check if event is in the past (current time is after end time)
-        const isPast = now > endDateTime;
+          // Check if event is in the past (current time is after end time)
+          const isPast = now > endDateTime;
 
-        return { ...event, isActive, isPast };
-      });
-
-      // Update state with the recalculated events
-      // need to create a state for this if you don't have one
-      setTimelineEvents(updatedEvents);
+          return { ...event, isActive, isPast };
+        })
+      );
     };
 
     // Initial update
@@ -187,7 +185,7 @@ function Dashboard() {
     const intervalId = setInterval(updateEventStatus, 60000);
 
     return () => clearInterval(intervalId);
-  }, [timelineEvents]);
+  }, []);
 
   useEffect(() => {
     async function fetchUserData() {

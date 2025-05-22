@@ -74,18 +74,18 @@ function Dashboard() {
 
   const [timelineEvents, setTimelineEvents] = useState<TimelineEvent[]>([
     {
-      date: "May 15, 2025",
-      startTime: "00:00", // Beginning of day
-      endTime: "23:59",   // End of day
+      date: "May 22, 2025",
+      startTime: "21:45", // Beginning of day
+      endTime: "21:50",   // End of day
       title: "Registration Deadline",
       description: "Last day to register your team for the hackathon",
       isActive: false,
       isPast: false // calculate this in the useEffect
     },
     {
-      date: "May 20, 2025",
-      startTime: "19:04",
-      endTime: "19:06",
+      date: "May 22, 2025",
+      startTime: "21:51",
+      endTime: "21:54",
       title: "Kickoff Event",
       description: "Official hackathon kickoff with theme announcement and workshops",
       isActive: false,

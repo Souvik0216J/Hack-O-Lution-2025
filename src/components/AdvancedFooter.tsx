@@ -124,10 +124,10 @@ const AdvancedFooter: React.FC = () => {
 
                 </div>
 
-                {/* Copyright Section */}
-                  <div className="text-center mt-10 pt-5 border-t border-gray-700 text-sm">
-                <p className='text-lg'>© {new Date().getFullYear()} HACK&#123;<span className="text-green-400">0</span>&#125;LUTION. All rights reserved.</p>
             </div>
+            {/* Copyright Section */}
+            <div className="text-center mt-10 pt-5 border-t border-gray-700 text-sm">
+                <p className='text-lg'>© {new Date().getFullYear()} HACK&#123;<span className="text-green-400">0</span>&#125;LUTION. All rights reserved.</p>
             </div>
         </footer>
     );

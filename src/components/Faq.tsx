@@ -33,19 +33,18 @@ export default function Faq() {
     {
       question: "Who can participate in the hackathon?",
       answer:
-        "Anyone 18 years or older can participate, regardless of experience level. We welcome students, professionals, and enthusiasts from all backgrounds. No prior hackathon experience is required!",
+        "Any school, college, or university student aged 18 or older can participate, and enthusiasts from all backgrounds. No prior hackathon experience is required!",
     },
     {
       question: "What is the max team size?",
       answer:
         "Team size should be 2-4 participants",
     },
-        {
+    {
       question: "Can i participate remotely?",
       answer:
-        "No",
+        "Unfortunately, remote participation is not allowed. All participants are required to be physically present at the venue for the duration of the event.",
     },
-    
     {
       question: "Do I need to have a team before registering?",
       answer:

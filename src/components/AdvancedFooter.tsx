@@ -74,7 +74,7 @@ const AdvancedFooter: React.FC = () => {
                             </li>
                             <li>
                                 <Link
-                                    href="https://www.linkedin.com/in/hack0lution-iem-634090359?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                                    href="https://www.linkedin.com/in/hackolutioniem/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="hover:underline hover:text-gray-300 transition-colors duration-200"
@@ -84,7 +84,7 @@ const AdvancedFooter: React.FC = () => {
                             </li>
                             <li>
                                 <Link
-                                    href="https://twitter.com/hackolution"
+                                    href="https://x.com/hack0lution"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="hover:underline hover:text-gray-300 transition-colors duration-200"

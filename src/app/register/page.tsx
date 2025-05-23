@@ -86,13 +86,13 @@ function Page() {
         // Registration successful
         try {
           // Sending email 
-          // await axios.post("/api/send", {
-          //   leaderName: user.leaderName,
-          //   leaderEmail: user.leaderEmail,
-          //   teamName: user.teamName,
-          //   leaderNo: user.leaderNo,
-          //   members: user.members, // array of { name, email }
-          // });
+          await axios.post("/api/send", {
+            leaderName: user.leaderName,
+            leaderEmail: user.leaderEmail,
+            teamName: user.teamName,
+            leaderNo: user.leaderNo,
+            members: user.members, // array of { name, email }
+          });
 
           // both registration and email sending were successful
           setSubmitDone(true)

@@ -1,4 +1,5 @@
 "use client"
+import React from 'react'
 import { motion, Variants } from 'framer-motion'
 import { useTimer } from 'react-timer-hook'
 import MusicButton from '@/components/Music'
@@ -10,10 +11,31 @@ import AnimatedSnippet from '@/components/AnimatedSnippet'
 import { AboutCard } from "@/components/AboutCard"
 import PrizeCard from '@/components/PrizeCard';
 import AdvancedFooter from '@/components/AdvancedFooter';
+import { useState, useEffect } from 'react'
+import { ChevronUp } from 'lucide-react'
 
 export default function Home() {
   // Time counter
   const eventDate = new Date('June 26, 2025 17:30:00')
+  const [showScrollUp, setShowScrollUp] = useState<boolean>(false)
+
+  // Monitor scroll position
+  useEffect(() => {
+    const handleScroll = (): void => {
+      setShowScrollUp(window.scrollY > 300)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Scroll to top function
+  const scrollToTop = (): void => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
 
   const {
     seconds,
@@ -241,6 +263,21 @@ export default function Home() {
       <TeamMembers />
       <Faq />
       <AdvancedFooter />
+      
+      <motion.button
+        onClick={scrollToTop}
+        className={`fixed bottom-8 right-8 z-50 w-12 h-12 bg-green-400 hover:bg-green-500 cursor-pointer text-black rounded-full shadow-lg transition-all duration-300 flex items-center justify-center group ${showScrollUp ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        initial={{ opacity: 0, y: 40 }}
+        animate={{
+          opacity: showScrollUp ? 1 : 0,
+          y: showScrollUp ? 0 : 40
+        }}
+        transition={{ duration: 0.3 }}
+      >
+        <ChevronUp className="w-6 h-6 group-hover:animate-bounce" />
+      </motion.button>
     </>
   );
 }

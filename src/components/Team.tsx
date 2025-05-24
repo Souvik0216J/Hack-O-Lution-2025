@@ -25,19 +25,19 @@ export default function TeamMembers(): React.ReactElement {
       {
         name: "Souvik Ghosh",
         image: "/team/souvik.jpg",
-        designation: "ORGANIZER",
+        designation: "TECH LEAD",
         linkedin: "https://www.linkedin.com/in/souvik-ghosh-1bb26a282",
       },
       {
         name: "Soumodip Das",
         image: "/team/soumodip.jpg",
-        designation: "ORGANIZER",
+        designation: "TECH",
         linkedin: "https://www.linkedin.com/in/itssoumodip",
       },
       {
         name: "Rohan Sinha",
         image: "/team/rohan.jpg",
-        designation: "ORGANIZER",
+        designation: "EVENT MANAGEMENT",
         linkedin: "https://www.linkedin.com/in/rohan-sinha-0b926225a",
       }
     ],
@@ -45,13 +45,13 @@ export default function TeamMembers(): React.ReactElement {
       {
         name: "Aniket Chakraborty",
         image: "/team/aniket.jpg",
-        designation: "CORE",
+        designation: "MARKETING LEAD",
         linkedin: "https://www.linkedin.com/in/aniket-chakraborty-666319284",
       },
       {
         name: "Srijan Ray",
         image: "/team/srijan.jpg",
-        designation: "CORE",
+        designation: "COVERAGE LEAD",
         linkedin: "https://www.linkedin.com/in/srijan-ray-5b1967282",
       },
       {
@@ -63,13 +63,13 @@ export default function TeamMembers(): React.ReactElement {
       {
         name: "Aniya Agarwal",
         image: "/team/aniya.jpg",
-        designation: "DESIGNER LEAD",
+        designation: "DESIGNER & MEDIA LEAD",
         linkedin: "https://www.linkedin.com/in/aniya-agarwal-0b45a631b",
       },
       {
         name: "Asad Hussain",
         image: "/team/assad.jpg",
-        designation: "MARKETING",
+        designation: "MEDIA",
         linkedin: "https://www.linkedin.com/in/asad-hussain-765502319",
       }
     ],

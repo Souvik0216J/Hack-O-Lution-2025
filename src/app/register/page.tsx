@@ -341,7 +341,7 @@ function Page() {
                   type="text"
                   value={member.github}
                   required
-                  placeholder={`Member-${index + 1} github profile Link`}
+                  placeholder={`Member-${index + 1} github profile link`}
                   onChange={(e) => {
                     const newMembers = [...user.members];
                     newMembers[index].github = e.target.value;

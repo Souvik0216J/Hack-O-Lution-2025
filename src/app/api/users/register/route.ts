@@ -3,12 +3,11 @@ import User from '@/models/userModel'
 import { NextRequest, NextResponse } from 'next/server'
 import bcryptjs from 'bcryptjs'
 
-
 export async function POST(request: NextRequest) {
     await connect() // wait for connection
     try {
         const reqBody = await request.json()
-        const { teamName, teamSize, leaderName, leaderEmail, leaderDiscord, leaderLinkedin, leaderGithub, leaderNo, leaderCity, leaderClgName, leaderTshirtSize, projectIDea, members } = reqBody
+        const { teamName, teamSize, leaderName, leaderEmail, leaderDiscord, leaderLinkedin, leaderGithub, leaderNo, leaderCity, leaderClgName, leaderTshirtSize, projectIDea, referCode, members } = reqBody
         const id = leaderNo.slice(-6)
 
         // cheak if user already exists
@@ -64,6 +63,7 @@ export async function POST(request: NextRequest) {
             leaderTshirtSize: leaderTshirtSize,
             members: members,
             projectIDea: projectIDea,
+            referCode: referCode, 
             password: hashedPassword,
             selectionInfo: selectionInfo,
             projectSubmit: projectSubmit,

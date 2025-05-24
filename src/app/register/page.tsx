@@ -45,6 +45,7 @@ function Page() {
     leaderClgName: string;
     leaderTshirtSize: string;
     projectIDea: string;
+    referCode: string;
     members: Member[];
   }>({
     teamName: "",
@@ -59,6 +60,7 @@ function Page() {
     leaderClgName: "",
     leaderTshirtSize: "S - Size",
     projectIDea: "",
+    referCode: "",
     // Initialize with an empty array
     members: [],
   });
@@ -396,6 +398,15 @@ function Page() {
               required
               onChange={(e) => setUser({
                 ...user, projectIDea: e.target.value
+              })}
+            />
+          </LabelInputContainer>
+
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="code">Referral Code</Label>
+            <Input id="code" placeholder="Enter your referral code if any" type="text"
+              onChange={(e) => setUser({
+                ...user, referCode: e.target.value
               })}
             />
           </LabelInputContainer>

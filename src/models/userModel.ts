@@ -130,7 +130,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
-
+    referCode: {
+        type: String,
+        default: "",
+    },
     members: {
         type: [memberSchema], // this stores array of member objects
         default: [],

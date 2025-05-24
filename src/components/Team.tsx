@@ -4,7 +4,7 @@ import Image from 'next/image';
 interface TeamMember {
   name: string;
   image: string | null;
-  designation: string;
+  // designation: string;
   linkedin?: string;
 }
 
@@ -25,19 +25,19 @@ export default function TeamMembers(): React.ReactElement {
       {
         name: "Souvik Ghosh",
         image: "/team/souvik.jpg",
-        designation: "TECH LEAD",
+        // designation: "TECH LEAD",
         linkedin: "https://www.linkedin.com/in/souvik-ghosh-1bb26a282",
       },
       {
         name: "Soumodip Das",
         image: "/team/soumodip.jpg",
-        designation: "TECH",
+        // designation: "TECH",
         linkedin: "https://www.linkedin.com/in/itssoumodip",
       },
       {
         name: "Rohan Sinha",
         image: "/team/rohan.jpg",
-        designation: "EVENT MANAGEMENT",
+        // designation: "EVENT MANAGEMENT",
         linkedin: "https://www.linkedin.com/in/rohan-sinha-0b926225a",
       }
     ],
@@ -45,31 +45,31 @@ export default function TeamMembers(): React.ReactElement {
       {
         name: "Aniket Chakraborty",
         image: "/team/aniket.jpg",
-        designation: "MARKETING LEAD",
+        // designation: "MARKETING LEAD",
         linkedin: "https://www.linkedin.com/in/aniket-chakraborty-666319284",
       },
       {
         name: "Srijan Ray",
         image: "/team/srijan.jpg",
-        designation: "COVERAGE LEAD",
+        // designation: "COVERAGE LEAD",
         linkedin: "https://www.linkedin.com/in/srijan-ray-5b1967282",
       },
       {
         name: "Subhradeep Roy Chowdhury",
         image: "/team/src.jpg",
-        designation: "MARKETING",
+        // designation: "MARKETING",
         linkedin: "https://www.linkedin.com/in/subhradeep-roy-chowdhury-715264318",
       },
       {
         name: "Aniya Agarwal",
         image: "/team/aniya.jpg",
-        designation: "DESIGNER & MEDIA LEAD",
+        // designation: "DESIGNER & MEDIA LEAD",
         linkedin: "https://www.linkedin.com/in/aniya-agarwal-0b45a631b",
       },
       {
         name: "Asad Hussain",
         image: "/team/assad.jpg",
-        designation: "MEDIA",
+        // designation: "MEDIA",
         linkedin: "https://www.linkedin.com/in/asad-hussain-765502319",
       }
     ],
@@ -193,9 +193,9 @@ export default function TeamMembers(): React.ReactElement {
 
         {/* Hover Tooltip */}
         {isHovered && (
-          <div className="absolute -top-20 w-40 p-2 bg-zinc-800 rounded-lg shadow-lg text-center transform -translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-10">
+          <div className="absolute -top-15 w-40 p-2 bg-zinc-800 rounded-lg shadow-lg text-center transform -translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-10">
             <p className="text-sm font-semibold text-white">{member.name}</p>
-            <p className="text-xs text-blue-400">{member.designation}</p>
+            {/* <p className="text-xs text-blue-400">{member.designation}</p> */}
           </div>
         )}
       </div>
@@ -276,7 +276,7 @@ export default function TeamMembers(): React.ReactElement {
               </div>
 
               <h3 className="text-xl font-bold text-white mb-1">{selectedMember.name}</h3>
-              <p className="text-blue-400 mb-4">{selectedMember.designation}</p>
+              {/* <p className="text-blue-400 mb-4">{selectedMember.designation}</p> */}
 
               {/* LinkedIn Button */}
               {selectedMember.linkedin && (

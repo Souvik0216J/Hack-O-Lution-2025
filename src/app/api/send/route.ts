@@ -117,12 +117,6 @@ export async function POST(req: Request) {
                 
                 <div class="footer">
                   <p>Best Regards,<br/>Team Hack{0}lution</p>
-                  <div class="social-links">
-                    <a href="https://discord.gg/hjxtZZXsD4">Discord</a>
-                    <a href="https://www.instagram.com/hack0lution">Instagram</a>
-                    <a href="https://www.linkedin.com/in/hackolutioniem/">LinkedIn</a>
-                    <a href="https://x.com/hack0lution">X</a>
-                  </div>
                   <p>© 2025 Hack{0}lution. All rights reserved.</p>
                 </div>
               </div>

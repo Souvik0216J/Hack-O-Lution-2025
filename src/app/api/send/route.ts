@@ -113,7 +113,7 @@ export async function POST(req: Request) {
                 
                 <p>For any queries, feel free to join our official Discord server and contact our support team.</p>
                 
-                <a href="https://hackolution.tech/login" style="color: #ffffff; font-weight: bold;" class="button">Access Dashboard</a>
+                <a href="https://hackolution.tech/login" style="color: #ffffff; font-weight: bold;" class="button">Dashboard</a>
                 
                 <div class="footer">
                   <p>Best Regards,<br/>Team Hack{0}lution</p>

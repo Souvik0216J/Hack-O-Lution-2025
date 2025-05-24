@@ -100,7 +100,7 @@ export async function POST(req: Request) {
               <div class="content">
                 <h2>Welcome, ${name}!</h2>
                 
-                <p>Congratulations! Your registration for <strong>Hack{0}Lution 2025</strong> has been successfully completed. You are now officially a member of team <strong>${teamName}</strong>.</p>
+                <p>Your registration for <strong>Hack{0}Lution 2025</strong> has been successfully completed. You are now officially a member of team <strong>${teamName}</strong>.</p>
                 
                 <p>We're thrilled to have you on board! Your project idea is currently under review - stay tuned for the next update!</p>
                 

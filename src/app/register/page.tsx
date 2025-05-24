@@ -208,8 +208,8 @@ function Page() {
           </LabelInputContainer>
 
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="github"><span className="text-red-400 mr-0.5">*</span>Leader&apos;s Github Username</Label>
-            <Input id="github" placeholder="Enter your github username" type="text" required
+            <Label htmlFor="github"><span className="text-red-400 mr-0.5">*</span>Leader&apos;s Github Profile</Label>
+            <Input id="github" placeholder="Enter your github profile link" type="text" required
               onChange={(e) => setUser({
                 ...user, leaderGithub: e.target.value
               })}
@@ -336,12 +336,12 @@ function Page() {
               </LabelInputContainer>
 
               <LabelInputContainer className="mb-4">
-                <Label><span className="text-red-400 mr-0.5">*</span>Member {index + 1} Github Username</Label>
+                <Label><span className="text-red-400 mr-0.5">*</span>Member {index + 1} Github Profile</Label>
                 <Input
                   type="text"
                   value={member.github}
                   required
-                  placeholder={`Member-${index + 1} github username`}
+                  placeholder={`Member-${index + 1} github profile Link`}
                   onChange={(e) => {
                     const newMembers = [...user.members];
                     newMembers[index].github = e.target.value;

@@ -16,7 +16,7 @@ const projectSchema = new mongoose.Schema({
         type: String,
         default: "null",
     },
-    hostedLink:{
+    hostedLink: {
         type: String,
         default: "null",
     }
@@ -31,9 +31,17 @@ const memberSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please provide member email"],
     },
-    linkedin:{
+    linkedin: {
         type: String,
         required: [true, "Please provide member linkedin"]
+    },
+    github: {
+        type: String,
+        required: [true, "Please provide member github"]
+    },
+    discord: {
+        type: String,
+        required: [true, "Please provide member discord"]
     },
     tshirtSize: {
         type: String,
@@ -74,11 +82,20 @@ const userSchema = new mongoose.Schema({
     },
 
     leaderLinkedin: {
-    type: String,
-    required: [true, "Please provide a linkedin profile"],
-    unique: false,
+        type: String,
+        required: [true, "Please provide a linkedin profile"],
+        unique: false,
     },
-
+    leaderGithub: {
+        type: String,
+        required: [true, "Please provide a github profile"],
+        unique: false,
+    },
+    leaderDiscord: {
+        type: String,
+        required: [true, "Please provide a discord profile"],
+        unique: false,
+    },
     leaderNo: {
         type: String,
         required: [true, "Please provide a phone number"],
@@ -124,16 +141,16 @@ const userSchema = new mongoose.Schema({
         default: ""
     },
 
-    selectionInfo:{
-        type:[selectionSchema],
+    selectionInfo: {
+        type: [selectionSchema],
         default: [],
     },
 
-    projectSubmit:{
-        type:[projectSchema],
+    projectSubmit: {
+        type: [projectSchema],
         default: [],
     },
-    lastLogin:{
+    lastLogin: {
         type: String,
         default: ""
     }

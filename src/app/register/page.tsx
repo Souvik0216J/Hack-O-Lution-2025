@@ -27,6 +27,8 @@ function Page() {
     name: string;
     email: string;
     linkedin: string;
+    github: string;
+    discord: string;
     tshirtSize: string;
   };
 
@@ -36,6 +38,8 @@ function Page() {
     leaderName: string;
     leaderEmail: string;
     leaderLinkedin: string;
+    leaderGithub: string;
+    leaderDiscord: string;
     leaderNo: string;
     leaderCity: string;
     leaderClgName: string;
@@ -48,6 +52,8 @@ function Page() {
     leaderName: "",
     leaderEmail: "",
     leaderLinkedin: "",
+    leaderGithub: "",
+    leaderDiscord: "",
     leaderNo: "",
     leaderCity: "",
     leaderClgName: "",
@@ -200,6 +206,24 @@ function Page() {
           </LabelInputContainer>
 
           <LabelInputContainer className="mb-4">
+            <Label htmlFor="github"><span className="text-red-400 mr-0.5">*</span>Leader&apos;s Github Username</Label>
+            <Input id="github" placeholder="Enter your github username" type="text" required
+              onChange={(e) => setUser({
+                ...user, leaderGithub: e.target.value
+              })}
+            />
+          </LabelInputContainer>
+
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="discord"><span className="text-red-400 mr-0.5">*</span>Leader&apos;s Discord Username</Label>
+            <Input id="discord" placeholder="Enter your discord username" type="text" required
+              onChange={(e) => setUser({
+                ...user, leaderDiscord: e.target.value
+              })}
+            />
+          </LabelInputContainer>
+
+          <LabelInputContainer className="mb-4">
             <Label htmlFor="phone">
               <span className="text-red-400 mr-0.5">*</span>Leader&apos;s WhatsApp Number
             </Label>
@@ -310,6 +334,36 @@ function Page() {
               </LabelInputContainer>
 
               <LabelInputContainer className="mb-4">
+                <Label><span className="text-red-400 mr-0.5">*</span>Member {index + 1} Github Username</Label>
+                <Input
+                  type="text"
+                  value={member.github}
+                  required
+                  placeholder={`Member-${index + 1} github username`}
+                  onChange={(e) => {
+                    const newMembers = [...user.members];
+                    newMembers[index].github = e.target.value;
+                    setUser({ ...user, members: newMembers });
+                  }}
+                />
+              </LabelInputContainer>
+
+              <LabelInputContainer className="mb-4">
+                <Label><span className="text-red-400 mr-0.5">*</span>Member {index + 1} Discord Username</Label>
+                <Input
+                  type="text"
+                  value={member.discord}
+                  required
+                  placeholder={`Member-${index + 1} discord username`}
+                  onChange={(e) => {
+                    const newMembers = [...user.members];
+                    newMembers[index].discord = e.target.value;
+                    setUser({ ...user, members: newMembers });
+                  }}
+                />
+              </LabelInputContainer>
+
+              <LabelInputContainer className="mb-4">
                 <Label><span className="text-red-400 mr-0.5">*</span>Member {index + 1} T-Shirt Size</Label>
                 <Input
                   dropdown
@@ -347,7 +401,7 @@ function Page() {
           </LabelInputContainer>
 
           <div className="flex items-center">
-            <input type="checkbox" id="rules" name="rules" className="mr-2" required/>
+            <input type="checkbox" id="rules" name="rules" className="mr-2" required />
             <label >
               I agree to the <a href="/rules" target="_blank" className="text-green-400 underline">Rules and Regulations</a>
             </label>

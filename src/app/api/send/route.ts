@@ -113,14 +113,15 @@ export async function POST(req: Request) {
                 
                 <p>For any queries, feel free to join our official Discord server and contact our support team.</p>
                 
-                <a href="https://hack-o-lution-psi.vercel.app/login" style="color: #ffffff; font-weight: bold;" class="button">Access Dashboard</a>
+                <a href="https://hackolution.tech/login" style="color: #ffffff; font-weight: bold;" class="button">Access Dashboard</a>
                 
                 <div class="footer">
                   <p>Best Regards,<br/>Team Hack{0}lution</p>
                   <div class="social-links">
                     <a href="https://discord.gg/hjxtZZXsD4">Discord</a>
                     <a href="https://www.instagram.com/hack0lution">Instagram</a>
-                    <a href="https://www.linkedin.com/in/hack0lution-iem-634090359?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">LinkedIn</a>
+                    <a href="https://www.linkedin.com/in/hackolutioniem/">LinkedIn</a>
+                    <a href="https://x.com/hack0lution">X</a>
                   </div>
                   <p>© 2025 Hack{0}lution. All rights reserved.</p>
                 </div>

@@ -13,6 +13,7 @@ import PrizeCard from '@/components/PrizeCard';
 import AdvancedFooter from '@/components/AdvancedFooter';
 import { useState, useEffect } from 'react'
 import { ChevronUp } from 'lucide-react'
+import Image from 'next/image'
 
 export default function Home() {
   // Time counter
@@ -57,50 +58,40 @@ export default function Home() {
     },
   }
 
-  const mentors = [
-    {
-      name: "Dr. Sarah Johnson",
-      title: "Senior Software Engineer at Google",
-      expertise: "AI/ML, Full Stack Development",
-      image: "/mentors/sarah.jpg", // Add actual image paths
-      linkedin: "https://linkedin.com/in/sarahjohnson"
-    },
-    {
-      name: "Alex Chen",
-      title: "CTO at TechStartup",
-      expertise: "Blockchain, Cybersecurity",
-      image: "/mentors/alex.jpg",
-      linkedin: "https://linkedin.com/in/alexchen"
-    },
-    {
-      name: "Maria Rodriguez",
-      title: "Product Manager at Microsoft",
-      expertise: "Product Strategy, UX Design",
-      image: "/mentors/maria.jpg",
-      linkedin: "https://linkedin.com/in/mariarodriguez"
-    }
-  ];
+  // const mentors = [
+  //   {
+  //     name: "Dr. Sarah Johnson",
+  //     title: "Senior Software Engineer at Google",
+  //     expertise: "AI/ML, Full Stack Development",
+  //     image: "/mentors/sarah.jpg", // Add actual image paths
+  //     linkedin: "https://linkedin.com/in/sarahjohnson"
+  //   },
+  // ];
 
   // Partners data (replace with actual partner information)
-  const partners = [
+  // const goldSponsors = [
+  //   {
+  //     name: "test",
+  //     logo: "test",
+  //     website: "test"
+  //   }
+  // ];
+
+  // const technicalSponsors = [
+  //   {
+  //     name: "test",
+  //     subtitle: "test",
+  //     logo: "test",
+  //     website: "test"
+  //   }
+  // ];
+
+  const communityPartners = [
     {
-      name: "TechCorp",
-      logo: "/partners/techcorp.png",
-      website: "https://techcorp.com",
-      tier: "Platinum"
+      name: "NooBuild",
+      logo: "/partners/nobuild.jpg",
+      website: ""
     },
-    {
-      name: "StartupHub",
-      logo: "/partners/startuphub.png",
-      website: "https://startuphub.com",
-      tier: "Gold"
-    },
-    {
-      name: "DevTools Inc",
-      logo: "/partners/devtools.png",
-      website: "https://devtools.com",
-      tier: "Silver"
-    }
   ];
 
   return (
@@ -215,44 +206,48 @@ export default function Home() {
       </section>
 
       {/* Partners Section */}
-      {/* <section id="partners" className="pt-20 pb-16 bg-gradient-to-b from-gray-900 to-black">
+      <section id="partners" className="pt-20 pb-16 bg-gradient-to-b">
         <div className="container mx-auto px-4">
           <div className="flex flex-col justify-center items-center text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 glitch-text-sm text-center" data-text="HACKOLUTION PARTNERS">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2 glitch-text-sm text-center" data-text="HACKOLUTION PARTNERS">
               HACK&#123;<span className="text-green-400">0</span>&#125;LUTION PARTNERS
             </h2>
             <p className="text-muted-foreground max-w-3xl mx-auto">
-              Proudly supported by leading organizations in technology and innovation.
+              Proudly supported by our partners.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {partners.map((partner, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-gray-700 hover:border-green-400 transition-all duration-300 transform hover:scale-105 text-center"
-              >
-                <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">{partner.name[0]}</span>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">{partner.name}</h3>
-                <div className="mb-4">
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs ${partner.tier === 'Platinum' ? 'bg-purple-500/20 text-purple-400' :
-                    partner.tier === 'Gold' ? 'bg-yellow-500/20 text-yellow-400' :
-                      'bg-gray-500/20 text-gray-400'
-                    }`}>
-                    {partner.tier} Partner
-                  </span>
-                </div>
-                <p className="text-gray-400 text-sm">Supporting innovation and excellence</p>
-              </motion.div>
-            ))}
-          </div>
+          {/* Community Partners */}
+          {communityPartners && communityPartners.length > 0 && (
+            <div className="mb-20">
+              <h3 className="text-2xl font-bold mb-6 text-green-400 tracking-wider text-center">
+                Community Partners
+              </h3>
+              <div className="flex justify-center items-center">
+                {communityPartners.map((partner, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-gray-700 hover:border-green-400 cursor-pointer transition-all duration-300 transform hover:scale-105 flex items-center justify-center max-w-sm"
+                  >
+                    <div className="w-full h-16 bg-black/60 rounded-lg flex items-center justify-center overflow-hidden">
+                      <Image
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="h-full w-full object-contain"
+                        width={300}
+                        height={64}
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
-      </section> */}
+      </section>
 
       <h2 className="text-3xl md:text-4xl font-bold mb-4 glitch-text-sm text-center" data-text="STORY OF HACKOLUTION">
         HACK&#123;<span className="text-green-400">0</span>&#125;LUTION CORE TEAM

@@ -36,7 +36,7 @@ function RulesPage() {
     "Any form of harassment, including but not limited to offensive verbal comments, deliberate intimidation, or inappropriate physical contact, will result in immediate removal from the event.",
     "Participants are required to bring their own laptops, chargers, and any other necessary accessories. The college will not provide any devices or equipment.",
     "Participants are responsible for the safety and security of their personal belongings throughout the event.",
-    "Projects must be developed during the hackathon. Plagiarism or submission of previously developed projects is strictly prohibited.",
+    "Projects must be developed during the hackathon. Plagiarism or submission of previously developed projects are strictly prohibited.",
     "If any part of your project re-uses code from previous work, you must clearly disclose this in your submission, specifying the extent and purpose of the re-used code.",
     "Failure to disclose re-used code or previously submitted projects will result in disqualification from awards and/or the event.",
     "Organizers reserve the right to inspect submissions for originality and request clarification on similarities to previous work.",

@@ -391,7 +391,7 @@ const AdminDashboard: React.FC = () => {
                   {filteredTeams.map((team) => (
                     <tr
                       key={team.teamId}
-                      className="border-b border-zinc-800 hover:bg-zinc-900/50 cursor-pointer"
+                      className={`border-b border-zinc-800 hover:bg-zinc-900/50 cursor-pointer ${selectedTeam?.teamId === team.teamId ? 'bg-zinc-900/50' : ''}`}
                       onClick={() => setSelectedTeam(team)}
                     >
                       <td className="px-4 py-4">

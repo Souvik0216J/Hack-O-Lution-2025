@@ -35,12 +35,14 @@ interface TeamData {
 // hackathon timeline events
 interface TimelineEvent {
   date: string;
-  startTime?: string;
-  endTime?: string;
+  startTime: string;
+  endTime: string;
   title: string;
   description: string;
   isActive: boolean;
   isPast: boolean;
+  startDate?: Date; // multi-day events
+  endDate?: Date;   // multi-day events
 }
 
 
@@ -74,87 +76,141 @@ function Dashboard() {
 
   const [timelineEvents, setTimelineEvents] = useState<TimelineEvent[]>([
     {
-      date: "May 22, 2025",
-      startTime: "21:45", // Beginning of day
-      endTime: "21:50",   // End of day
-      title: "Registration Deadline",
-      description: "Last day to register your team for the hackathon",
+      date: "June 26, 2025",
+      startTime: "07:30", // Beginning of day
+      endTime: "08:00",   // End of day
+      title: "Reporting & Check In Begins",
+      description: "Test",
       isActive: false,
       isPast: false // calculate this in the useEffect
     },
     {
-      date: "May 22, 2025",
-      startTime: "21:51",
-      endTime: "21:54",
-      title: "Kickoff Event",
-      description: "Official hackathon kickoff with theme announcement and workshops",
+      date: "June 26-27, 2025",
+      startTime: "09:00", // Beginning of day
+      endTime: "15:43",   // End of day
+      title: "Hacking Start & End",
+      description: "Test",
       isActive: false,
       isPast: false
     },
     {
-      date: "May 20-27, 2025",
-      startTime: "00:00",
-      endTime: "23:59",
-      title: "Hacking Period",
-      description: "Time to build your amazing project!",
+      date: "June 26, 2025",
+      startTime: "13:00",
+      endTime: "15:00",
+      title: "Lunch Break",
+      description: "Test",
       isActive: false,
       isPast: false
     },
     {
-      date: "May 27, 2025",
-      startTime: "00:00",
-      endTime: "23:59",
-      title: "Submission Deadline",
-      description: "All projects must be submitted by 11:59 PM",
+      date: "June 26, 2025",
+      startTime: "18:00",
+      endTime: "19:00",
+      title: "Evening Snacks",
+      description: "Test",
       isActive: false,
       isPast: false
     },
     {
-      date: "May 29, 2025",
-      startTime: "09:00",
-      endTime: "18:00",
-      title: "Project Judging",
-      description: "Judges review and evaluate all submitted projects",
+      date: "June 26, 2025",
+      startTime: "08:00",
+      endTime: "08:30",
+      title: "Mini Event 1 - Fast Typing",
+      description: "Test",
       isActive: false,
       isPast: false
     },
     {
-      date: "May 30, 2025",
-      startTime: "14:00",
-      endTime: "16:00",
-      title: "Results Announcement",
+      date: "June 26, 2025",
+      startTime: "21:00",
+      endTime: "23:00",
+      title: "Dinner Break",
       description: "Winners announced and prizes awarded",
       isActive: false,
       isPast: false
-    }
+    },
+    {
+      date: "June 27, 2025",
+      startTime: "11:30",
+      endTime: "12:30",
+      title: "Mini Event 2 - Build Your AI Website",
+      description: "Test",
+      isActive: false,
+      isPast: false
+    },
+    {
+      date: "June 27, 2025",
+      startTime: "02:00",
+      endTime: "02:30",
+      title: "Mini Event 3 - Gaming Tournament",
+      description: "Test",
+      isActive: false,
+      isPast: false
+    },
+    {
+      date: "June 27, 2025",
+      startTime: "08:00",
+      endTime: "10:00",
+      title: "Breakfast Break",
+      description: "Test",
+      isActive: false,
+      isPast: false
+    },
+    {
+      date: "June 27, 2025",
+      startTime: "12:00",
+      endTime: "13:30",
+      title: "Lunch Break",
+      description: "Test",
+      isActive: false,
+      isPast: false
+    },
+    {
+      date: "June 27, 2025",
+      startTime: "15:15",
+      endTime: "16:30",
+      title: "Evaluation",
+      description: "Test",
+      isActive: false,
+      isPast: false
+    },
   ]);
 
   const parseDateTime = (dateStr: string, timeStr: string = "00:00") => {
-    // For date ranges like "May 20-27 2025" take first date
-    const datePart = dateStr.includes("-") ? dateStr.split("-")[0] : dateStr;
+    let datePart = dateStr;
 
-    // Parse the date and time
+    // Handle ranges like "May 27-28, 2025"
+    if (dateStr.includes("-")) {
+      const parts = dateStr.split("-");
+      const month = parts[0].split(" ")[0]; // May
+      const startDay = parts[0].split(" ")[1]; // 27
+      const year = parts[1].split(",")[1]?.trim() || "2025"; // get 2025 from end
+      datePart = `${month} ${startDay}, ${year}`;
+    }
+
     const [hours, minutes] = timeStr.split(":").map(Number);
-    const result = new Date(datePart + ", 2025");
+    const result = new Date(datePart);
     result.setHours(hours, minutes, 0, 0);
-
     return result;
   };
 
   const parseEndDateTime = (dateStr: string, timeStr: string = "23:59") => {
-    // For date ranges like "May 20-27, 2025", take the second date
-    const datePart = dateStr.includes("-") ?
-      dateStr.split("-")[1].includes(" ") ?
-        dateStr.split("-")[1] :
-        dateStr.split("-")[0].split(" ")[0] + " " + dateStr.split("-")[1] :
-      dateStr;
+    let datePart = dateStr;
 
-    // Parse the date and time
+    if (dateStr.includes("-")) {
+      const parts = dateStr.split("-");
+      const month = parts[0].split(" ")[0]; // May
+      const endDay = parts[1].split(",")[0].trim(); // 28
+      const year = parts[1].split(",")[1]?.trim() || "2025";
+      datePart = `${month} ${endDay}, ${year}`;
+    }
+
     const [hours, minutes] = timeStr.split(":").map(Number);
-    const result = new Date(datePart + ", 2025");
+    const result = new Date(datePart);
     result.setHours(hours, minutes, 0, 0);
     return result;
   };
+
 
   // create a new one to update the status of events
   useEffect(() => {
@@ -182,7 +238,7 @@ function Dashboard() {
     updateEventStatus();
 
     // Set up a timer to update every minute
-    const intervalId = setInterval(updateEventStatus, 60000);
+    const intervalId = setInterval(updateEventStatus, 30000);
 
     return () => clearInterval(intervalId);
   }, []);
@@ -458,7 +514,9 @@ function Dashboard() {
                           <span className="text-xs text-blue-400 font-mono">{timelineEvents.find(event => event.isActive)?.date}</span>
                         </div>
                         <h4 className="text-xl font-bold mt-1 text-blue-300">{timelineEvents.find(event => event.isActive)?.title}</h4>
-                        <p className="text-blue-200/70">{timelineEvents.find(event => event.isActive)?.description}</p>
+                        <p className="text-blue-200/70 font-mono">
+                          {timelineEvents.find(event => event.isActive)?.startTime} - {timelineEvents.find(event => event.isActive)?.endTime}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -549,6 +607,13 @@ function Dashboard() {
                   `}>
                             {event.date}
                           </div>
+                          <div className={`text-xs font-mono ${event.isActive
+                            ? "text-blue-300"
+                            : event.isPast
+                              ? "text-green-300"
+                              : "text-zinc-400"}`}>
+                            {event.startTime} - {event.endTime}
+                          </div>
 
                           {/* Content */}
                           <h4 className={`
@@ -561,7 +626,7 @@ function Dashboard() {
                     text-xs
                     ${event.isActive ? "text-blue-100/80" : event.isPast ? "text-green-100/80" : "text-zinc-400"}
                   `}>
-                            {event.description}
+                            {/* {event.description} */}
                           </p>
                         </div>
                       </div>

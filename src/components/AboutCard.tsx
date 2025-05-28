@@ -1,6 +1,7 @@
 import { HoverEffect } from "./ui/card-hover-effect";
 import { Clock, Code, Cpu, Zap, Users, Handshake } from "lucide-react";
 import { MarqueImg } from "./MarqueImg";
+import Timeline from "./Timeline"
 
 export function AboutCard() {
   return (
@@ -15,6 +16,7 @@ export function AboutCard() {
         </p>
       </div>
       <HoverEffect items={aboutItems} />
+      <Timeline/>
       <MarqueImg/>
     </div>
   );
@@ -25,7 +27,7 @@ export const aboutItems = [
   {
     icon: <Clock className="h-10 w-10 text-primary" />,
     title: "36 Hours",
-    description: "Immerse yourself in a 36-hour coding marathon at the Institute of Engineering and Management, Kolkata on 26th June 2025.",
+    description: "Immerse yourself in a 36-hour coding marathon at the Institute of Engineering and Management, Kolkata on 26th-27th June 2025.",
   },
   {
 

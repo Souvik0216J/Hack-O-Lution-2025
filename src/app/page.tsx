@@ -158,8 +158,8 @@ export default function Home() {
           <PrizeCard rank="1st" amount="₹15,000" color="gold" size="large" />
           <PrizeCard rank="3rd" amount="₹5,000" color="bronze" />
         </div>
-
       </section>
+
       {/* Mentors Section */}
       <section id="mentors" className="pt-20 pb-16">
         <div className="container mx-auto px-4">

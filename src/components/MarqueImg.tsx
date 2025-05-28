@@ -4,7 +4,7 @@ import { InfiniteMovingCards } from "../components/ui/infinite-moving-cards";
 
 export function MarqueImg() {
     return (
-        <div className="h-[100vh] rounded-md flex flex-col antialiased items-center justify-center relative overflow-hidden">
+        <div className="mt-10 rounded-md flex flex-col antialiased items-center justify-center relative overflow-hidden">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 glitch-text-sm text-center" data-text="STORY OF HACKOLUTION">
                 PREVIOUS YEAR MOMENTS
             </h2>

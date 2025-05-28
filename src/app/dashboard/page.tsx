@@ -97,7 +97,7 @@ function Dashboard() {
       date: "June 26, 2025",
       startTime: "13:00",
       endTime: "15:00",
-      title: "Lunch Break",
+      title: "Lunch Time",
       description: "Test",
       isActive: false,
       isPast: false
@@ -124,7 +124,7 @@ function Dashboard() {
       date: "June 26, 2025",
       startTime: "21:00",
       endTime: "23:00",
-      title: "Dinner Break",
+      title: "Dinner Time",
       description: "Winners announced and prizes awarded",
       isActive: false,
       isPast: false
@@ -151,7 +151,7 @@ function Dashboard() {
       date: "June 27, 2025",
       startTime: "08:00",
       endTime: "10:00",
-      title: "Breakfast Break",
+      title: "Breakfast Time",
       description: "Test",
       isActive: false,
       isPast: false
@@ -160,7 +160,7 @@ function Dashboard() {
       date: "June 27, 2025",
       startTime: "12:00",
       endTime: "13:30",
-      title: "Lunch Break",
+      title: "Lunch Time",
       description: "Test",
       isActive: false,
       isPast: false

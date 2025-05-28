@@ -6,11 +6,14 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Users, Search, X, Check, Linkedin, Filter, ArrowUpDown, Mail, Phone, Lightbulb, ExternalLink, Clock, Github, Globe, Loader2 } from "lucide-react";
+import { FaDiscord } from "react-icons/fa";
 
 type Member = {
   name: string;
   email: string;
   linkedin: string;
+  github: string;
+  discord: string;
   tshirtSize: string;
   phone?: string;
   _id: string;
@@ -33,10 +36,13 @@ type Registration = {
   leaderName: string;
   leaderEmail: string;
   leaderLinkedin: string;
+  leaderGithub: string;
+  leaderDiscord: string;
   leaderNo: string;
   leaderCity: string;
   leaderClgName: string;
   leaderTshirtSize: string;
+  referCode: string;
   projectIDea: string;
   members: Member[];
   date: string;
@@ -502,6 +508,13 @@ const AdminDashboard: React.FC = () => {
                         <p className="text-sm">{selectedTeam.lastLogin}</p>
                       </div>
                       <div>
+                        {selectedTeam.referCode?.length > 2 && (
+                          <div>
+                            <p className="text-zinc-400 text-xs">Referral code</p>
+                            <p className="text-sm">{selectedTeam.referCode}</p>
+                            <br />
+                          </div>
+                        )}
                         <p className="text-zinc-400 text-xs">Team Size</p>
                         <p className="text-sm">{selectedTeam.teamSize} Members</p>
                       </div>
@@ -609,7 +622,7 @@ const AdminDashboard: React.FC = () => {
                         </div>
                       </div>
                       <div className="pl-11 space-y-1">
-                        <div className="flex items-center text-zinc-400 text-sm hover:cursor-pointer">
+                        <div className="flex flex-col sm:flex-row sm:items-center text-zinc-400 text-sm gap-3 sm:gap-5">
                           <a
                             href={selectedTeam.leaderLinkedin}
                             target="_blank"
@@ -620,8 +633,25 @@ const AdminDashboard: React.FC = () => {
                             Linkedin
                             <ExternalLink className="h-3 w-3 ml-1" />
                           </a>
-                          {/* {selectedTeam.leaderLinkedin} */}
+
+                          <a
+                            href={selectedTeam.leaderGithub}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center text-blue-400 hover:text-blue-300"
+                          >
+                            <Github className="h-4 w-4 mr-2" />
+                            GitHub
+                            <ExternalLink className="h-3 w-3 ml-1" />
+                          </a>
+
+                          <p className="flex items-center text-blue-400 hover:text-blue-300">
+                            <FaDiscord className="h-4 w-4 mr-2" />
+                            <span>{selectedTeam.leaderDiscord}</span>
+                          </p>
                         </div>
+
+
                         <div className="flex items-center text-zinc-400 text-sm">
                           <Mail className="h-3 w-3 mr-2" />
                           {selectedTeam.leaderEmail}
@@ -695,7 +725,7 @@ const AdminDashboard: React.FC = () => {
                           </div>
                         </div>
                         <div className="pl-11 space-y-1">
-                          <div className="flex items-center text-zinc-400 text-sm hover:cursor-pointer">
+                          <div className="flex flex-col sm:flex-row sm:items-center text-zinc-400 text-sm gap-3 sm:gap-5">
                             <a
                               href={member.linkedin}
                               target="_blank"
@@ -706,7 +736,22 @@ const AdminDashboard: React.FC = () => {
                               Linkedin
                               <ExternalLink className="h-3 w-3 ml-1" />
                             </a>
-                            {/* {member.linkedin} */}
+
+                            <a
+                              href={member.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center text-blue-400 hover:text-blue-300"
+                            >
+                              <Github className="h-4 w-4 mr-2" />
+                              GitHub
+                              <ExternalLink className="h-3 w-3 ml-1" />
+                            </a>
+
+                            <p className="flex items-center text-blue-400 hover:text-blue-300">
+                              <FaDiscord className="h-4 w-4 mr-2" />
+                              <span>{member.discord}</span>
+                            </p>
                           </div>
 
                           <div className="flex items-center text-zinc-400 text-sm">

@@ -115,7 +115,8 @@ function Dashboard() {
       date: "June 26, 2025",
       startTime: "08:00",
       endTime: "08:30",
-      title: "Mini Event 1 - Fast Typing",
+      // title: "Mini Event 1 - Fast Typing",
+      title: "Mini Event 1",
       description: "Test",
       isActive: false,
       isPast: false
@@ -133,16 +134,18 @@ function Dashboard() {
       date: "June 27, 2025",
       startTime: "11:30",
       endTime: "12:30",
-      title: "Mini Event 2 - Build Your AI Website",
+      // title: "Mini Event 2 - Build Your AI Website",
+      title: "Mini Event 2",
       description: "Test",
       isActive: false,
       isPast: false
     },
     {
       date: "June 27, 2025",
-      startTime: "02:00",
-      endTime: "02:30",
-      title: "Mini Event 3 - Gaming Tournament",
+      startTime: "01:30",
+      endTime: "02:00",
+      // title: "Mini Event 3 - Gaming Tournament",
+      title: "Mini Event 3",
       description: "Test",
       isActive: false,
       isPast: false
@@ -733,7 +736,9 @@ function Dashboard() {
                     </div>
                   </div>
 
-                  <div className="flex justify-end mt-4">
+                  {/* Project Submit button */}
+
+                  {/* <div className="flex justify-end mt-4">
                     <button
                       className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md text-sm font-medium hover:cursor-pointer"
                       onClick={handleProjectSubmission}
@@ -748,7 +753,7 @@ function Dashboard() {
                         </>
                       )}
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               )}
             </div>

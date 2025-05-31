@@ -94,6 +94,13 @@ export default function Home() {
     },
   ];
 
+  const technicalPartners = [
+    {
+      name: "NooBuild",
+      logo: "/partners/iemGdg.svg",
+      website: ""
+    },
+  ];
   return (
     <>
       <div className="h-[100vh] w-screen rounded-md relative flex flex-col items-center justify-center antialiased overflow-hidden">
@@ -218,13 +225,42 @@ export default function Home() {
           </div>
 
           {/* Community Partners */}
-          {communityPartners && communityPartners.length > 0 && (
+          {technicalPartners && communityPartners.length > 0 && (
             <div className="mb-20">
               <h3 className="text-2xl font-bold mb-6 text-green-400 tracking-wider text-center">
                 Community Partners
               </h3>
               <div className="flex justify-center items-center">
                 {communityPartners.map((partner, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-gray-700 hover:border-green-400 cursor-pointer transition-all duration-300 transform hover:scale-105 flex items-center justify-center max-w-sm"
+                  >
+                    <div className="w-full h-16 bg-black/60 rounded-lg flex items-center justify-center overflow-hidden">
+                      <Image
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="h-full w-full object-contain"
+                        width={300}
+                        height={64}
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {technicalPartners && technicalPartners.length > 0 && (
+            <div className="mb-20">
+              <h3 className="text-2xl font-bold mb-6 text-green-400 tracking-wider text-center">
+                Technical Partners
+              </h3>
+              <div className="flex justify-center items-center">
+                {technicalPartners.map((partner, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
@@ -258,7 +294,7 @@ export default function Home() {
       <TeamMembers />
       <Faq />
       <AdvancedFooter />
-      
+
       <motion.button
         onClick={scrollToTop}
         className={`fixed bottom-8 right-8 z-50 w-12 h-12 bg-green-400 hover:bg-green-500 cursor-pointer text-black rounded-full shadow-lg transition-all duration-300 flex items-center justify-center group ${showScrollUp ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}

@@ -11,7 +11,7 @@ interface TeamMember {
 interface TeamData {
   admin: TeamMember[];
   coAdmins: TeamMember[];
-  // teamMembers: TeamMember[];
+  core: TeamMember[];
 }
 
 interface ModalPosition {
@@ -43,6 +43,26 @@ export default function TeamMembers(): React.ReactElement {
     ],
     coAdmins: [
       {
+        name: "Subhradeep Roy Chowdhury",
+        image: "/team/src.jpg",
+        // designation: "MARKETING Co-Lead",
+        linkedin: "https://www.linkedin.com/in/subhradeep-roy-chowdhury-715264318",
+      },
+      {
+        name: "Aniya Agarwal",
+        image: "/team/aniya.jpg",
+        // designation: "DESIGNER LEAD",
+        linkedin: "https://www.linkedin.com/in/aniya-agarwal-0b45a631b",
+      },
+      {
+        name: "Asad Hussain",
+        image: "/team/assad.jpg",
+        // designation: "MEDIA Lead",
+        linkedin: "https://www.linkedin.com/in/asad-hussain-765502319",
+      }
+    ],
+    core: [
+      {
         name: "Aniket Chakraborty",
         image: "/team/aniket.jpg",
         // designation: "MARKETING LEAD",
@@ -54,42 +74,7 @@ export default function TeamMembers(): React.ReactElement {
         // designation: "COVERAGE LEAD",
         linkedin: "https://www.linkedin.com/in/srijan-ray-5b1967282",
       },
-      {
-        name: "Subhradeep Roy Chowdhury",
-        image: "/team/src.jpg",
-        // designation: "MARKETING",
-        linkedin: "https://www.linkedin.com/in/subhradeep-roy-chowdhury-715264318",
-      },
-      {
-        name: "Aniya Agarwal",
-        image: "/team/aniya.jpg",
-        // designation: "DESIGNER & MEDIA LEAD",
-        linkedin: "https://www.linkedin.com/in/aniya-agarwal-0b45a631b",
-      },
-      {
-        name: "Asad Hussain",
-        image: "/team/assad.jpg",
-        // designation: "MEDIA",
-        linkedin: "https://www.linkedin.com/in/asad-hussain-765502319",
-      }
-    ],
-    // teamMembers: [
-    //   {
-    //     name: "Jordan Lee",
-    //     image: null,
-    //     designation: "Developer",
-    //   },
-    //   {
-    //     name: "Taylor Smith",
-    //     image: null,
-    //     designation: "Designer",
-    //   },
-    //   {
-    //     name: "Pat Chen",
-    //     image: null,
-    //     designation: "Marketing",
-    //   }
-    // ]
+    ]
   };
 
   const [hoveredMember, setHoveredMember] = useState<string | null>(null);
@@ -172,7 +157,7 @@ export default function TeamMembers(): React.ReactElement {
     }
   };
 
-  const renderMember = (member: TeamMember, type: "admin" | "coAdmin" | "member"): React.ReactElement => {
+  const renderMember = (member: TeamMember, type: "admin" | "coAdmin" | "core"): React.ReactElement => {
     let colorClass = "bg-gradient-to-br from-gray-600 to-gray-800";
 
     if (type === "admin") {
@@ -203,7 +188,7 @@ export default function TeamMembers(): React.ReactElement {
   };
 
   return (
-    <div className="bg-[#0a0a0a] p-8 rounded-2xl max-w-3xl mx-auto">
+    <div className="bg-[#0a0a0a] p-8 rounded-2xl max-w-3xl mx-auto border border-gray-700">
       {/* Admins */}
       {teamData.admin.length > 0 && (
         <div className="mb-10">
@@ -218,10 +203,24 @@ export default function TeamMembers(): React.ReactElement {
         </div>
       )}
 
+      {/* Core */}
+      {teamData.core.length > 0 && (
+        <div className="mb-10">
+          <h3 className="text-lg text-zinc-400 mb-4 text-center uppercase tracking-widest">Core</h3>
+          <div className="flex flex-wrap justify-center gap-6">
+            {teamData.core.map((core, idx) => (
+              <div key={`Core-${idx}`}>
+                {renderMember(core, "core")}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Co-Admins */}
       {teamData.coAdmins.length > 0 && (
         <div className="mb-10">
-          <h3 className="text-lg text-zinc-400 mb-4 text-center uppercase tracking-widest">Co-Admins</h3>
+          <h3 className="text-lg text-zinc-400 mb-4 text-center uppercase tracking-widest">Co-ordinator</h3>
           <div className="flex flex-wrap justify-center gap-6">
             {teamData.coAdmins.map((coAdmin, idx) => (
               <div key={`coAdmin-${idx}`}>

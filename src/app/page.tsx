@@ -3,14 +3,14 @@ import React from 'react'
 import { motion, Variants } from 'framer-motion'
 import { useTimer } from 'react-timer-hook'
 import MusicButton from '@/components/Music'
-import { Spotlight } from '@/components/ui/spotlight-new';
-import Faq from '@/components/Faq';
-import StarsCanvas from '@/components/ui/star-canvas';
+import { Spotlight } from '@/components/ui/spotlight-new'
+import Faq from '@/components/Faq'
+import StarsCanvas from '@/components/ui/star-canvas'
 import TeamMembers from '@/components/Team'
 import AnimatedSnippet from '@/components/AnimatedSnippet'
 import { AboutCard } from "@/components/AboutCard"
-import PrizeCard from '@/components/PrizeCard';
-import AdvancedFooter from '@/components/AdvancedFooter';
+import PrizeCard from '@/components/PrizeCard'
+import AdvancedFooter from '@/components/AdvancedFooter'
 import { useState, useEffect } from 'react'
 import { ChevronUp } from 'lucide-react'
 import Image from 'next/image'

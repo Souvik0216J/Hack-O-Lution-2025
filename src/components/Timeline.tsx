@@ -47,7 +47,7 @@ const Timeline = () => {
                 )}
 
                 {/* Card */}
-                <div className="bg-gradient-to-br bg-black border-gray-800 rounded-2xl p-8 hover:border-green-500/50 cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-green-500/20 group">
+                <div className="border-2 bg-gradient-to-br bg-black border-gray-800 rounded-2xl p-8 hover:border-green-500/50 cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-green-500/20 group">
                   {/* Icon */}
                   <div className="w-16 h-16 bg-gradient-to-br bg-black border-3 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                     <div className="text-white">

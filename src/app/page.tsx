@@ -92,11 +92,21 @@ export default function Home() {
       logo: "/partners/nobuild.jpg",
       website: ""
     },
+    {
+      name: "Sourcify",
+      logo: "/partners/socialWhite.png",
+      website: ""
+    },
+    {
+      name: "Digital Dominators",
+      logo: "/partners/digitalDominators.png",
+      website: ""
+    },
   ];
 
   const technicalPartners = [
     {
-      name: "NooBuild",
+      name: "GDG IEM, Kolkata",
       logo: "/partners/iemGdg.svg",
       website: ""
     },
@@ -225,12 +235,12 @@ export default function Home() {
           </div>
 
           {/* Community Partners */}
-          {technicalPartners && communityPartners.length > 0 && (
+          {communityPartners && communityPartners.length > 0 && (
             <div className="mb-20">
               <h3 className="text-2xl font-bold mb-6 text-green-400 tracking-wider text-center">
                 Community Partners
               </h3>
-              <div className="flex justify-center items-center">
+              <div className="flex justify-center items-center gap-4">
                 {communityPartners.map((partner, index) => (
                   <motion.div
                     key={index}

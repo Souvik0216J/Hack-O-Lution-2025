@@ -112,7 +112,7 @@ export default function Home() {
   const technicalPartners = [
     {
       name: "GDG IEM, Kolkata",
-      logo: "/partners/iemGdg.svg",
+      logo: "/partners/iemGdg.jpg",
       website: ""
     },
   ];

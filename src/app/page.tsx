@@ -93,6 +93,11 @@ export default function Home() {
       website: ""
     },
     {
+      name: "innofusion",
+      logo: "/partners/innofusion2.jpg",
+      website: ""
+    },
+    {
       name: "Sourcify",
       logo: "/partners/socialWhite.png",
       website: ""

@@ -188,7 +188,7 @@ export default function TeamMembers(): React.ReactElement {
   };
 
   return (
-    <div className="bg-[#0a0a0a] p-8 rounded-2xl max-w-3xl mx-auto border border-gray-700">
+    <div className="bg-[#0a0a0a] p-8 rounded-2xl max-w-3xl mx-auto">
       {/* Admins */}
       {teamData.admin.length > 0 && (
         <div className="mb-10">

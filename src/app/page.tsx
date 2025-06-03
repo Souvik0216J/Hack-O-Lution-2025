@@ -94,7 +94,7 @@ export default function Home() {
     },
     {
       name: "innofusion",
-      logo: "/partners/innofusion2.jpg",
+      logo: "/partners/innoFusion.jpg",
       website: ""
     },
     {

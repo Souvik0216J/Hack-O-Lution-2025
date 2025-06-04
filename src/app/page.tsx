@@ -90,22 +90,22 @@ export default function Home() {
     {
       name: "NooBuild",
       logo: "/partners/nobuild.jpg",
-      website: ""
+      website: "https://www.instagram.com/noobuild.community?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
     },
     {
       name: "innofusion",
       logo: "/partners/innoFusion.jpg",
-      website: ""
+      website: "https://www.innofusion.tech"
     },
     {
       name: "Sourcify",
       logo: "/partners/socialWhite.png",
-      website: ""
+      website: "https://www.instagram.com/sourcifyin?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
     },
     {
       name: "Digital Dominators",
       logo: "/partners/digitalDominators.png",
-      website: ""
+      website: "https://www.instagram.com/digital_dominators?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
     },
   ];
 

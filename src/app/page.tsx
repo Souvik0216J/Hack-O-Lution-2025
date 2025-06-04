@@ -113,7 +113,7 @@ export default function Home() {
     {
       name: "GDG IEM, Kolkata",
       logo: "/partners/iemGdg.jpg",
-      website: ""
+      website: "https://www.instagram.com/gdg_iem?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
     },
   ];
   return (

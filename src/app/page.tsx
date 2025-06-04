@@ -253,6 +253,7 @@ export default function Home() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-gray-700 hover:border-green-400 cursor-pointer transition-all duration-300 transform hover:scale-105 flex items-center justify-center max-w-sm"
+                    onClick={() => window.open(partner.website, '_blank')}
                   >
                     <div className="w-full h-16 bg-black/60 rounded-lg flex items-center justify-center overflow-hidden">
                       <Image
@@ -282,6 +283,7 @@ export default function Home() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-gray-700 hover:border-green-400 cursor-pointer transition-all duration-300 transform hover:scale-105 flex items-center justify-center max-w-sm"
+                    onClick={() => window.open(partner.website, '_blank')}
                   >
                     <div className="w-full h-16 bg-black/60 rounded-lg flex items-center justify-center overflow-hidden">
                       <Image

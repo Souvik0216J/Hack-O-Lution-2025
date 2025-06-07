@@ -42,7 +42,7 @@ function RulesPage() {
     "Organizers reserve the right to inspect submissions for originality and request clarification on similarities to previous work.",
     "Teams must consist of 2 to 4 members as specified by the event guidelines.",
     "All teams must register before the deadline. Late registrations will not be accepted.",
-    "All team members must be present at the venue for the duration of the hackathon unless prior permission is granted by the organizers.",
+    "All participants must remain at the venue for the full duration of the hackathon. No exceptions will be permitted.",
     "Participants must check in at the registration desk upon arrival and check out when leaving the venue.",
     "Collaboration between teams is not allowed unless explicitly permitted by the organizers.",
     "Use of external help (mentors, internet forums, etc.) is only allowed within the guidelines provided by the organizers.",

@@ -44,7 +44,7 @@ function RulesPage() {
     "All teams must register before the deadline. Late registrations will not be accepted.",
     "All participants must remain at the venue for the full duration of the hackathon. No exceptions will be permitted.",
     "Participants must check in at the registration desk upon arrival and check out when leaving the venue.",
-    "Collaboration between teams is not allowed unless explicitly permitted by the organizers.",
+    "Collaboration between teams is not allowed.",
     "Use of external help (mentors, internet forums, etc.) is only allowed within the guidelines provided by the organizers.",
     "Any attempt to sabotage other teams or interfere with their work will lead to immediate disqualification.",
     "The decision of the judging panel is final and cannot be contested.",

@@ -245,7 +245,7 @@ export default function Home() {
               <h3 className="text-2xl font-bold mb-6 text-green-400 tracking-wider text-center">
                 Community Partners
               </h3>
-              <div className="flex justify-center items-center gap-4">
+              <div className="flex flex-wrap justify-center items-center gap-4">
                 {communityPartners.map((partner, index) => (
                   <motion.div
                     key={index}
@@ -275,7 +275,7 @@ export default function Home() {
               <h3 className="text-2xl font-bold mb-6 text-green-400 tracking-wider text-center">
                 Technical Partners
               </h3>
-              <div className="flex justify-center items-center">
+              <div className="flex flex-wrap justify-center items-center gap-4">
                 {technicalPartners.map((partner, index) => (
                   <motion.div
                     key={index}

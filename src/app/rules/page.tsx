@@ -131,7 +131,7 @@ function RulesPage() {
             </div>
             <p className="text-red-200 text-lg">
               Violation of any rule may result in immediate disqualification.
-              All decisions made by the organizing committee are final and binding.
+              All decisions made by the organizing committee are final.
             </p>
           </div>
         </motion.div>

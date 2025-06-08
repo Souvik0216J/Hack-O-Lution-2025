@@ -97,6 +97,11 @@ export default function Home() {
       logo: "/partners/innoFusion.jpg",
       website: "https://www.innofusion.tech"
     },
+        {
+      name: "Sourcify",
+      logo: "/partners/Repositry.png",
+      website: "https://repository-main.vercel.app"
+    },
     {
       name: "Sourcify",
       logo: "/partners/socialWhite.png",

@@ -87,7 +87,7 @@ function Dashboard() {
     {
       date: "June 26-27, 2025",
       startTime: "09:00", // Beginning of day
-      endTime: "15:00",   // End of day
+      endTime: "14:30",   // End of day
       title: "Hacking Start & End",
       description: "Test",
       isActive: false,
@@ -170,7 +170,7 @@ function Dashboard() {
     },
     {
       date: "June 27, 2025",
-      startTime: "15:15",
+      startTime: "14:45",
       endTime: "16:30",
       title: "Evaluation",
       description: "Test",

@@ -91,7 +91,7 @@ export default function Home() {
       name: "Rajdeep Banerjee",
       title: "Conding Instructor at Not Zero",
       // expertise: "AI/ML, Full Stack Development",
-      image: "/mentors/rb.jpg", // Add actual image paths
+      image: "/mentors/rb.JPG", // Add actual image paths
       linkedin: "https://www.linkedin.com/in/banerjeerajdeep"
     },
   ];

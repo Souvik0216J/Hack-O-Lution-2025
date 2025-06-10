@@ -63,7 +63,7 @@ export default function Home() {
       name: "Raihan Khan",
       title: "Founding AI Engineer Wyzr",
       // expertise: "AI/ML",
-      image: "/mentors/rk.jpeg", // Add actual image paths
+      image: "/mentors/rk.jpg", // Add actual image paths
       linkedin: "https://www.linkedin.com/in/raihankhan-rk"
     },
     {

@@ -61,7 +61,7 @@ export default function Home() {
   const mentors = [
     {
       name: "Raihan Khan",
-      title: "Founding AI Engineer Wyzr",
+      title: "Founding AI Engineer at Wyzr",
       // expertise: "AI/ML",
       image: "/mentors/rk.jpg", // Add actual image paths
       linkedin: "https://www.linkedin.com/in/raihankhan-rk"

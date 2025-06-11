@@ -79,7 +79,7 @@ function Dashboard() {
       date: "June 26, 2025",
       startTime: "07:30", // Beginning of day
       endTime: "08:00",   // End of day
-      title: "Reporting & Check In Begins",
+      title: "Reporting & Check In",
       description: "Test",
       isActive: false,
       isPast: false // calculate this in the useEffect
@@ -102,15 +102,15 @@ function Dashboard() {
       isActive: false,
       isPast: false
     },
-    {
-      date: "June 26, 2025",
-      startTime: "18:00",
-      endTime: "19:00",
-      title: "Evening Snacks",
-      description: "Test",
-      isActive: false,
-      isPast: false
-    },
+    // {
+    //   date: "June 26, 2025",
+    //   startTime: "18:00",
+    //   endTime: "19:00",
+    //   title: "Evening Snacks",
+    //   description: "Test",
+    //   isActive: false,
+    //   isPast: false
+    // },
     {
       date: "June 26, 2025",
       startTime: "08:00",
@@ -548,14 +548,14 @@ function Dashboard() {
                     >
                       {/* Timeline node */}
                       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -mt-0.5">
-                        <div className={`
+                        {/* <div className={`
                   w-5 h-5 rounded-full border-4 border-black relative z-10
                   ${event.isActive ? "bg-blue-500" : event.isPast ? "bg-green-500" : "bg-zinc-600"}
                 `}>
                           {event.isActive && (
                             <div className="absolute -inset-2 rounded-full bg-blue-500/30 animate-pulse"></div>
                           )}
-                        </div>
+                        </div> */}
                       </div>
 
                       {/* Card */}

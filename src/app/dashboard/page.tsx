@@ -774,7 +774,7 @@ function Dashboard() {
                 ) : teamData.status === "Approved" ? (
                   "Congratulations! Your team has been approved to participate. Please check your email and discord announcements for further instructions and details about the event."
                 ) : (
-                  "We regret to inform you that your application has not been approved. Please contact support for more information."
+                  "We regret to inform you that your application has not been approved."
                 )}
               </p>
             </div>

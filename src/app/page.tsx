@@ -97,22 +97,37 @@ export default function Home() {
   ];
 
   // Partners data (replace with actual partner information)
-  // const goldSponsors = [
-  //   {
-  //     name: "test",
-  //     logo: "test",
-  //     website: "test"
-  //   }
-  // ];
+  const goldSponsors = [
+    {
+      name: "CloudyML",
+      logo: "/partners/cloudyml.png",
+      website: "https://www.cloudyml.com"
+    }
+  ];
 
-  // const technicalSponsors = [
-  //   {
-  //     name: "test",
-  //     subtitle: "test",
-  //     logo: "test",
-  //     website: "test"
-  //   }
-  // ];
+  const silverSponsors = [
+    {
+      name: "Keploy",
+      logo: "/partners/keploy.jpg",
+      website: "https://keploy.io"
+    }
+  ];
+
+  const miniEventPartner = [
+    {
+      name: "YouAreAssum",
+      logo: "/partners/youareassum.jpg",
+      website: "https://www.instagram.com/you_are_awesome_store"
+    }
+  ];
+
+  const foodPartner = [
+    {
+      name: "thebelgianwaffle",
+      logo: "/partners/belgian.jpg",
+      website: "https://thebelgianwaffle.co"
+    }
+  ];
 
   const communityPartners = [
     {
@@ -152,6 +167,11 @@ export default function Home() {
       name: "GDG IEM, Kolkata",
       logo: "/partners/iemGdg.jpg",
       website: "https://www.instagram.com/gdg_iem?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+    },
+    {
+      name: "Not Zero",
+      logo: "/partners/notZero.png",
+      website: ""
     },
   ];
   return (
@@ -299,6 +319,7 @@ export default function Home() {
       </section>
 
       {/* Partners Section */}
+      {/* Partners Section */}
       <section id="partners" className="pt-20 pb-16 bg-gradient-to-b">
         <div className="container mx-auto px-4">
           <div className="flex flex-col justify-center items-center text-center mb-12">
@@ -310,21 +331,184 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Community Partners */}
-          {communityPartners && communityPartners.length > 0 && (
-            <div className="mb-20 ">
-              <h3 className="text-2xl font-bold mb-6 text-green-400 tracking-wider text-center">
-                Community Partners
+          {/* Gold and Silver Partners in same line */}
+          {((goldSponsors && goldSponsors.length > 0) || (silverSponsors && silverSponsors.length > 0)) && (
+            <div className="mb-10">
+              <div className="flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4">
+                {/* Gold Partners */}
+                {goldSponsors && goldSponsors.length > 0 && (
+                  <div>
+                    <h3 className="text-2xl font-bold mb-4 text-yellow-400 tracking-wider text-center">
+                      Gold Partner
+                    </h3>
+                    <div className="flex flex-wrap justify-center items-center gap-4">
+                      {goldSponsors.map((partner, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                          className={`bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-gray-700 hover:border-green-400 transition-all duration-300 transform hover:scale-105 flex items-center justify-center max-w-sm ${partner.website && partner.website.trim().length > 0 ? 'cursor-pointer' : ''
+                            }`}
+                          onClick={() => {
+                            if (partner.website && partner.website.trim().length > 0) {
+                              window.open(partner.website, '_blank');
+                            }
+                          }}
+                        >
+                          <div className="w-full h-16 bg-black/60 rounded-lg flex items-center justify-center overflow-hidden">
+                            <Image
+                              src={partner.logo}
+                              alt={partner.name}
+                              className="h-full w-full object-contain"
+                              width={300}
+                              height={64}
+                            />
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Silver Partners */}
+                {silverSponsors && silverSponsors.length > 0 && (
+                  <div>
+                    <h3 className="text-2xl font-bold mb-4 text-gray-400 tracking-wider text-center">
+                      Silver Partner
+                    </h3>
+                    <div className="flex flex-wrap justify-center items-center gap-4">
+                      {silverSponsors.map((partner, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                          className={`bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-gray-700 hover:border-green-400 transition-all duration-300 transform hover:scale-105 flex items-center justify-center max-w-sm ${partner.website && partner.website.trim().length > 0 ? 'cursor-pointer' : ''
+                            }`}
+                          onClick={() => {
+                            if (partner.website && partner.website.trim().length > 0) {
+                              window.open(partner.website, '_blank');
+                            }
+                          }}
+                        >
+                          <div className="w-full h-16 bg-black/60 rounded-lg flex items-center justify-center overflow-hidden">
+                            <Image
+                              src={partner.logo}
+                              alt={partner.name}
+                              className="h-full w-full object-contain"
+                              width={300}
+                              height={64}
+                            />
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Mini Event Partner and Food Partner in same line */}
+          {((miniEventPartner && miniEventPartner.length > 0) || (foodPartner && foodPartner.length > 0)) && (
+            <div className="mb-10">
+              <div className="flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4">
+                {/* Mini Event Partner */}
+                {miniEventPartner && miniEventPartner.length > 0 && (
+                  <div>
+                    <h3 className="text-2xl font-bold mb-4 text-purple-400 tracking-wider text-center">
+                      Mini Event Partner
+                    </h3>
+                    <div className="flex flex-wrap justify-center items-center gap-4">
+                      {miniEventPartner.map((partner, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                          className={`bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-gray-700 hover:border-green-400 transition-all duration-300 transform hover:scale-105 flex items-center justify-center max-w-sm ${partner.website && partner.website.trim().length > 0 ? 'cursor-pointer' : ''
+                            }`}
+                          onClick={() => {
+                            if (partner.website && partner.website.trim().length > 0) {
+                              window.open(partner.website, '_blank');
+                            }
+                          }}
+                        >
+                          <div className="w-full h-16 bg-black/60 rounded-lg flex items-center justify-center overflow-hidden">
+                            <Image
+                              src={partner.logo}
+                              alt={partner.name}
+                              className="h-full w-full object-contain"
+                              width={300}
+                              height={64}
+                            />
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Food Partner */}
+                {foodPartner && foodPartner.length > 0 && (
+                  <div>
+                    <h3 className="text-2xl font-bold mb-4 text-orange-400 tracking-wider text-center">
+                      Food Partner
+                    </h3>
+                    <div className="flex flex-wrap justify-center items-center gap-4">
+                      {foodPartner.map((partner, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                          className={`bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-gray-700 hover:border-green-400 transition-all duration-300 transform hover:scale-105 flex items-center justify-center max-w-sm ${partner.website && partner.website.trim().length > 0 ? 'cursor-pointer' : ''
+                            }`}
+                          onClick={() => {
+                            if (partner.website && partner.website.trim().length > 0) {
+                              window.open(partner.website, '_blank');
+                            }
+                          }}
+                        >
+                          <div className="w-full h-16 bg-black/60 rounded-lg flex items-center justify-center overflow-hidden">
+                            <Image
+                              src={partner.logo}
+                              alt={partner.name}
+                              className="h-full w-full object-contain"
+                              width={300}
+                              height={64}
+                            />
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Technical Partners */}
+          {technicalPartners && technicalPartners.length > 0 && (
+            <div className="mb-10">
+              <h3 className="text-2xl font-bold mb-4 text-blue-400 tracking-wider text-center">
+                Technical Partners
               </h3>
               <div className="flex flex-wrap justify-center items-center gap-4">
-                {communityPartners.map((partner, index) => (
+                {technicalPartners.map((partner, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-gray-700 hover:border-green-400 cursor-pointer transition-all duration-300 transform hover:scale-105 flex items-center justify-center max-w-sm"
-                    onClick={() => window.open(partner.website, '_blank')}
+                    className={`bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-gray-700 hover:border-green-400 transition-all duration-300 transform hover:scale-105 flex items-center justify-center max-w-sm ${partner.website && partner.website.trim().length > 0 ? 'cursor-pointer' : ''
+                      }`}
+                    onClick={() => {
+                      if (partner.website && partner.website.trim().length > 0) {
+                        window.open(partner.website, '_blank');
+                      }
+                    }}
                   >
                     <div className="w-full h-16 bg-black/60 rounded-lg flex items-center justify-center overflow-hidden">
                       <Image
@@ -341,20 +525,26 @@ export default function Home() {
             </div>
           )}
 
-          {technicalPartners && technicalPartners.length > 0 && (
+          {/* Community Partners */}
+          {communityPartners && communityPartners.length > 0 && (
             <div className="mb-20">
-              <h3 className="text-2xl font-bold mb-6 text-green-400 tracking-wider text-center">
-                Technical Partners
+              <h3 className="text-2xl font-bold mb-4 text-pink-400 tracking-wider text-center">
+                Community Partners
               </h3>
               <div className="flex flex-wrap justify-center items-center gap-4">
-                {technicalPartners.map((partner, index) => (
+                {communityPartners.map((partner, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-gray-700 hover:border-green-400 cursor-pointer transition-all duration-300 transform hover:scale-105 flex items-center justify-center max-w-sm"
-                    onClick={() => window.open(partner.website, '_blank')}
+                    className={`bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-gray-700 hover:border-green-400 transition-all duration-300 transform hover:scale-105 flex items-center justify-center max-w-sm ${partner.website && partner.website.trim().length > 0 ? 'cursor-pointer' : ''
+                      }`}
+                    onClick={() => {
+                      if (partner.website && partner.website.trim().length > 0) {
+                        window.open(partner.website, '_blank');
+                      }
+                    }}
                   >
                     <div className="w-full h-16 bg-black/60 rounded-lg flex items-center justify-center overflow-hidden">
                       <Image

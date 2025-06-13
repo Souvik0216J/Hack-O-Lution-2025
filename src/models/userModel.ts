@@ -19,6 +19,18 @@ const projectSchema = new mongoose.Schema({
     hostedLink: {
         type: String,
         default: "null",
+    },
+    pptLink: {
+        type: String,
+        default: "null",
+    },
+    techStack: {
+        type: String,
+        default: "null",
+    },
+    difficulty: {
+        type: String,
+        default: "null",
     }
 });
 

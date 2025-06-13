@@ -7,19 +7,29 @@ export async function POST(request: NextRequest) {
     try {
 
         const reqBody = await request.json()
-        const { teamId, projectLink, githubLink } = reqBody
+        const { teamId, projectLink, githubLink, pptLink, techStack, difficulty } = reqBody
 
-        if (!teamId || !projectLink || ! githubLink) {
+        console.log(reqBody)
+
+        if (!teamId || !projectLink || !githubLink || !pptLink || !techStack || !difficulty) {
             return NextResponse.json({
                 success: false,
                 message: 'Missing required fields'
             }, { status: 400 })
         }
 
-        // update the record
         const team = await User.findOneAndUpdate(
             { teamId: teamId },
-            { $set: { 'projectSubmit.0.isSubmit': true }, 'projectSubmit.0.projectLink': githubLink, 'projectSubmit.0.hostedLink': projectLink},
+            {
+                $set: {
+                    'projectSubmit.0.isSubmit': true,
+                    'projectSubmit.0.projectLink': githubLink,
+                    'projectSubmit.0.hostedLink': projectLink,
+                    'projectSubmit.0.pptLink': pptLink,
+                    'projectSubmit.0.techStack': techStack,
+                    'projectSubmit.0.difficulty': difficulty,
+                }
+            },
             { new: true }
         )
 

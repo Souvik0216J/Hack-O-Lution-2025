@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { cn } from "@/utils/cn";
-import { User, Users, FileCheck, Clock, Loader2Icon, ExternalLink, Github, FileCode, Calendar } from "lucide-react";
+import { User, Users, FileCheck, Clock, Loader2Icon, ExternalLink, Github, FileCode, Calendar, Presentation } from "lucide-react";
 import { getUserData } from "@/utils/getUserData";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -18,6 +18,7 @@ interface TeamMember {
 interface ProjectInfo {
   isSubmit: boolean;
   projectLink: string;
+  pptLink: string
   hostedLink: string;
 }
 
@@ -52,12 +53,22 @@ function Dashboard() {
   const [Btnloading, setBtnLoading] = React.useState(false)
   const [pLink, setPLink] = useState<string>("");
   const [gLink, setGLink] = useState<string>("");
+  const [ppLink, setPptLink] = useState<string>("");
+  const [tStack, setTechStack] = useState<string>("");
+  const [difi, setDifi] = useState<string>("");
+
   const [project, setProject] = useState<{
     projectLink: string;
     githubLink: string;
+    pptLink: string;
+    techStack: string;
+    difficulty: string;
   }>({
     projectLink: "",
-    githubLink: ""
+    githubLink: "",
+    pptLink: "",
+    techStack: "",
+    difficulty: "",
   })
 
   const [teamData, setTeamData] = useState<TeamData>({
@@ -298,7 +309,10 @@ function Dashboard() {
       // Update project state
       const updatedProject = {
         projectLink: pLink,
-        githubLink: gLink
+        githubLink: gLink,
+        pptLink: ppLink,
+        techStack: tStack,
+        difficulty: difi,
       };
 
       setProject(updatedProject);
@@ -306,7 +320,10 @@ function Dashboard() {
       const response = await axios.post("/api/users/submit-project", {
         teamId: teamData.teamId,
         projectLink: updatedProject.projectLink,
-        githubLink: updatedProject.githubLink
+        githubLink: updatedProject.githubLink,
+        pptLink: updatedProject.pptLink,
+        techStack: updatedProject.techStack,
+        difficulty: updatedProject.difficulty,
       });
 
       if (response.data.success) {
@@ -656,7 +673,7 @@ function Dashboard() {
                     </div>
                     <div>
                       <p className="font-medium text-green-400">Project Submitted</p>
-                      <p className="text-zinc-400 text-sm">Your project has been successfully submitted for the hackathon.</p>
+                      <p className="text-zinc-400 text-sm">Your project has been successfully submitted for the HACK&#123;<span className="text-green-400">0</span>&#125;LUTION 2<span className="text-green-400">K</span>25.</p>
                     </div>
                   </div>
 
@@ -690,14 +707,23 @@ function Dashboard() {
                           </a>
                         ) : null}
 
-
+                        <a
+                          href={teamData.projectSubmit[0].pptLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center text-blue-400 hover:text-blue-300"
+                        >
+                          <Presentation className="h-4 w-4 mr-2" />
+                          Submitted PPT
+                          <ExternalLink className="h-3 w-3 ml-1" />
+                        </a>
                       </div>
                     </div>
 
                     <div className="bg-zinc-800 p-4 rounded-lg">
                       <h4 className="text-blue-400 mb-2 font-medium">Submission Status</h4>
                       <p className="text-zinc-400 text-sm">
-                        Your project has been submitted for judging. Please make sure both links remain accessible throughout the judging period.
+                        Your project has been submitted for judging. Please make sure all links remain accessible throughout the judging period.
                       </p>
                     </div>
                   </div>
@@ -709,28 +735,69 @@ function Dashboard() {
                     Please submit your project links below. Make sure your project is properly hosted and the repository is accessible.
                   </p>
                   <div className="space-y-4">
+                    <div className="flex gap-4">
+                      <div className="flex-1">
+                        <label htmlFor="projectLink" className="block text-medium font-medium mb-2 text-blue-400">
+                          Project Hosted Link
+                        </label>
+                        <Input
+                          type="url"
+                          id="projectLink"
+                          value={pLink}
+                          onChange={(e) => setPLink(e.target.value)}
+                          placeholder="Your project hosted link (if available)"
+                        />
+                      </div>
+
+                      <div className="flex-1">
+                        <label htmlFor="githubLink" className="block text-medium font-medium mb-2 text-blue-400">
+                          GitHub Repository Link
+                        </label>
+                        <Input
+                          type="url"
+                          id="githubLink"
+                          value={gLink}
+                          onChange={(e) => setGLink(e.target.value)}
+                          placeholder="https://github.com/username/repository"
+                        />
+                      </div>
+                    </div>
+
                     <div>
-                      <label htmlFor="projectLink" className="block text-medium font-medium mb-2 text-blue-400">
-                        Project Hosted Link
+                      <label htmlFor="pptLink" className="block text-medium font-medium mb-2 text-blue-400">
+                        Project PPT Link
                       </label>
                       <Input
                         type="url"
-                        id="projectLink"
-                        value={pLink}
-                        onChange={(e) => setPLink(e.target.value)}
-                        placeholder="https://your-project.com"
+                        id="pptLink"
+                        value={ppLink}
+                        onChange={(e) => setPptLink(e.target.value)}
+                        placeholder="https://github.com/username/repository"
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="githubLink" className="block text-medium font-medium mb-2 text-blue-400">
-                        GitHub Repository Link
+                      <label htmlFor="tech stack" className="block text-medium font-medium mb-2 text-blue-400">
+                        Used Tech Stacks In Your Project
                       </label>
                       <Input
-                        type="url"
-                        id="githubLink"
-                        value={gLink}
-                        onChange={(e) => setGLink(e.target.value)}
+                        type="text"
+                        id="techStack"
+                        value={tStack}
+                        onChange={(e) => setTechStack(e.target.value)}
+                        placeholder="Python, Flask, MongoDB"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="difficulty" className="block text-medium font-medium mb-2 text-blue-400">
+                        Dificulties That Face In This Project
+                      </label>
+                      <Input
+                        type="text"
+                        id="difficulty"
+                        value={difi}
+                        onChange={(e) => setDifi(e.target.value)}
                         placeholder="https://github.com/username/repository"
                       />
                     </div>
@@ -738,7 +805,7 @@ function Dashboard() {
 
                   {/* Project Submit button */}
 
-                  {/* <div className="flex justify-end mt-4">
+                  <div className="flex justify-end mt-4">
                     <button
                       className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md text-sm font-medium hover:cursor-pointer"
                       onClick={handleProjectSubmission}
@@ -753,7 +820,7 @@ function Dashboard() {
                         </>
                       )}
                     </button>
-                  </div> */}
+                  </div>
                 </div>
               )}
             </div>

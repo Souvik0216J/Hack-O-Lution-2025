@@ -798,7 +798,7 @@ function Dashboard() {
                         id="difficulty"
                         value={difi}
                         onChange={(e) => setDifi(e.target.value)}
-                        placeholder="The difficulties that you face in this project"
+                        placeholder="Describe the challenges encountered during the project"
                       />
                     </div>
                   </div>

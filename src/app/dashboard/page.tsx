@@ -791,7 +791,7 @@ function Dashboard() {
 
                     <div>
                       <label htmlFor="difficulty" className="block text-medium font-medium mb-2 text-blue-400">
-                        Dificulties That Face In This Project
+                        Challenges Encountered In The Project
                       </label>
                       <Input
                         type="text"

@@ -124,8 +124,8 @@ function Dashboard() {
     // },
     {
       date: "June 26, 2025",
-      startTime: "08:00",
-      endTime: "08:30",
+      startTime: "20:00",
+      endTime: "20:30",
       // title: "Mini Event 1 - Fast Typing",
       title: "Mini Event 1",
       description: "Test",
@@ -142,9 +142,9 @@ function Dashboard() {
       isPast: false
     },
     {
-      date: "June 27, 2025",
-      startTime: "11:30",
-      endTime: "12:30",
+      date: "June 26-27, 2025",
+      startTime: "23:30",
+      endTime: "00:30",
       // title: "Mini Event 2 - Build Your AI Website",
       title: "Mini Event 2",
       description: "Test",
@@ -758,7 +758,7 @@ function Dashboard() {
                           id="githubLink"
                           value={gLink}
                           onChange={(e) => setGLink(e.target.value)}
-                          placeholder="https://github.com/username/repository"
+                          placeholder="Your project github repository link"
                         />
                       </div>
                     </div>
@@ -772,7 +772,7 @@ function Dashboard() {
                         id="pptLink"
                         value={ppLink}
                         onChange={(e) => setPptLink(e.target.value)}
-                        placeholder="https://github.com/username/repository"
+                        placeholder="Project details presentation link"
                       />
                     </div>
 
@@ -798,14 +798,14 @@ function Dashboard() {
                         id="difficulty"
                         value={difi}
                         onChange={(e) => setDifi(e.target.value)}
-                        placeholder="https://github.com/username/repository"
+                        placeholder="The difficulties that you face in this project"
                       />
                     </div>
                   </div>
 
                   {/* Project Submit button */}
 
-                  <div className="flex justify-end mt-4">
+                  {/* <div className="flex justify-end mt-4">
                     <button
                       className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md text-sm font-medium hover:cursor-pointer"
                       onClick={handleProjectSubmission}
@@ -820,7 +820,7 @@ function Dashboard() {
                         </>
                       )}
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               )}
             </div>

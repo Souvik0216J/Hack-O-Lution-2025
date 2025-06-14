@@ -299,8 +299,8 @@ function Dashboard() {
 
 
   const handleProjectSubmission = async () => {
-    if (!pLink || !gLink) {
-      alert("Please fill in both the project and GitHub links.");
+    if (!pLink || !gLink || !ppLink || !difi || !tStack) {
+      alert("Please make sure all project details are filled out before submitting.")
       return;
     }
 
@@ -738,7 +738,7 @@ function Dashboard() {
                     <div className="flex gap-4">
                       <div className="flex-1">
                         <label htmlFor="projectLink" className="block text-medium font-medium mb-2 text-blue-400">
-                          Project Hosted Link
+                          *Project Hosted Link
                         </label>
                         <Input
                           type="url"
@@ -751,7 +751,7 @@ function Dashboard() {
 
                       <div className="flex-1">
                         <label htmlFor="githubLink" className="block text-medium font-medium mb-2 text-blue-400">
-                          GitHub Repository Link
+                          *GitHub Repository Link
                         </label>
                         <Input
                           type="url"
@@ -765,7 +765,7 @@ function Dashboard() {
 
                     <div>
                       <label htmlFor="pptLink" className="block text-medium font-medium mb-2 text-blue-400">
-                        Project PPT Link
+                        *Project PPT Link
                       </label>
                       <Input
                         type="url"
@@ -778,7 +778,7 @@ function Dashboard() {
 
                     <div>
                       <label htmlFor="tech stack" className="block text-medium font-medium mb-2 text-blue-400">
-                        Used Tech Stacks In Your Project
+                        *Used Tech Stacks In Your Project
                       </label>
                       <Input
                         type="text"
@@ -791,7 +791,7 @@ function Dashboard() {
 
                     <div>
                       <label htmlFor="difficulty" className="block text-medium font-medium mb-2 text-blue-400">
-                        Challenges Encountered In The Project
+                        *Challenges Encountered In The Project
                       </label>
                       <Input
                         type="text"

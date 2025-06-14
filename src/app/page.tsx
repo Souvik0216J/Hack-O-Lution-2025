@@ -123,6 +123,11 @@ export default function Home() {
 
   const foodPartner = [
     {
+      name: "fivian",
+      logo: "/partners/fivian.jpg",
+      website: "https://www.instagram.com/fivian.in/"
+    },
+    {
       name: "thebelgianwaffle",
       logo: "/partners/belgian.jpg",
       website: "https://thebelgianwaffle.co"

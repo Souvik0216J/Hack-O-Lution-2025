@@ -89,7 +89,7 @@ function Dashboard() {
     {
       date: "June 26, 2025",
       startTime: "07:30", // Beginning of day
-      endTime: "08:00",   // End of day
+      endTime: "08:30",   // End of day
       title: "Reporting & Check In",
       description: "Test",
       isActive: false,

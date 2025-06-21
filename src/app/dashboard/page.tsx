@@ -252,7 +252,7 @@ function Dashboard() {
     updateEventStatus();
 
     // Set up a timer to update every minute
-    const intervalId = setInterval(updateEventStatus, 30000);
+    const intervalId = setInterval(updateEventStatus, 90000);
 
     return () => clearInterval(intervalId);
   }, []);

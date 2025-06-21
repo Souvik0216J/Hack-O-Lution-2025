@@ -107,7 +107,7 @@ function Dashboard() {
     {
       date: "June 26, 2025",
       startTime: "13:00",
-      endTime: "15:00",
+      endTime: "14:30",
       title: "Lunch Time",
       description: "Test",
       isActive: false,
@@ -135,7 +135,7 @@ function Dashboard() {
     {
       date: "June 26, 2025",
       startTime: "21:00",
-      endTime: "23:00",
+      endTime: "22:30",
       title: "Dinner Time",
       description: "Winners announced and prizes awarded",
       isActive: false,
@@ -252,7 +252,7 @@ function Dashboard() {
     updateEventStatus();
 
     // Set up a timer to update every minute
-    const intervalId = setInterval(updateEventStatus, 90000);
+    const intervalId = setInterval(updateEventStatus, 60000);
 
     return () => clearInterval(intervalId);
   }, []);

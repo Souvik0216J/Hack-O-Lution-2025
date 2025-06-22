@@ -28,16 +28,18 @@ const COLOR_HEX: Record<PrizeColor, string> = {
 // Default prize details
 const DEFAULT_PRIZE_DETAILS: Record<string, string[]> = {
   '1st': [
-    "₹15,000 Cash Prize",
-    "Winner Swags & Certificate"
+    "Prize Amount: ₹15,000",
+    "Internship opportunities for all team members by CloudlyML",
+    "Exciting goodies and exclusive merchandise by CloudlyML",
+    "Exclusive winning certificates for all members"
   ],
   '2nd': [
-    "₹10,000 Cash Prize",
-    "Exclusive Swags & Certificate",
+    "Prize Amount: ₹10,000",
+    "Exclusive certificates for all members",
   ],
   '3rd': [
-    "₹5,000 Cash Prize",
-    "Exclusive Swags & Certificate",
+    "Prize Amount: ₹5,000",
+    "Exclusive certificates for all members",
   ]
 };
 

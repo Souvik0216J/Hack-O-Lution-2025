@@ -17,7 +17,7 @@ import Image from 'next/image'
 
 export default function Home() {
   // Time counter
-  const eventDate = new Date('June 26, 2025 17:30:00')
+  const eventDate = new Date('June 26, 2025 14:30:00')
   const [showScrollUp, setShowScrollUp] = useState<boolean>(false)
 
   // Monitor scroll position

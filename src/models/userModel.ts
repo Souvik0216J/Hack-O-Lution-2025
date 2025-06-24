@@ -35,10 +35,6 @@ const projectSchema = new mongoose.Schema({
     difficulty: {
         type: String,
         default: "null",
-    },
-    isBeginner: {
-        type: Boolean,
-        default: "null",
     }
 });
 

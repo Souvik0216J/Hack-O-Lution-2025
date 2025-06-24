@@ -31,7 +31,6 @@ type ProjectSubmit = {
   projectVideo: string;
   techStack: string;
   difficulty: string;
-  isBeginner: boolean,
 };
 
 type Registration = {
@@ -612,16 +611,6 @@ const AdminDashboard: React.FC = () => {
                               <div>
                                 <span className="font-medium">Challenges Faced: </span>
                                 <span className="text-amber-50">{selectedTeam.projectSubmit[0].difficulty}</span>
-                              </div>
-                            </div>
-                          )}
-
-                          {selectedTeam.projectSubmit[0].isBeginner && (
-                            <div className="flex items-start text-blue-400 hover:text-blue-300">
-                              <Baby className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" />
-                              <div>
-                                <span className="font-medium">Beginner: </span>
-                                <span className="text-amber-50">{selectedTeam.projectSubmit[0].isBeginner ? "Yes" : "No"}</span>
                               </div>
                             </div>
                           )}

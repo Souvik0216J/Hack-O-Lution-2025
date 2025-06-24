@@ -21,7 +21,6 @@ interface ProjectInfo {
   pptLink: string
   hostedLink: string;
   projectVideo: string;
-  isBeginner: boolean;
 }
 
 interface TeamData {
@@ -59,7 +58,6 @@ function Dashboard() {
   const [tStack, setTechStack] = useState<string>("");
   const [difi, setDifi] = useState<string>("");
   const [vid, setVid] = useState<string>("");
-  const [bigi, setbigi] = useState<boolean>(false);
 
   const [project, setProject] = useState<{
     projectLink: string;
@@ -68,7 +66,6 @@ function Dashboard() {
     techStack: string;
     difficulty: string;
     projectVideo: string;
-    isBeginner: boolean;
   }>({
     projectLink: "",
     githubLink: "",
@@ -76,7 +73,6 @@ function Dashboard() {
     techStack: "",
     difficulty: "",
     projectVideo: "",
-    isBeginner: false,
   })
 
   const [teamData, setTeamData] = useState<TeamData>({
@@ -340,7 +336,6 @@ function Dashboard() {
         techStack: tStack,
         projectVideo: vid,
         difficulty: difi,
-        isBeginner: bigi,
       };
 
       setProject(updatedProject);
@@ -353,7 +348,6 @@ function Dashboard() {
         techStack: updatedProject.techStack,
         projectVideo: updatedProject.projectVideo,
         difficulty: updatedProject.difficulty,
-        isBeginner: updatedProject.isBeginner,
       });
 
       if (response.data.success) {
@@ -854,67 +848,6 @@ function Dashboard() {
                         onChange={(e) => setDifi(e.target.value)}
                         placeholder="Describe the challenges encountered during the project"
                       />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="mt-4 block text-medium font-medium mb-3 text-blue-400">
-                      *Do you want to be considerd as a beginner team?
-                    </label>
-                    <div className="flex gap-6">
-                      <label className="flex items-center cursor-pointer group">
-                        <input
-                          type="radio"
-                          name="beginnerTeam"
-                          value="true"
-                          checked={bigi === true}
-                          onChange={() => setbigi(true)}
-                          className="sr-only"
-                        />
-                        <div className="relative">
-                          <div className={`w-5 h-5 rounded-full border-2 transition-all duration-200 ${bigi === true
-                            ? "border-blue-400 bg-blue-400"
-                            : "border-zinc-600 bg-zinc-800 group-hover:border-zinc-500"
-                            }`}>
-                            {bigi === true && (
-                              <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="w-2 h-2 rounded-full bg-white"></div>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                        <span className={`ml-3 text-sm transition-colors duration-200 ${bigi === true ? "text-blue-400" : "text-zinc-300 group-hover:text-zinc-200"
-                          }`}>
-                          Yes
-                        </span>
-                      </label>
-
-                      <label className="flex items-center cursor-pointer group">
-                        <input
-                          type="radio"
-                          name="beginnerTeam"
-                          value="false"
-                          checked={bigi === false}
-                          onChange={() => setbigi(false)}
-                          className="sr-only"
-                        />
-                        <div className="relative">
-                          <div className={`w-5 h-5 rounded-full border-2 transition-all duration-200 ${bigi === false
-                            ? "border-blue-400 bg-blue-400"
-                            : "border-zinc-600 bg-zinc-800 group-hover:border-zinc-500"
-                            }`}>
-                            {bigi === false && (
-                              <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="w-2 h-2 rounded-full bg-white"></div>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                        <span className={`ml-3 text-sm transition-colors duration-200 ${bigi === false ? "text-blue-400" : "text-zinc-300 group-hover:text-zinc-200"
-                          }`}>
-                          No
-                        </span>
-                      </label>
                     </div>
                   </div>
 

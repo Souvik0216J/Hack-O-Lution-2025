@@ -7,11 +7,11 @@ export async function POST(request: NextRequest) {
     try {
 
         const reqBody = await request.json()
-        const { teamId, projectLink, githubLink, pptLink, techStack, difficulty, projectVideo, isBeginner } = reqBody
+        const { teamId, projectLink, githubLink, pptLink, techStack, difficulty, projectVideo } = reqBody
 
         console.log(reqBody)
 
-        if (!teamId || !projectLink || !githubLink || !pptLink || !techStack || !difficulty || !projectVideo || !isBeginner) {
+        if (!teamId || !projectLink || !githubLink || !pptLink || !techStack || !difficulty || !projectVideo) {
             return NextResponse.json({
                 success: false,
                 message: 'Missing required fields'
@@ -28,8 +28,7 @@ export async function POST(request: NextRequest) {
                     'projectSubmit.0.pptLink': pptLink,
                     'projectSubmit.0.techStack': techStack,
                     'projectSubmit.0.projectVideo': projectVideo,
-                    'projectSubmit.0.difficulty': difficulty,
-                    'projectSubmit.0.isBeginner': isBeginner,
+                    'projectSubmit.0.difficulty': difficulty
                 }
             },
             { new: true }

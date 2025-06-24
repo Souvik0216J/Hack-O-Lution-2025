@@ -28,8 +28,16 @@ const projectSchema = new mongoose.Schema({
         type: String,
         default: "null",
     },
+    projectVideo: {
+        type: String,
+        default: "null",
+    },
     difficulty: {
         type: String,
+        default: "null",
+    },
+    isBeginner: {
+        type: Boolean,
         default: "null",
     }
 });

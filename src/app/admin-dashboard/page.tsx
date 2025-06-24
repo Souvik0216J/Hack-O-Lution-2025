@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { Users, Search, X, Check, Linkedin, Filter, ArrowUpDown, Mail, Phone, Lightbulb, ExternalLink, Clock, Github, Globe, Loader2, Presentation } from "lucide-react";
+import { Users, Search, X, Check, Linkedin, Filter, ArrowUpDown, Mail, Phone, Lightbulb, ExternalLink, Clock, Github, Globe, Loader2, Presentation, Code, AlertCircle } from "lucide-react";
 import { FaDiscord } from "react-icons/fa";
 
 type Member = {
@@ -28,6 +28,8 @@ type ProjectSubmit = {
   projectLink: string;
   hostedLink: string;
   pptLink: string;
+  techStack: string;
+  difficulty: string;
 };
 
 type Registration = {
@@ -577,6 +579,26 @@ const AdminDashboard: React.FC = () => {
                               Project PPT
                               <ExternalLink className="h-3 w-3 ml-1" />
                             </a>
+                          )}
+
+                          {selectedTeam.projectSubmit[0].techStack && selectedTeam.projectSubmit[0].techStack !== "null" && (
+                            <div className="flex items-start text-blue-400 hover:text-blue-300">
+                              <Code className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" />
+                              <div>
+                                <span className="font-medium">Tech Stack: </span>
+                                <span className="text-amber-50">{selectedTeam.projectSubmit[0].techStack}</span>
+                              </div>
+                            </div>
+                          )}
+
+                          {selectedTeam.projectSubmit[0].difficulty && selectedTeam.projectSubmit[0].difficulty !== "null" && (
+                            <div className="flex items-start text-blue-400 hover:text-blue-300">
+                              <AlertCircle className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" />
+                              <div>
+                                <span className="font-medium">Challenges Faced: </span>
+                                <span className="text-amber-50">{selectedTeam.projectSubmit[0].difficulty}</span>
+                              </div>
+                            </div>
                           )}
 
                         </div>

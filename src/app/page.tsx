@@ -62,14 +62,14 @@ export default function Home() {
     {
       name: "Anurag Prasad",
       title: "CEO CloudyML",
-      image: "/judge/1.jpg",
+      image: "/judges/1.jpg",
       linkedin: "https://www.linkedin.com/in/anuragology?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     },
     {
       name: "Kalpita Chatterjee",
       title: "CTO - CloudyML",
       // expertise: "AI/ML, Full Stack Development",
-      image: "/judge/2.jpg",
+      image: "/judges/2.jpg",
       linkedin: "https://www.linkedin.com/in/astrokalpita?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     },
   ];

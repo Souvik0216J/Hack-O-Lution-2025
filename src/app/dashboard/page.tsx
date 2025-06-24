@@ -96,6 +96,15 @@ function Dashboard() {
       isPast: false // calculate this in the useEffect
     },
     {
+      date: "June 26, 2025",
+      startTime: "08:30",
+      endTime: "09:00",
+      title: "Opening Ceremony",
+      description: "Test",
+      isActive: false,
+      isPast: false
+    },
+    {
       date: "June 26-27, 2025",
       startTime: "09:00", // Beginning of day
       endTime: "14:30",   // End of day
@@ -184,6 +193,15 @@ function Dashboard() {
       startTime: "14:45",
       endTime: "16:30",
       title: "Evaluation",
+      description: "Test",
+      isActive: false,
+      isPast: false
+    },
+    {
+      date: "June 27, 2025",
+      startTime: "16:30",
+      endTime: "17:00",
+      title: "Closing Ceremony",
       description: "Test",
       isActive: false,
       isPast: false
@@ -805,7 +823,7 @@ function Dashboard() {
 
                   {/* Project Submit button */}
 
-                  <div className="flex justify-end mt-4">
+                  {/* <div className="flex justify-end mt-4">
                     <button
                       className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md text-sm font-medium hover:cursor-pointer"
                       onClick={handleProjectSubmission}
@@ -820,7 +838,7 @@ function Dashboard() {
                         </>
                       )}
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               )}
             </div>

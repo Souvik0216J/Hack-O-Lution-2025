@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { Users, Search, X, Check, Linkedin, Filter, ArrowUpDown, Mail, Phone, Lightbulb, ExternalLink, Clock, Github, Globe, Loader2, Presentation, Code, AlertCircle } from "lucide-react";
+import { Users, Search, X, Check, Linkedin, Filter, ArrowUpDown, Mail, Phone, Lightbulb, ExternalLink, Clock, Github, Globe, Loader2, Presentation, Code, AlertCircle, Video, Baby } from "lucide-react";
 import { FaDiscord } from "react-icons/fa";
 
 type Member = {
@@ -28,8 +28,10 @@ type ProjectSubmit = {
   projectLink: string;
   hostedLink: string;
   pptLink: string;
+  projectVideo: string;
   techStack: string;
   difficulty: string;
+  isBeginner: boolean,
 };
 
 type Registration = {
@@ -581,6 +583,19 @@ const AdminDashboard: React.FC = () => {
                             </a>
                           )}
 
+                          {selectedTeam.projectSubmit[0].projectVideo && selectedTeam.projectSubmit[0].projectVideo !== "null" && (
+                            <a
+                              href={selectedTeam.projectSubmit[0].projectVideo}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center text-blue-400 hover:text-blue-300"
+                            >
+                              <Video className="h-4 w-4 mr-2" />
+                              Project Video
+                              <ExternalLink className="h-3 w-3 ml-1" />
+                            </a>
+                          )}
+
                           {selectedTeam.projectSubmit[0].techStack && selectedTeam.projectSubmit[0].techStack !== "null" && (
                             <div className="flex items-start text-blue-400 hover:text-blue-300">
                               <Code className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" />
@@ -597,6 +612,16 @@ const AdminDashboard: React.FC = () => {
                               <div>
                                 <span className="font-medium">Challenges Faced: </span>
                                 <span className="text-amber-50">{selectedTeam.projectSubmit[0].difficulty}</span>
+                              </div>
+                            </div>
+                          )}
+
+                          {selectedTeam.projectSubmit[0].isBeginner && (
+                            <div className="flex items-start text-blue-400 hover:text-blue-300">
+                              <Baby className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" />
+                              <div>
+                                <span className="font-medium">Beginner: </span>
+                                <span className="text-amber-50">{selectedTeam.projectSubmit[0].isBeginner ? "Yes" : "No"}</span>
                               </div>
                             </div>
                           )}

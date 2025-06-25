@@ -49,6 +49,8 @@ function RulesPage() {
     "Any attempt to sabotage other teams or interfere with their work will lead to immediate disqualification.",
     "The decision of the judging panel is final and cannot be contested.",
     "Only teams that adhere to all rules and complete their submissions by the deadline will be eligible for awards.",
+    "Participants will be responsible for any medical costs they incur.",
+    "Participants are advised to carry basic medicines and personal medications.",
     "Organizers reserve the right to modify or update the rules at any time. Any changes will be communicated to all participants promptly."
   ]
 

@@ -30,6 +30,7 @@ type ProjectSubmit = {
   pptLink: string;
   projectVideo: string;
   techStack: string;
+  problemSolve: string;
   difficulty: string;
 };
 
@@ -604,6 +605,17 @@ const AdminDashboard: React.FC = () => {
                               </div>
                             </div>
                           )}
+
+                          {selectedTeam.projectSubmit[0].problemSolve && selectedTeam.projectSubmit[0].problemSolve !== "null" && (
+                            <div className="flex items-start text-blue-400 hover:text-blue-300">
+                              <Code className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" />
+                              <div>
+                                <span className="font-medium">Proble Solve: </span>
+                                <span className="text-amber-50">{selectedTeam.projectSubmit[0].problemSolve}</span>
+                              </div>
+                            </div>
+                          )}
+
 
                           {selectedTeam.projectSubmit[0].difficulty && selectedTeam.projectSubmit[0].difficulty !== "null" && (
                             <div className="flex items-start text-blue-400 hover:text-blue-300">

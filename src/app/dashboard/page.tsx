@@ -58,12 +58,14 @@ function Dashboard() {
   const [tStack, setTechStack] = useState<string>("");
   const [difi, setDifi] = useState<string>("");
   const [vid, setVid] = useState<string>("");
+  const [probelmS, setprobelmS] = useState<string>("");
 
   const [project, setProject] = useState<{
     projectLink: string;
     githubLink: string;
     pptLink: string;
     techStack: string;
+    problemSolve: string;
     difficulty: string;
     projectVideo: string;
   }>({
@@ -71,6 +73,7 @@ function Dashboard() {
     githubLink: "",
     pptLink: "",
     techStack: "",
+    problemSolve: "",
     difficulty: "",
     projectVideo: "",
   })
@@ -334,6 +337,7 @@ function Dashboard() {
         githubLink: gLink,
         pptLink: ppLink,
         techStack: tStack,
+        problemSolve: probelmS,
         projectVideo: vid,
         difficulty: difi,
       };
@@ -346,6 +350,7 @@ function Dashboard() {
         githubLink: updatedProject.githubLink,
         pptLink: updatedProject.pptLink,
         techStack: updatedProject.techStack,
+        problemSolve: updatedProject.problemSolve,
         projectVideo: updatedProject.projectVideo,
         difficulty: updatedProject.difficulty,
       });
@@ -839,6 +844,19 @@ function Dashboard() {
 
                     <div>
                       <label htmlFor="difficulty" className="block text-medium font-medium mb-2 text-blue-400">
+                        *What problem your project will be solving?
+                      </label>
+                      <Input
+                        type="text"
+                        id="problemSolve"
+                        value={probelmS}
+                        onChange={(e) => setprobelmS(e.target.value)}
+                        placeholder="I have built this project for solving...."
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="difficulty" className="block text-medium font-medium mb-2 text-blue-400">
                         *Challenges Encountered In The Project
                       </label>
                       <Input
@@ -852,8 +870,8 @@ function Dashboard() {
                   </div>
 
                   {/* Project Submit button */}
-
-                  {/* <div className="flex justify-end mt-4">
+                  
+                  <div className="flex justify-end mt-4">
                     <button
                       className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md text-sm font-medium hover:cursor-pointer"
                       onClick={handleProjectSubmission}
@@ -868,7 +886,7 @@ function Dashboard() {
                         </>
                       )}
                     </button>
-                  </div> */}
+                  </div>
                 </div>
               )}
             </div>

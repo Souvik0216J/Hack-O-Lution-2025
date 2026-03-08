@@ -7,7 +7,7 @@ import { FontWrapper } from "@/components/FontWrapper";
 // import LoadingLayout from "@/components/LoadingLayout";
 
 export const metadata: Metadata = {
-  title: "Hack {O} Lution",
+  title: "Hackolution2K25",
   description: "This is official Hack{o}Lution registration page.",
 };
 
